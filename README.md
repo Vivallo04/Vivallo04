@@ -1,5 +1,6 @@
 # Hey! 🙋🏻‍♂️ Vivallo here!
 [<img alt="LinkedIn" src="https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/>](https://www.linkedin.com/in/andr%C3%A9s-vivallo-11198a202/)
+
 #####I am a Computer Engineering Student at Instituto Tecnológico de Costa Rica.
 
 Currently, studying and open for a job position. Learning and growing my skillset in 
