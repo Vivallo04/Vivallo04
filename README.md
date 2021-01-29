@@ -3,7 +3,7 @@
 
 ### I am a Computer Engineering Student at Instituto Tecnológico de Costa Rica.
 
-Currently, studying and open for a job position. Learning and growing my skillset in 
+Currently, studying and open for a full-time job position. Learning and growing my skillset in 
 Software Development and Electronics, competitive programming, new data structures and algorithms. 
 I'm also looking to collaborate on any Open Source Projects.
 
