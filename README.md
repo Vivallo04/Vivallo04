@@ -19,5 +19,5 @@
 ### 🚀 Here are is a link to my [resume](https://drive.google.com/file/d/1BFWgg3U5mcV9HNEGqiuFFpOU80tJgZEj/view?usp=sharing)
 
 # My Statistics
-![](https://github.com/Vivallo04/stats/blob/master/generated/languages.svg)
 ![](https://github.com/Vivallo04/stats/blob/master/generated/overview.svg)
+![](https://github.com/Vivallo04/stats/blob/master/generated/languages.svg)
