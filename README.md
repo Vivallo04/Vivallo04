@@ -1,4 +1,4 @@
-# Hey🙋🏻‍♂️! Vivallo here!
+# Hey! 🙋🏻‍♂️Vivallo here!
 [<img alt="LinkedIn" src="https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/>](https://bit.ly/3j66uxg)
 
 
@@ -18,6 +18,6 @@
 
 ### 🚀 Here is a link to my [resume](https://drive.google.com/file/d/1BFWgg3U5mcV9HNEGqiuFFpOU80tJgZEj/view?usp=sharing)
 
-# My Statistics
+## My Statistics
 ![](https://github.com/Vivallo04/stats/blob/master/generated/overview.svg)
 ![](https://github.com/Vivallo04/stats/blob/master/generated/languages.svg)
