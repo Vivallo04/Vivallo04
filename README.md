@@ -16,7 +16,7 @@
 - 💘 I love high-level and low-level programming as much as electronics (and classical music too)
 - 💼 Interested in working with me?  
 
-### 🚀 Here is a link to my [resume](https://drive.google.com/file/d/1BFWgg3U5mcV9HNEGqiuFFpOU80tJgZEj/view?usp=sharing)
+### 🚀 Here is a link to my [resume](https://drive.google.com/file/d/1cG-DIguIwvO7GfE2lnyvj98ObJ1lHbLr/view?usp=sharing)
 
 ## My Statistics
 ![](https://github.com/Vivallo04/stats/blob/master/generated/overview.svg)
