@@ -6,12 +6,11 @@
 ## I am a Computer Engineering Student
 ### Here are some of my interests and what I'm working on: 
 
-- 🎆 Working on [study-room.io](https://github.com/Vivallo04/study-room.io)
-- 🌱 I'm currently learning Rust and low-level programming (C & Assembly) 
+- 🎆 Working on [Lambda Blog](https://github.com/Vivallo04/lambda-blog)
+- 🌱 I'm currently learning Rust and low-level programming 
 - 💭 Ask me about anything [here](https://github.com/Vivallo04/Vivallo04/issues/new) or we can connect on [LinkedIn](https://bit.ly/3zm1YjA)
-- ✨ Practicing flute as much as I can, and always going one step further
 - 🎮 I have fun developing games and doing full-stack web development
-- 🤓 Oh! I almost forget. Here's the link to my [dotfiles](https://github.com/Vivallo04/dotfiles) (I use Arch btw)
+- 🤓 Oh! I almost forget. Here's a link to my [dotfiles](https://github.com/Vivallo04/dotfiles) (I use Arch btw)
 - 👨🏻‍💻 Want to do any fun project for the weekend? Sure! I'm [down](https://discordapp.com/users/521712126058823701)
 - 💘 I love high-level and low-level programming as much as electronics (and classical music too)
 
