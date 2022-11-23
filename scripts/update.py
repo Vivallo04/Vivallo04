@@ -3,25 +3,20 @@ import logging
 import random
 import json
 
-
-def read_file(file):
-    file = open(file)
-    data = json.load(file)
-
-    for challenge in data['challenges']:
-        if challenge['challenge_name'] == "Two Sum":
-            logging.debug(challenge['challenge_description'])
-
-    file.close()
+"""
+1. Update to see new and old
+2. Select a random challenge from upcoming
+3. Write the upcoming and its solution to the file
+"""
 
 
-def get_upcoming(file) -> list:
+def get_challenge_updates(file: str, to_update: str) -> list:
     file = open(file)
     data = json.load(file)
 
     temp = list()
-    logging.info('Upcoming: ')
-    for i in data['upcoming']:
+    logging.info(to_update + " ⬇")
+    for i in data[to_update]:
         temp.append(i)
         logging.debug(i)
 
@@ -29,22 +24,17 @@ def get_upcoming(file) -> list:
     return temp
 
 
-def get_old(file) -> list:
-    file = open(file)
-    data = json.load(file)
-
-    temp = list()
-    logging.info('Old:  ')
-    for i in data['old']:
-        temp.append(i)
-        logging.debug(i)
-
-    file.close()
-    return temp
+def select_daily_challenge(upcoming_list: list, old_list: list) -> str:
+    daily = random.choice(upcoming_list)
+    while is_in_old(daily, old_list):
+        print("Oops! Already taken 🎯")
+        daily = random.choice(upcoming_list)
+    print("🌟 " + daily)
+    return daily
 
 
-def get_challenge_of_the_day(file) -> str:
-    pass
+def is_in_old(i: str, old_list: list) -> bool:
+    return i in old_list
 
 
 def write_challenge_of_the_day(challenge):
@@ -59,21 +49,18 @@ def write_solution(solution, lang):
     pass
 
 
-def select_daily_challenge(daily, upcoming, old) -> str:
-    while daily in old:
-        i = random.randint(0, len(upcoming))
-        daily = upcoming[i]
-    return daily
-
-
 if __name__ == '__main__':
     logging.basicConfig(format='%(asctime)s - %(message)s',
                         datefmt='%d-%b-%y %H:%M:%S', level=logging.DEBUG)
     logging.info('Executing...')
 
+    # Read and update the challenges so that they do not repeat
     text_file = 'challenges.json'
-    upcoming = get_upcoming(text_file)
-    old = get_old(text_file)
+    upcoming = get_challenge_updates(text_file, 'upcoming')
+    old = get_challenge_updates(text_file, 'old')
 
-    read_file(text_file)
+    todays_challenge = select_daily_challenge(upcoming, old)
+
+    # Update the readme file
+
     logging.info('Done!')
