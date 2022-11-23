@@ -24,12 +24,27 @@ def get_challenge_updates(file: str, to_update: str) -> list:
     return temp
 
 
-def select_daily_challenge(upcoming_list: list, old_list: list) -> str:
+def update_challenges_list(file, new_old: list):
+    with open(file, "r+") as json_file:
+        data = json.load(json_file)
+        data['old'] = new_old
+
+        json_file.seek(0)  # rewind
+        json.dump(data, json_file)
+        json_file.truncate()
+        print("New list update: ⏬")
+        print(new_old)
+
+
+def select_daily_challenge(file: str, upcoming_list: list, old_list: list) -> str:
     daily = random.choice(upcoming_list)
     while is_in_old(daily, old_list):
         print("Oops! Already taken 🎯")
         daily = random.choice(upcoming_list)
     print("🌟 " + daily)
+    old_list.append(daily)
+    update_challenges_list(file, old_list)
+
     return daily
 
 
@@ -41,15 +56,12 @@ def write_challenge_of_the_day(challenge):
     pass
 
 
-def get_solution(file):
-    pass
-
-
 def write_solution(solution, lang):
     pass
 
 
 if __name__ == '__main__':
+    # Set up logging
     logging.basicConfig(format='%(asctime)s - %(message)s',
                         datefmt='%d-%b-%y %H:%M:%S', level=logging.DEBUG)
     logging.info('Executing...')
@@ -59,8 +71,9 @@ if __name__ == '__main__':
     upcoming = get_challenge_updates(text_file, 'upcoming')
     old = get_challenge_updates(text_file, 'old')
 
-    todays_challenge = select_daily_challenge(upcoming, old)
+    todays_challenge = select_daily_challenge(text_file, upcoming, old)
 
     # Update the readme file
+
 
     logging.info('Done!')
