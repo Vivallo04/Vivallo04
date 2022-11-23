@@ -15,10 +15,8 @@ def get_challenge_updates(file: str, to_update: str) -> list:
     data = json.load(file)
 
     temp = list()
-    logging.info(to_update + " ⬇")
     for i in data[to_update]:
         temp.append(i)
-        logging.debug(i)
 
     file.close()
     return temp
@@ -38,13 +36,18 @@ def update_challenges_list(file, new_old: list):
 
 def select_daily_challenge(file: str, upcoming_list: list, old_list: list) -> str:
     daily = random.choice(upcoming_list)
+    if len(upcoming_list) == len(old_list):
+        old_list = []
+        update_challenges_list(file, old_list)
+        return daily
+
     while is_in_old(daily, old_list):
         print("Oops! Already taken 🎯")
         daily = random.choice(upcoming_list)
+
     print("🌟 " + daily)
     old_list.append(daily)
     update_challenges_list(file, old_list)
-
     return daily
 
 
@@ -52,8 +55,17 @@ def is_in_old(i: str, old_list: list) -> bool:
     return i in old_list
 
 
-def write_challenge_of_the_day(challenge):
-    pass
+def write_challenge_of_the_day(file, challenge: str):
+    with open(file, "r+") as json_file:
+        data = json.load(json_file)
+
+        for i in data['challenges']:
+            if i['title'] == challenge:
+                content = i['content']
+                print("🤓 Today's challenge name: " + challenge)
+                print("👀 " + content)
+
+    # write to markdown
 
 
 def write_solution(solution, lang):
@@ -74,6 +86,6 @@ if __name__ == '__main__':
     todays_challenge = select_daily_challenge(text_file, upcoming, old)
 
     # Update the readme file
-
+    write_challenge_of_the_day(text_file, todays_challenge)
 
     logging.info('Done!')
