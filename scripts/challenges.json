@@ -6,7 +6,7 @@
     },
     {
       "title": "Jump Game",
-      "content": "You are given an integer array nums. You are initially positioned at the array's first index, and each element in the array represents your maximum jump length at that position.\n\nReturn true if you can reach the last index, or false otherwise."
+      "content": "You are given an integer array nums. You are initially positioned at the array's first index, and each element in the array represents your maximum jump length at that position.\nReturn true if you can reach the last index, or false otherwise."
     },
     {
       "title": "Jump Game II",
@@ -18,7 +18,7 @@
     },
     {
       "title": "Merge Sorted Array",
-      "content": "You are given two integer arrays nums1 and nums2, sorted in non-decreasing order, and two integers m and n, representing the number of elements in nums1 and nums2 respectively. Merge nums1 and nums2 into a single array sorted in non-decreasing order.\n\nThe final sorted array should not be returned by the function, but instead be stored inside the array nums1. To accommodate this, nums1 has a length of m + n, where the first m elements denote the elements that should be merged, and the last n elements are set to 0 and should be ignored. nums2 has a length of n."
+      "content": "You are given two integer arrays nums1 and nums2, sorted in non-decreasing order, and two integers m and n, representing the number of elements in nums1 and nums2 respectively. Merge nums1 and nums2 into a single array sorted in non-decreasing order.\nThe final sorted array should not be returned by the function, but instead be stored inside the array nums1. To accommodate this, nums1 has a length of m + n, where the first m elements denote the elements that should be merged, and the last n elements are set to 0 and should be ignored. nums2 has a length of n."
     },
     {
       "title": "Same Tree",
@@ -70,7 +70,7 @@
     },
     {
       "title": "Decode Ways",
-      "content": "A message containing letters from A-Z can be encoded into numbers using the following mapping: A = 1, B = 2, (...), Z = 26. o decode an encoded message, all the digits must be grouped then mapped back into letters using the reverse of the mapping above (there may be multiple ways). For example, \"11106\" can be mapped into:\n\n\"AAJF\" with the grouping (1 1 10 6)\n\"KJF\" with the grouping (11 10 6)\nNote that the grouping (1 11 06) is invalid because \"06\" cannot be mapped into 'F' since \"6\" is different from \"06\".\n\nGiven a string s containing only digits, return the number of ways to decode it.\n\nThe test cases are generated so that the answer fits in a 32-bit integer."
+      "content": "A message containing letters from A-Z can be encoded into numbers using the following mapping: A = 1, B = 2, (...), Z = 26. o decode an encoded message, all the digits must be grouped then mapped back into letters using the reverse of the mapping above (there may be multiple ways). For example, \"11106\" can be mapped into:\n\"AAJF\" with the grouping (1 1 10 6)\n\"KJF\" with the grouping (11 10 6)\nNote that the grouping (1 11 06) is invalid because \"06\" cannot be mapped into 'F' since \"6\" is different from \"06\".\nGiven a string s containing only digits, return the number of ways to decode it.\nThe test cases are generated so that the answer fits in a 32-bit integer."
     },
     {
       "title": "Partition List",
@@ -82,7 +82,7 @@
     },
     {
       "title": "N-Queens",
-      "content": "The n-queens puzzle is the problem of placing n queens on an n x n chessboard such that no two queens attack each other.\n\nGiven an integer n, return all distinct solutions to the n-queens puzzle. You may return the answer in any order.\nEach solution contains a distinct board configuration of the n-queens' placement, where 'Q' and '.' both indicate a queen and an empty space, respectively."
+      "content": "The n-queens puzzle is the problem of placing n queens on an n x n chessboard such that no two queens attack each other.\nGiven an integer n, return all distinct solutions to the n-queens puzzle. You may return the answer in any order.\nEach solution contains a distinct board configuration of the n-queens' placement, where 'Q' and '.' both indicate a queen and an empty space, respectively."
     },
     {
       "title": "Spiral Matrix",
@@ -110,7 +110,7 @@
     },
     {
       "title": "Gray Code",
-      "content": "An n-bit gray code sequence is a sequence of 2n integers where:\n\nEvery integer is in the inclusive range [0, 2n - 1],\nThe first integer is 0,\nAn integer appears no more than once in the sequence,\nThe binary representation of every pair of adjacent integers differs by exactly one bit, and\nThe binary representation of the first and last integers differs by exactly one bit.\nGiven an integer n, return any valid n-bit gray code sequence."
+      "content": "An n-bit gray code sequence is a sequence of 2n integers where:\nEvery integer is in the inclusive range [0, 2n - 1],\nThe first integer is 0,\nAn integer appears no more than once in the sequence,\nThe binary representation of every pair of adjacent integers differs by exactly one bit, and\nThe binary representation of the first and last integers differs by exactly one bit.\nGiven an integer n, return any valid n-bit gray code sequence."
     },
     {
       "title": "Reverse Linked List II",
@@ -130,7 +130,7 @@
     },
     {
       "title": "Sum Root to Leaf Numbers",
-      "content": "You are given the root of a binary tree containing digits from 0 to 9 only. Each root-to-leaf path in the tree represents a number.\n\n - For example, the root-to-leaf path 1 -> 2 -> 3 represents the number 123. Return the total sum of all root-to-leaf numbers."
+      "content": "You are given the root of a binary tree containing digits from 0 to 9 only. Each root-to-leaf path in the tree represents a number.\n - For example, the root-to-leaf path 1 -> 2 -> 3 represents the number 123. Return the total sum of all root-to-leaf numbers."
     },
     {
       "title": "Flatten Binary Tree to Linked List",
@@ -194,6 +194,5 @@
     "Tenth Line"
   ],
   "old": [
-
   ]
 }
