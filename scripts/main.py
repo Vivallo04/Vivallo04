@@ -4,6 +4,9 @@ import random
 import json
 import sys
 
+import requests
+from bs4 import BeautifulSoup
+
 """
 1. Choose a new challenge
 2. Write it down in the README.md
@@ -14,9 +17,7 @@ import sys
 
 # Load json in memory
 def get_challenge_updates(file: str, to_update: str) -> list:
-
     # open with utf 8 encoding
-
     file = open(file, "r+", encoding="utf-8")
     data = json.load(file)
 
@@ -98,7 +99,7 @@ def set_last_challenge(file, challenge):
     json_file.close()
 
 
-def set_last_challenge_content(file, todays_challenge_content: str):
+def set_last_challenge_content(file: str, todays_challenge_content: str):
     with open(file, "r+", encoding="utf-8") as json_file:
         data = json.load(json_file)
         data['last_problem_content'] = todays_challenge_content
@@ -112,7 +113,7 @@ def set_last_challenge_content(file, todays_challenge_content: str):
 # Write today's challenge and solution
 def write_challenge_of_the_day(readme_file: str, new_text: str, placeholder):
     # write to markdown
-    for line in fileinput.input(readme_file, inplace=1, encoding="utf-8"):
+    for line in fileinput.input(readme_file, inplace=True, encoding="utf-8"):
         if placeholder in line:
             line = line.replace(placeholder, new_text)
         sys.stdout.write(line)
@@ -122,29 +123,32 @@ def write_solution(solution, lang):
     pass
 
 
+def main():
+    # Make a GET request to the problem page
+    URL = "https://leetcode.com/problems/problem-title/"
+    page = requests.get(URL)
+
+    # Parse the HTML of the page
+    soup = BeautifulSoup(page.content, "html.parser")
+
+    # Find the title and description elements
+    title_element = soup.find("h4", class_="title")
+    description_element = soup.find("div", class_="question-content")
+
+    # Extract the text from the elements
+    title = title_element.text
+    description = description_element.text
+
+    # Save the information to a JSON file
+    data = {
+        "title": title,
+        "description": description
+    }
+    with open("problem.json", "w") as f:
+        json.dump(data, f)
+
+
+
 if __name__ == '__main__':
-    # Set up logging
-    logging.basicConfig(format='%(asctime)s - %(message)s',
-                        datefmt='%d-%b-%y %H:%M:%S', level=logging.DEBUG)
-    logging.info('Executing...')
-
-    # Global variables
-    text_file = 'challenges.json'
-    readme = '../README.md'
-
-    # Read and update the challenges so that they do not repeat
-    upcoming = get_challenge_updates(text_file, "upcoming")
-    old = get_challenge_updates(text_file, "old")
-
-    # Current variables
-    last_challenge = get_last_challenge(text_file)
-    todays_challenge_name = select_daily_challenge(text_file, upcoming, old)
-    todays_challenge_content = get_challenge_content(text_file, todays_challenge_name)
-
-    # Update the readme file and params
-    write_challenge_of_the_day(readme, todays_challenge_name, "⭐")
-    write_challenge_of_the_day(readme, todays_challenge_content, "👀")
-    set_last_challenge(text_file, todays_challenge_name)
-    set_last_challenge_content(text_file, todays_challenge_content)
-
+    main()
     logging.info('Done!')
