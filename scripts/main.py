@@ -1,11 +1,11 @@
-import fileinput
+from bs4 import BeautifulSoup
 import logging
+import markdown
 import random
+import fileinput
+import requests
 import json
 import sys
-
-import requests
-from bs4 import BeautifulSoup
 
 """
 1. Choose a new challenge
@@ -16,13 +16,14 @@ from bs4 import BeautifulSoup
 
 
 # Load json in memory
-def get_challenge_updates(file: str, to_update: str) -> list:
+def get_challenge_updates(file_path: str, update_field: str) -> list:
     # open with utf 8 encoding
-    file = open(file, "r+", encoding="utf-8")
-    data = json.load(file)
+
+    with open(file_path, 'r') as file:
+        data = json.load(file)
 
     temp = list()
-    for i in data[to_update]:
+    for i in data[update_field]:
         temp.append(i)
 
     file.close()
@@ -32,20 +33,20 @@ def get_challenge_updates(file: str, to_update: str) -> list:
 
 # Choose a random challenge
 def select_daily_challenge(file: str, upcoming_list: list, old_list: list) -> str:
-    daily = random.choice(upcoming_list)
+    daily_challenge = random.choice(upcoming_list)
     if len(upcoming_list) == len(old_list):
         old_list = []
         update_challenges_list(file, old_list)
-        return daily
+        return daily_challenge
 
-    while is_in_old(daily, old_list):
+    while is_in_old(daily_challenge, old_list):
         print("Oops! Already taken 🎯")
-        daily = random.choice(upcoming_list)
+        daily_challenge = random.choice(upcoming_list)
 
-    old_list.append(daily)
+    old_list.append(daily_challenge)
     update_challenges_list(file, old_list)
-    print("🌟 " + daily)
-    return daily
+    print("🌟 " + daily_challenge)
+    return daily_challenge
 
 
 def is_in_old(i: str, old_list: list) -> bool:
@@ -73,7 +74,7 @@ def get_challenge_content(file: str, challenge: str) -> str:
         for i in data['challenges']:
             name = i['title']
             if name == challenge:
-                content = "⭐" + i['content']
+                content = i['content']
                 print("👀 " + content)
                 return content
 
@@ -125,7 +126,7 @@ def write_solution(solution, lang):
 
 def main():
     # Make a GET request to the problem page
-    URL = "https://leetcode.com/problems/problem-title/"
+    URL = "https://leetcode.com/problems/all/"
     page = requests.get(URL)
 
     # Parse the HTML of the page
@@ -136,8 +137,8 @@ def main():
     description_element = soup.find("div", class_="question-content")
 
     # Extract the text from the elements
-    title = title_element.text
-    description = description_element.text
+    title = title_element
+    description = description_element
 
     # Save the information to a JSON file
     data = {
@@ -148,7 +149,42 @@ def main():
         json.dump(data, f)
 
 
+# -------------
+def read_file(file_name: str):
+    logging.info("📰Reading file...")
+    with open(file_name, "r+", encoding="utf-8") as file:
+        text = file.read()
+        return str(text)
+
+
+def save_text_to_html(text):
+    html = markdown.markdown(text)
+    with open("readme.html", "w", encoding="utf-8") as file:
+        file.write(html)
+
 
 if __name__ == '__main__':
-    main()
+    # Variables
+    ch_json = "challenges.json"
+
+    # Read the current README file
+    readme_temp = read_file("../README.md")
+
+    # Make a temporal file in html format
+    save_text_to_html(readme_temp)
+
+    # Load lists in memory
+    upcoming = get_challenge_updates(ch_json, "upcoming")
+    old = get_challenge_updates(ch_json, "old")
+
+    # Choose a random challenge
+    # Challenge Name
+    daily = select_daily_challenge(ch_json, upcoming, old)
+
+    # Challenge Content
+    todays_challenge_content = get_challenge_content(ch_json, daily)
+
+    # Modify the temp html file
+
+    # Convert it to markdown
     logging.info('Done!')
