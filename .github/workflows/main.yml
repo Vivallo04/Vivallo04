@@ -37,7 +37,7 @@ jobs:
     - name: Generate Challenge
       run: |
         python3 --version
-        python3 update.py
+        python3 scripts/main.py
       env:
         ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

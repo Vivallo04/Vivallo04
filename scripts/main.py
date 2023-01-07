@@ -9,13 +9,6 @@ import requests
 import shutil
 import sys
 
-"""
-1. Choose a new challenge
-2. Write it down in the README.md
-2.5 Write its solution
-3. Update the last challenge in the json file
-"""
-
 
 # Load json in memory
 def get_challenge_updates(file_path: str, update_field: str) -> list:
@@ -102,14 +95,14 @@ def set_last_challenge(file, challenge):
     json_file.close()
 
 
-def set_last_challenge_content(file: str, todays_challenge_content: str):
+def set_last_challenge_content(file: str, today_challenge_content: str):
     with open(file, "r+", encoding="utf-8") as json_file:
         data = json.load(json_file)
-        data['last_problem_content'] = todays_challenge_content
+        data['last_problem_content'] = today_challenge_content
         json_file.seek(0)
         json.dump(data, json_file)
         json_file.truncate()
-        print("✅ Last challenge content updated: " + str(todays_challenge_content))
+        print("✅ Last challenge content updated: " + str(today_challenge_content))
     json_file.close()
 
 
@@ -128,8 +121,8 @@ def write_solution(solution, lang):
 
 def main():
     # Make a GET request to the problem page
-    URL = "https://leetcode.com/problems/all/"
-    page = requests.get(URL)
+    url: str = "https://leetcode.com/problems/all/"
+    page = requests.get(url)
 
     # Parse the HTML of the page
     soup = BeautifulSoup(page.content, "html.parser")
