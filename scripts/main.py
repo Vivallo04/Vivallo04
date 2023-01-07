@@ -4,6 +4,7 @@ import markdown
 import random
 import fileinput
 import requests
+import html2text
 import json
 import sys
 
@@ -163,28 +164,50 @@ def save_text_to_html(text):
         file.write(html)
 
 
+def replace_text_in_html(class_name: str, new_text: str):
+    with open("readme.html", "r+", encoding="utf-8") as file:
+        html_text = file.read()
+        print(html_text)
+        soup = BeautifulSoup(html_text, 'html.parser')
+        element = soup.find(class_=class_name)
+        print(element)
+        element.string = new_text
+        file.seek(0)
+        file.write(soup.prettify())
+        file.truncate()
+        print("✅ Text replaced in html")
+
+
+def convert_html_to_markdown(html):
+    markdown_text = html2text.html2text(html)
+    with open("readme.md", "w", encoding="utf-8") as file:
+        file.write(markdown_text)
+
+
 if __name__ == '__main__':
     # Variables
-    ch_json = "challenges.json"
-
-    # Read the current README file
+    challenges_json = "challenges.json"
     readme_temp = read_file("../README.md")
 
     # Make a temporal file in html format
     save_text_to_html(readme_temp)
 
     # Load lists in memory
-    upcoming = get_challenge_updates(ch_json, "upcoming")
-    old = get_challenge_updates(ch_json, "old")
+    upcoming = get_challenge_updates(challenges_json, "upcoming")
+    old = get_challenge_updates(challenges_json, "old")
 
     # Choose a random challenge
     # Challenge Name
-    daily = select_daily_challenge(ch_json, upcoming, old)
+    daily = select_daily_challenge(challenges_json, upcoming, old)
 
     # Challenge Content
-    todays_challenge_content = get_challenge_content(ch_json, daily)
+    daily_content = get_challenge_content(challenges_json, daily)
 
     # Modify the temp html file
+    replace_text_in_html("problem-title", daily)
+    replace_text_in_html("problem-content", daily_content)
+    replace_text_in_html("solution", "🚧")
 
     # Convert it to markdown
+
     logging.info('Done!')
