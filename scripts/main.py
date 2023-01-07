@@ -1,13 +1,12 @@
-import shutil
-
 from bs4 import BeautifulSoup
+import fileinput
+import html2text
+import json
 import logging
 import markdown
 import random
-import fileinput
 import requests
-import html2text
-import json
+import shutil
 import sys
 
 """
