@@ -1,3 +1,5 @@
+import shutil
+
 from bs4 import BeautifulSoup
 import logging
 import markdown
@@ -164,14 +166,15 @@ def save_text_to_html(text):
         file.write(html)
 
 
-def replace_text_in_html(class_name: str, new_text: str):
+def replace_text_in_html(class_name: str, tag: str, new_text: str):
     with open("readme.html", "r+", encoding="utf-8") as file:
         html_text = file.read()
-        print(html_text)
-        soup = BeautifulSoup(html_text, 'html.parser')
-        element = soup.find(class_=class_name)
-        print(element)
+        soup = BeautifulSoup(html_text, features="html.parser")
+        element = soup.find(tag, {"class": class_name})
+        print("🔎 Tag found")
+        print(element.string)
         element.string = new_text
+
         file.seek(0)
         file.write(soup.prettify())
         file.truncate()
@@ -184,30 +187,35 @@ def convert_html_to_markdown(html):
         file.write(markdown_text)
 
 
+def copyfile(file_to_copy, new_path):
+    shutil.copyfile(file_to_copy, new_path)
+
+
 if __name__ == '__main__':
     # Variables
     challenges_json = "challenges.json"
     readme_temp = read_file("../README.md")
 
-    # Make a temporal file in html format
-    save_text_to_html(readme_temp)
-
     # Load lists in memory
     upcoming = get_challenge_updates(challenges_json, "upcoming")
     old = get_challenge_updates(challenges_json, "old")
 
-    # Choose a random challenge
+    # Choose a random challenge ⬇
     # Challenge Name
     daily = select_daily_challenge(challenges_json, upcoming, old)
 
     # Challenge Content
     daily_content = get_challenge_content(challenges_json, daily)
 
-    # Modify the temp html file
-    replace_text_in_html("problem-title", daily)
-    replace_text_in_html("problem-content", daily_content)
-    replace_text_in_html("solution", "🚧")
+    # Pull the HTML temp file and replace the text
+    replace_text_in_html("problem-title", "h3", daily)
+    replace_text_in_html("problem-content", "p", daily_content)
+    replace_text_in_html("problem-solution", "p", "🤓")
 
-    # Convert it to markdown
+    # Convert it back to markdown
+    convert_html_to_markdown(read_file("readme.html"))
+
+    # Copy the README to the root folder to replace it
+    copyfile("readme.md", "../README.md")
 
     logging.info('Done!')
