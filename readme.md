@@ -14,12 +14,12 @@
 
 ##  LeetCode Challenge of the Day ⚛
 
-###  Word Search
+###  Group Anagrams
 
-Given an m x n grid of characters board and a string word, return true if word
-exists in the grid. The word can be constructed from letters of sequentially
-adjacent cells, where adjacent cells are horizontally or vertically
-neighboring. The same letter cell may not be used more than once.
+Given an array of strings strs, group the anagrams together. You can return
+the answer in any order. An Anagram is a word or phrase formed by rearranging
+the letters of a different word or phrase, typically using all the original
+letters exactly once.
 
 ###  My Solution
 
