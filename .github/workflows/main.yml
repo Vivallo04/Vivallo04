@@ -2,13 +2,13 @@ name: Update Daily LeetCode Challenge
 
 on:
   push:
-    branches: [ master ]
+    branches: [ main ]
   schedule:
     - cron: "0 0 * * *"
   workflow_dispatch:
 
 jobs:
-  build:
+  update_readme:
     runs-on: ubuntu-latest
 
     steps:
