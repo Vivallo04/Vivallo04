@@ -175,7 +175,7 @@ def replace_text_in_html(class_name: str, tag: str, new_text: str):
 
 def convert_html_to_markdown(html):
     markdown_text = html2text.html2text(html)
-    with open("readme.md", "w", encoding="utf-8") as file:
+    with open("README.md", "w+", encoding="utf-8") as file:
         file.write(markdown_text)
 
 
