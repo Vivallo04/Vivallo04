@@ -186,7 +186,6 @@ def copyfile(file_to_copy, new_path):
 if __name__ == '__main__':
     # Variables
     challenges_json = "scripts/challenges.json"
-    readme_temp = read_file("README.md")
 
     # TODO: Convert the current README into HTML daily
 
