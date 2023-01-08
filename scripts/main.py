@@ -154,12 +154,12 @@ def read_file(file_name: str):
 
 def save_text_to_html(text):
     html = markdown.markdown(text)
-    with open("readme.html", "w", encoding="utf-8") as file:
+    with open("scripts/readme.html", "w", encoding="utf-8") as file:
         file.write(html)
 
 
 def replace_text_in_html(class_name: str, tag: str, new_text: str):
-    with open("readme.html", "r+", encoding="utf-8") as file:
+    with open("scripts/readme.html", "r+", encoding="utf-8") as file:
         html_text = file.read()
         soup = BeautifulSoup(html_text, features="html.parser")
         element = soup.find(tag, {"class": class_name})
@@ -185,8 +185,10 @@ def copyfile(file_to_copy, new_path):
 
 if __name__ == '__main__':
     # Variables
-    challenges_json = "challenges.json"
-    readme_temp = read_file("../README.md")
+    challenges_json = "scripts/challenges.json"
+    readme_temp = read_file("README.md")
+
+    # TODO: Convert the current README into HTML daily
 
     # Load lists in memory
     upcoming = get_challenge_updates(challenges_json, "upcoming")
@@ -205,9 +207,9 @@ if __name__ == '__main__':
     replace_text_in_html("problem-solution", "p", "🤓")
 
     # Convert it back to markdown
-    convert_html_to_markdown(read_file("readme.html"))
+    convert_html_to_markdown(read_file("scripts/readme.html"))
 
     # Copy the README to the root folder to replace it
-    copyfile("readme.md", "../README.md")
+    copyfile("scripts/readme.md", "../README.md")
 
     logging.info('Done!')
