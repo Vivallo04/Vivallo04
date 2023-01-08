@@ -14,11 +14,12 @@
 
 ##  LeetCode Challenge of the Day ⚛
 
-###  Same Tree
+###  Word Search
 
-Given the roots of two binary trees p and q, write a function to check if they
-are the same or not. Two binary trees are considered the same if they are
-structurally identical, and the nodes have the same value.
+Given an m x n grid of characters board and a string word, return true if word
+exists in the grid. The word can be constructed from letters of sequentially
+adjacent cells, where adjacent cells are horizontally or vertically
+neighboring. The same letter cell may not be used more than once.
 
 ###  My Solution
 
