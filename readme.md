@@ -14,12 +14,11 @@
 
 ##  LeetCode Challenge of the Day ⚛
 
-###  Sum of All Subset XOR Totals
+###  Same Tree
 
-The XOR total of an array is defined as the bitwise XOR of all its elements,
-or 0 if the array is empty. Given an array nums, return the sum of all XOR
-totals for every subset of nums. An array a is a subset of an array b if a can
-be obtained from b by deleting some (possibly zero) elements of b.
+Given the roots of two binary trees p and q, write a function to check if they
+are the same or not. Two binary trees are considered the same if they are
+structurally identical, and the nodes have the same value.
 
 ###  My Solution
 
