@@ -14,12 +14,12 @@
 
 ##  LeetCode Challenge of the Day ⚛
 
-###  Wildcard Matching
+###  Partition List
 
-Given an input string (s) and a pattern (p), implement wildcard pattern
-matching with support for '?' and '*' where: '?' Matches any single character.
-'*' Matches any sequence of characters (including the empty sequence). The
-matching should cover the entire input string (not partial).
+Given the head of a linked list and a value x, partition it such that all
+nodes less than x come before nodes greater than or equal to x. You should
+preserve the original relative order of the nodes in each of the two
+partitions.
 
 ###  My Solution
 
