@@ -14,28 +14,22 @@
 
 ##  LeetCode Challenge of the Day ⚛
 
-###  Search Insert Position
+###  Most Popular Video Creator
 
-Given a sorted array of distinct integers and a target value, return the index
-if the target is found. If not, return the index where it would be if it were
-inserted in order. You must write an algorithm with O(log n) runtime
-complexity.
+You are given two string arrays creators and ids, and an integer array views,
+all of length n. The ith video on a platform was created by creator[i], has an
+id of ids[i], and has views[i] views. The popularity of a creator is the sum
+of the number of views on all of the creator's videos. Find the creator with
+the highest popularity and the id of their most viewed video. If multiple
+creators have the highest popularity, find all of them. If multiple videos
+have the highest view count for a creator, find the lexicographically smallest
+id. Return a 2D array of strings answer where answer[i] = [creator, id] means
+that creator has the highest popularity and idi is the id of their most
+popular video. The answer can be returned in any order.
 
 ###  My Solution
-```c#
-public class Solution {
-    public int SearchInsert(int[] nums, int target) {
-        for (int i = 0; i < nums.Length; i++)
-        {
-            if (target == nums[i] || nums[i] > target)
-            {
-                return i;
-            }
-        }
-        return nums.Length;
-    }
-}
-````
+
+🤓
 
 ##  My Statistics
 
