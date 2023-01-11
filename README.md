@@ -14,18 +14,15 @@
 
 ##  LeetCode Challenge of the Day ⚛
 
-###  Most Popular Video Creator
+###  Word Ladder
 
-You are given two string arrays creators and ids, and an integer array views,
-all of length n. The ith video on a platform was created by creator[i], has an
-id of ids[i], and has views[i] views. The popularity of a creator is the sum
-of the number of views on all of the creator's videos. Find the creator with
-the highest popularity and the id of their most viewed video. If multiple
-creators have the highest popularity, find all of them. If multiple videos
-have the highest view count for a creator, find the lexicographically smallest
-id. Return a 2D array of strings answer where answer[i] = [creator, id] means
-that creator has the highest popularity and idi is the id of their most
-popular video. The answer can be returned in any order.
+A transformation sequence from word beginWord to word endWord using a
+dictionary wordList is a sequence of words beginWord -> s1 -> s2 -> ... -> sk
+such that: Every adjacent pair of words differs by a single letter. Every si
+for 1 <= i <= k is in wordList. Note that beginWord does not need to be in
+wordList. sk == endWord Given two words, beginWord and endWord, and a
+dictionary wordList, return the number of words in the shortest transformation
+sequence from beginWord to endWord, or 0 if no such sequence exists.
 
 ###  My Solution
 
