@@ -14,10 +14,11 @@
 
 ##  LeetCode Challenge of the Day ⚛
 
-###  Sudoku Solver
+###  Climbing Stairs
 
-Write a program to solve a Sudoku puzzle by filling the empty cells. The '.'
-character indicates empty cells.
+You are climbing a staircase. It takes n steps to reach the top. Each time you
+can either climb 1 or 2 steps. In how many distinct ways can you climb to the
+top?
 
 ###  My Solution
 
