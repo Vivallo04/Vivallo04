@@ -2,7 +2,7 @@ name: Update Daily LeetCode Challenge
 
 on:
   schedule:
-    - cron: "0 0 * * *"
+    - cron: "* * * * 1,5"
   workflow_dispatch:
 
 jobs:
