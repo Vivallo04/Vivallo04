@@ -104,9 +104,6 @@ private:
     head = node;
     }
 };
-
-
-
 ```
 
 ##  My Statistics
