@@ -14,9 +14,10 @@
 
 ##  LeetCode Challenge of the Day ⚛
 
-###  Spiral Matrix
+###  Roman to Integer
 
-Given an m x n matrix, return all elements of the matrix in spiral order.
+Roman numerals are represented by seven different symbols: I, V, X, L, C, D
+and M. Given a roman numeral, convert it to an integer.
 
 ###  My Solution
 
