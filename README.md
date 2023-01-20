@@ -14,10 +14,13 @@
 
 ##  LeetCode Challenge of the Day ⚛
 
-###  Unique Binary Search Trees
+###  Flatten Binary Tree to Linked List
 
-Given an integer n, return the number of structurally unique BST's (binary
-search trees) which has exactly n nodes of unique values from 1 to n.
+Given the root of a binary tree, flatten the tree into a "linked list": \- The
+"linked list" should use the same TreeNode class where the right child pointer
+points to the next node in the list and the left child pointer is always null.
+\- The "linked list" should be in the same order as a pre-order traversal of
+the binary tree.
 
 ###  My Solution
 
