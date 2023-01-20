@@ -14,11 +14,12 @@
 
 ##  LeetCode Challenge of the Day ⚛
 
-###  Pascal's Triangle
+###  Sum of All Subset XOR Totals
 
-Given an integer numRows, return the first numRows of Pascal's triangle. In
-Pascal's triangle, each number is the sum of the two numbers directly above
-it.
+The XOR total of an array is defined as the bitwise XOR of all its elements,
+or 0 if the array is empty. Given an array nums, return the sum of all XOR
+totals for every subset of nums. An array a is a subset of an array b if a can
+be obtained from b by deleting some (possibly zero) elements of b.
 
 ###  My Solution
 
