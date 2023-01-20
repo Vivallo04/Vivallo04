@@ -14,11 +14,12 @@
 
 ##  LeetCode Challenge of the Day ⚛
 
-###  Path Sum
+###  Search Insert Position
 
-Given the root of a binary tree and an integer targetSum, return true if the
-tree has a root-to-leaf path such that adding up all the values along the path
-equals targetSum.
+Given a sorted array of distinct integers and a target value, return the index
+if the target is found. If not, return the index where it would be if it were
+inserted in order. You must write an algorithm with O(log n) runtime
+complexity.
 
 ###  My Solution
 
