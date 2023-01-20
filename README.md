@@ -14,12 +14,12 @@
 
 ##  LeetCode Challenge of the Day ⚛
 
-###  Partition List
+###  Two Sum
 
-Given the head of a linked list and a value x, partition it such that all
-nodes less than x come before nodes greater than or equal to x. You should
-preserve the original relative order of the nodes in each of the two
-partitions.
+Given an array of integers nums and an integer target, return indices of the
+two numbers such that they add up to target. You may assume that each input
+would have exactly one solution, and you may not use the same element twice.
+You can return the answer in any order.
 
 ###  My Solution
 
