@@ -14,9 +14,10 @@
 
 ##  LeetCode Challenge of the Day ⚛
 
-###  Tenth Line
+###  Roman to Integer
 
-Shell: Given a text file file.txt, print just the 10th line of the file.
+Roman numerals are represented by seven different symbols: I, V, X, L, C, D
+and M. Given a roman numeral, convert it to an integer.
 
 ###  My Solution
 
