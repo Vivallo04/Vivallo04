@@ -14,14 +14,12 @@
 
 ##  LeetCode Challenge of the Day ⚛
 
-###  Jump Game II
+###  Rotate Image
 
-You are given a 0-indexed array of integers nums of length n. You are
-initially positioned at nums[0]. Each element nums[i] represents the maximum
-length of a forward jump from index i. In other words, if you are at nums[i],
-you can jump to any nums[i + j] where: 0 <= j <= nums[i] and i + j < n Return
-the minimum number of jumps to reach nums[n - 1]. The test cases are generated
-such that you can reach nums[n - 1].
+You are given an n x n 2D matrix representing an image, rotate the image by 90
+degrees (clockwise). You have to rotate the image in-place, which means you
+have to modify the input 2D matrix directly. DO NOT allocate another 2D matrix
+and do the rotation.
 
 ###  My Solution
 
