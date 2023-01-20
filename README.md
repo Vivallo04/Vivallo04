@@ -14,12 +14,14 @@
 
 ##  LeetCode Challenge of the Day ⚛
 
-###  Sum of All Subset XOR Totals
+###  N-Queens
 
-The XOR total of an array is defined as the bitwise XOR of all its elements,
-or 0 if the array is empty. Given an array nums, return the sum of all XOR
-totals for every subset of nums. An array a is a subset of an array b if a can
-be obtained from b by deleting some (possibly zero) elements of b.
+The n-queens puzzle is the problem of placing n queens on an n x n chessboard
+such that no two queens attack each other. Given an integer n, return all
+distinct solutions to the n-queens puzzle. You may return the answer in any
+order. Each solution contains a distinct board configuration of the n-queens'
+placement, where 'Q' and '.' both indicate a queen and an empty space,
+respectively.
 
 ###  My Solution
 
