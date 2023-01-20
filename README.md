@@ -14,12 +14,12 @@
 
 ##  LeetCode Challenge of the Day ⚛
 
-###  Word Search
+###  Partition List
 
-Given an m x n grid of characters board and a string word, return true if word
-exists in the grid. The word can be constructed from letters of sequentially
-adjacent cells, where adjacent cells are horizontally or vertically
-neighboring. The same letter cell may not be used more than once.
+Given the head of a linked list and a value x, partition it such that all
+nodes less than x come before nodes greater than or equal to x. You should
+preserve the original relative order of the nodes in each of the two
+partitions.
 
 ###  My Solution
 
