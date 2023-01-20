@@ -29,9 +29,11 @@ def get_challenge_updates(file_path: str, update_field: str) -> list:
 # Choose a random challenge
 def select_daily_challenge(file: str, upcoming_list: list, old_list: list) -> str:
     daily_challenge = random.choice(upcoming_list)
-    if len(upcoming_list) == len(old_list):
+    if len(old_list) >= len(upcoming_list):
         old_list = []
         update_challenges_list(file, old_list)
+        daily_challenge = random.choice(upcoming_list)
+        print("🌟 " + daily_challenge)
         return daily_challenge
 
     while is_in_old(daily_challenge, old_list):
