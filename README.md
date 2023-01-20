@@ -14,10 +14,11 @@
 
 ##  LeetCode Challenge of the Day ⚛
 
-###  Roman to Integer
+###  Path Sum
 
-Roman numerals are represented by seven different symbols: I, V, X, L, C, D
-and M. Given a roman numeral, convert it to an integer.
+Given the root of a binary tree and an integer targetSum, return true if the
+tree has a root-to-leaf path such that adding up all the values along the path
+equals targetSum.
 
 ###  My Solution
 
