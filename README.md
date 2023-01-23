@@ -14,9 +14,11 @@
 
 ##  LeetCode Challenge of the Day ⚛
 
-###  Tenth Line
+###  Reverse Linked List II
 
-Shell: Given a text file file.txt, print just the 10th line of the file.
+Given the head of a singly linked list and two integers left and right where
+left <= right, reverse the nodes of the list from position left to position
+right, and return the reversed list.
 
 ###  My Solution
 
