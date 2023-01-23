@@ -14,11 +14,11 @@
 
 ##  LeetCode Challenge of the Day ⚛
 
-###  Reverse Linked List II
+###  Largest Rectangle in Histogram
 
-Given the head of a singly linked list and two integers left and right where
-left <= right, reverse the nodes of the list from position left to position
-right, and return the reversed list.
+Given an array of integers heights representing the histogram's bar height
+where the width of each bar is 1, return the area of the largest rectangle in
+the histogram.
 
 ###  My Solution
 
