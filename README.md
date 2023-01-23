@@ -14,10 +14,9 @@
 
 ##  LeetCode Challenge of the Day ⚛
 
-###  Sudoku Solver
+###  Tenth Line
 
-Write a program to solve a Sudoku puzzle by filling the empty cells. The '.'
-character indicates empty cells.
+Shell: Given a text file file.txt, print just the 10th line of the file.
 
 ###  My Solution
 
