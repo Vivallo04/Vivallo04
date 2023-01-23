@@ -14,12 +14,12 @@
 
 ##  LeetCode Challenge of the Day ⚛
 
-###  Wildcard Matching
+###  Word Search
 
-Given an input string (s) and a pattern (p), implement wildcard pattern
-matching with support for '?' and '*' where: '?' Matches any single character.
-'*' Matches any sequence of characters (including the empty sequence). The
-matching should cover the entire input string (not partial).
+Given an m x n grid of characters board and a string word, return true if word
+exists in the grid. The word can be constructed from letters of sequentially
+adjacent cells, where adjacent cells are horizontally or vertically
+neighboring. The same letter cell may not be used more than once.
 
 ###  My Solution
 
