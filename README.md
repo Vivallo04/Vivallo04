@@ -29,7 +29,7 @@ respectively.
     
     🤓
 
-_Note: Solutions Leet Code challenges update once a week😉_
+_Note: Leet Code challenges update once a week😉_
 
 ##  My Statistics
 
