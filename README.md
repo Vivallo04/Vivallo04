@@ -14,14 +14,16 @@
 
 ##  LeetCode Challenge of the Day ⚛
 
-###  Linked List Cycle
+###  Restore IP Addresses
 
-Given head, the head of a linked list, determine if the linked list has a
-cycle in it. There is a cycle in a linked list if there is some node in the
-list that can be reached again by continuously following the next pointer.
-Internally, pos is used to denote the index of the node that tail's next
-pointer is connected to. Note that pos is not passed as a parameter. Return
-true if there is a cycle in the linked list. Otherwise, return false.
+A valid IP address consists of exactly four integers separated by single dots.
+Each integer is between 0 and 255 (inclusive) and cannot have leading zeros.
+For example, "0.1.2.201" and "192.168.1.1" are valid IP addresses, but
+"0.011.255.245", "192.168.1.312" and "192.168@1.1" are invalid IP addresses.
+Given a string s containing only digits, return all possible valid IP
+addresses that can be formed by inserting dots into s. You are not allowed to
+reorder or remove any digits in s. You may return the valid IP addresses in
+any order.
 
 ###  My Solution
 
