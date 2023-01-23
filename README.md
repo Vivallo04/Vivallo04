@@ -14,12 +14,14 @@
 
 ##  LeetCode Challenge of the Day ⚛
 
-###  Wildcard Matching
+###  Unique Paths
 
-Given an input string (s) and a pattern (p), implement wildcard pattern
-matching with support for '?' and '*' where: '?' Matches any single character.
-'*' Matches any sequence of characters (including the empty sequence). The
-matching should cover the entire input string (not partial).
+There is a robot on an m x n grid. The robot is initially located at the top-
+left corner (i.e., grid[0][0]). The robot tries to move to the bottom-right
+corner (i.e., grid[m - 1][n - 1]). The robot can only move either down or
+right at any point in time. Given the two integers m and n, return the number
+of possible unique paths that the robot can take to reach the bottom-right
+corner.
 
 ###  My Solution
 
