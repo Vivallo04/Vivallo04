@@ -205,7 +205,7 @@ if __name__ == '__main__':
     # Pull the HTML temp file and replace the text
     replace_text_in_html("problem-title", "h3", daily)
     replace_text_in_html("problem-content", "p", daily_content)
-    replace_text_in_html("problem-solution", "p", "🤓")
+    replace_text_in_html("problem-solution", "pre", "🤓")
 
     # Convert it back to markdown
     convert_html_to_markdown(read_file("scripts/readme.html"))
