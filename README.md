@@ -14,12 +14,12 @@
 
 ##  LeetCode Challenge of the Day ⚛
 
-###  Group Anagrams
+###  Wildcard Matching
 
-Given an array of strings strs, group the anagrams together. You can return
-the answer in any order. An Anagram is a word or phrase formed by rearranging
-the letters of a different word or phrase, typically using all the original
-letters exactly once.
+Given an input string (s) and a pattern (p), implement wildcard pattern
+matching with support for '?' and '*' where: '?' Matches any single character.
+'*' Matches any sequence of characters (including the empty sequence). The
+matching should cover the entire input string (not partial).
 
 ###  My Solution
 
