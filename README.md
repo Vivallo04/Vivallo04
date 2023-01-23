@@ -14,13 +14,11 @@
 
 ##  LeetCode Challenge of the Day ⚛
 
-###  Flatten Binary Tree to Linked List
+###  Pascal's Triangle
 
-Given the root of a binary tree, flatten the tree into a "linked list": \- The
-"linked list" should use the same TreeNode class where the right child pointer
-points to the next node in the list and the left child pointer is always null.
-\- The "linked list" should be in the same order as a pre-order traversal of
-the binary tree.
+Given an integer numRows, return the first numRows of Pascal's triangle. In
+Pascal's triangle, each number is the sum of the two numbers directly above
+it.
 
 ###  My Solution
 
