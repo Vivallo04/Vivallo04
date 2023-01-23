@@ -14,11 +14,9 @@
 
 ##  LeetCode Challenge of the Day ⚛
 
-###  Subsets II
+###  Tenth Line
 
-Given an integer array nums that may contain duplicates, return all possible
-subsets (the power set). The solution set must not contain duplicate subsets.
-Return the solution in any order.
+Shell: Given a text file file.txt, print just the 10th line of the file.
 
 ###  My Solution
 
