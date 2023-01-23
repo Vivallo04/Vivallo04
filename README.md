@@ -14,11 +14,11 @@
 
 ##  LeetCode Challenge of the Day ⚛
 
-###  Same Tree
+###  Subsets II
 
-Given the roots of two binary trees p and q, write a function to check if they
-are the same or not. Two binary trees are considered the same if they are
-structurally identical, and the nodes have the same value.
+Given an integer array nums that may contain duplicates, return all possible
+subsets (the power set). The solution set must not contain duplicate subsets.
+Return the solution in any order.
 
 ###  My Solution
 
