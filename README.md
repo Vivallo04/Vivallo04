@@ -14,15 +14,20 @@
 
 ##  LeetCode Challenge of the Day ⚛
 
-###  Word Ladder
+###  Minimum Amount of Time to Collect Garbage
 
-A transformation sequence from word beginWord to word endWord using a
-dictionary wordList is a sequence of words beginWord -> s1 -> s2 -> ... -> sk
-such that: Every adjacent pair of words differs by a single letter. Every si
-for 1 <= i <= k is in wordList. Note that beginWord does not need to be in
-wordList. sk == endWord Given two words, beginWord and endWord, and a
-dictionary wordList, return the number of words in the shortest transformation
-sequence from beginWord to endWord, or 0 if no such sequence exists.
+You are given a 0-indexed array of strings garbage where garbage[i] represents
+the assortment of garbage at the ith house. garbage[i] consists only of the
+characters 'M', 'P' and 'G' representing one unit of metal, paper and glass
+garbage respectively. Picking up one unit of any type of garbage takes 1
+minute. You are also given a 0-indexed integer array travel where travel[i] is
+the number of minutes needed to go from house i to house i + 1. There are
+three garbage trucks in the city, each responsible for picking up one type of
+garbage. Each garbage truck starts at house 0 and must visit each house in
+order; however, they do not need to visit every house. Only one garbage truck
+may be used at any given moment. While one truck is driving or picking up
+garbage, the other two trucks cannot do anything. Return the minimum number of
+minutes needed to pick up all the garbage.
 
 ###  My Solution
 
