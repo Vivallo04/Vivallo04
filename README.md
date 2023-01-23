@@ -14,10 +14,11 @@
 
 ##  LeetCode Challenge of the Day ⚛
 
-###  Sudoku Solver
+###  Length of Last Word
 
-Write a program to solve a Sudoku puzzle by filling the empty cells. The '.'
-character indicates empty cells.
+Given a string s consisting of words and spaces, return the length of the last
+word in the string. A word is a maximal substring consisting of non-space
+characters only.
 
 ###  My Solution
 
