@@ -57,7 +57,7 @@ def update_challenges_list(file, new_old: list):
         data['old'] = new_old
 
         json_file.seek(0)  # rewind
-        json.dump(data, json_file)
+        json.dump(data, json_file, indent=2)
         json_file.truncate()
         print("Old list update: ⏬")
         print(new_old)
