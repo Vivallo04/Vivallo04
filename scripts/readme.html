@@ -53,12 +53,14 @@
  LeetCode Challenge of the Day ⚛
 </h2>
 <h3 class="problem-title">
- N-Queens
+ LRU Cache
 </h3>
 <p class="problem-content">
- The n-queens puzzle is the problem of placing n queens on an n x n chessboard such that no two queens attack each other.
-Given an integer n, return all distinct solutions to the n-queens puzzle. You may return the answer in any order.
-Each solution contains a distinct board configuration of the n-queens' placement, where 'Q' and '.' both indicate a queen and an empty space, respectively.
+ Design a data structure that follows the constraints of a Least Recently Used (LRU) cache. Implement the LRUCache class:
+LRUCache(int capacity) Initialize the LRU cache with positive size capacity.
+int get(int key) Return the value of the key if the key exists, otherwise return -1.
+void put(int key, int value) Update the value of the key if the key exists. Otherwise, add the key-value pair to the cache. If the number of keys exceeds the capacity from this operation, evict the least recently used key.
+The functions get and put must each run in O(1) average time complexity.
 </p>
 <h3>
  My Solution
