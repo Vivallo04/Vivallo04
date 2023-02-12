@@ -4,7 +4,7 @@
 
 ###  Here are some of my interests and what I'm currently working on:
 
-  * 🎆 Working on [ Lambda Blog ](https://github.com/Vivallo04/lambda-blog)
+  * 🎆 Working on [ Lambda Blog ](https://lambda-blog.vercel.app/)
   * 🌱 I'm currently learning Rust and Game Development 
   * 💭 Ask me about anything [ here ](https://github.com/Vivallo04/Vivallo04/issues/new) or we can connect on [ LinkedIn ](https://bit.ly/3zm1YjA)
   * 🎮 I have fun developing games and doing full-stack web development 
