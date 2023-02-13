@@ -4,7 +4,7 @@
 
 ###  Here are some of my interests and what I'm currently working on:
 
-  * 🎆 Working on [ Lambda Blog ](https://lambda-blog.vercel.app/)
+  * 🎆 Working on [ Lambda Blog ](https://github.com/Vivallo04/lambda-blog)
   * 🌱 I'm currently learning Rust and Game Development 
   * 💭 Ask me about anything [ here ](https://github.com/Vivallo04/Vivallo04/issues/new) or we can connect on [ LinkedIn ](https://bit.ly/3zm1YjA)
   * 🎮 I have fun developing games and doing full-stack web development 
@@ -14,12 +14,11 @@
 
 ##  LeetCode Challenge of the Day ⚛
 
-###  Wildcard Matching
+###  Climbing Stairs
 
-Given an input string (s) and a pattern (p), implement wildcard pattern
-matching with support for '?' and '*' where: '?' Matches any single character.
-'*' Matches any sequence of characters (including the empty sequence). The
-matching should cover the entire input string (not partial).
+You are climbing a staircase. It takes n steps to reach the top. Each time you
+can either climb 1 or 2 steps. In how many distinct ways can you climb to the
+top?
 
 ###  My Solution
 
