@@ -14,27 +14,19 @@
 
 ##  LeetCode Challenge of the Day ⚛
 
-###  Climbing Stairs
+###  Plus One
 
-You are climbing a staircase. It takes n steps to reach the top. Each time you
-can either climb 1 or 2 steps. In how many distinct ways can you climb to the
-top?
+You are given a large integer represented as an integer array digits, where
+each digits[i] is the ith digit of the integer. The digits are ordered from
+most significant to least significant in left-to-right order. The large
+integer does not contain any leading 0's. Increment the large integer by one
+and return the resulting array of digits.
 
 ###  My Solution
 
-```java
-class Solution {
-
-    public int climbStairs(int n) {
-        if (n == 1 || n == 2)
-        {
-            return n;
-        }
-        return climbStairs(n - 1) + climbStairs(n - 2);
-    }
-}
-
-```
+    
+    
+    🤓
 
 _Note: Leet Code challenges update once a week😉_
 
