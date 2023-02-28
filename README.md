@@ -24,10 +24,35 @@ pointer is connected to. Note that pos is not passed as a parameter. Return
 true if there is a cycle in the linked list. Otherwise, return false.
 
 ###  My Solution
+```c#
+public class Solution 
+{
+    public bool HasCycle(ListNode head) 
+    {
+        if (head == null) 
+        {
+            return false;
+        }
+        
+        HashSet<ListNode> visited = new HashSet<ListNode>();
+        ListNode curr = head;
+        
+        while (current != null) 
+        {
+            if (visited.Contains(current)) 
+            {
+                return true;
+            }
+            visited.Add(current);
+            current = current.next;
+        }
+        
+        return false;
+    }
+}
 
-    
-    
-    🤓
+
+```
 
 _Note: Leet Code challenges update once a week😉_
 
