@@ -35,7 +35,7 @@ public class Solution
         }
         
         HashSet<ListNode> visited = new HashSet<ListNode>();
-        ListNode curr = head;
+        ListNode current = head;
         
         while (current != null) 
         {
