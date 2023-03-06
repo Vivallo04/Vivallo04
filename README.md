@@ -22,10 +22,25 @@ would have exactly one solution, and you may not use the same element twice.
 You can return the answer in any order.
 
 ###  My Solution
-
-    
-    
-    🤓
+```c#
+public class Solution 
+{
+    public int[] TwoSum(int[] nums, int target) 
+    {
+        for(int i = 0; i < nums.Length; i++) 
+        {
+            for(int j = i + 1; j < nums.Length; j++)
+            {
+                if((nums[i] + nums[j]) == target)
+                {
+                    return new int[] {i, j};
+                }
+            }
+        }
+        return new int[] {};
+    }
+}
+```
 
 _Note: Leet Code challenges update once a week😉_
 
