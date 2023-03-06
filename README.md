@@ -14,45 +14,18 @@
 
 ##  LeetCode Challenge of the Day ⚛
 
-###  Linked List Cycle
+###  Two Sum
 
-Given head, the head of a linked list, determine if the linked list has a
-cycle in it. There is a cycle in a linked list if there is some node in the
-list that can be reached again by continuously following the next pointer.
-Internally, pos is used to denote the index of the node that tail's next
-pointer is connected to. Note that pos is not passed as a parameter. Return
-true if there is a cycle in the linked list. Otherwise, return false.
+Given an array of integers nums and an integer target, return indices of the
+two numbers such that they add up to target. You may assume that each input
+would have exactly one solution, and you may not use the same element twice.
+You can return the answer in any order.
 
 ###  My Solution
-```c#
-public class Solution 
-{
-    public bool HasCycle(ListNode head) 
-    {
-        if (head == null) 
-        {
-            return false;
-        }
-        
-        HashSet<ListNode> visited = new HashSet<ListNode>();
-        ListNode current = head;
-        
-        while (current != null) 
-        {
-            if (visited.Contains(current)) 
-            {
-                return true;
-            }
-            visited.Add(current);
-            current = current.next;
-        }
-        
-        return false;
-    }
-}
 
-
-```
+    
+    
+    🤓
 
 _Note: Leet Code challenges update once a week😉_
 
