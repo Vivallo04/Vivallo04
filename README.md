@@ -14,33 +14,18 @@
 
 ##  LeetCode Challenge of the Day ⚛
 
-###  Two Sum
+###  Rotate Image
 
-Given an array of integers nums and an integer target, return indices of the
-two numbers such that they add up to target. You may assume that each input
-would have exactly one solution, and you may not use the same element twice.
-You can return the answer in any order.
+You are given an n x n 2D matrix representing an image, rotate the image by 90
+degrees (clockwise). You have to rotate the image in-place, which means you
+have to modify the input 2D matrix directly. DO NOT allocate another 2D matrix
+and do the rotation.
 
 ###  My Solution
-```c#
-public class Solution 
-{
-    public int[] TwoSum(int[] nums, int target) 
-    {
-        for(int i = 0; i < nums.Length; i++) 
-        {
-            for(int j = i + 1; j < nums.Length; j++)
-            {
-                if((nums[i] + nums[j]) == target)
-                {
-                    return new int[] {i, j};
-                }
-            }
-        }
-        return new int[] {};
-    }
-}
-```
+
+    
+    
+    🤓
 
 _Note: Leet Code challenges update once a week😉_
 
