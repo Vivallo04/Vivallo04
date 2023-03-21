@@ -22,10 +22,24 @@ jump length at that position. Return true if you can reach the last index, or
 false otherwise.
 
 ###  My Solution
+```c solution.c
+#include <stdbool.h>
 
-    
-    
-    🤓
+bool canJump(int* nums, int numsSize){
+    int farthest_index = 0;
+    for(int i = 0; i < numsSize; i++) {
+        if(i > farthest_index) {
+            return false;
+        }
+        farthest_index = (farthest_index > i + nums[i]) ? farthest_index : i + nums[i];
+        if(farthest_index >= numsSize - 1) {
+            return true;
+        }
+    }
+    return false;
+}
+```
+
 
 _Note: Leet Code challenges update once a week😉_
 
