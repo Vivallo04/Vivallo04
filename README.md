@@ -14,32 +14,22 @@
 
 ##  LeetCode Challenge of the Day ⚛
 
-###  Jump Game
+###  Merge Sorted Array
 
-You are given an integer array nums. You are initially positioned at the
-array's first index, and each element in the array represents your maximum
-jump length at that position. Return true if you can reach the last index, or
-false otherwise.
+You are given two integer arrays nums1 and nums2, sorted in non-decreasing
+order, and two integers m and n, representing the number of elements in nums1
+and nums2 respectively. Merge nums1 and nums2 into a single array sorted in
+non-decreasing order. The final sorted array should not be returned by the
+function, but instead be stored inside the array nums1. To accommodate this,
+nums1 has a length of m + n, where the first m elements denote the elements
+that should be merged, and the last n elements are set to 0 and should be
+ignored. nums2 has a length of n.
 
 ###  My Solution
-```c solution.c
-#include <stdbool.h>
 
-bool canJump(int* nums, int numsSize){
-    int farthest_index = 0;
-    for(int i = 0; i < numsSize; i++) {
-        if(i > farthest_index) {
-            return false;
-        }
-        farthest_index = (farthest_index > i + nums[i]) ? farthest_index : i + nums[i];
-        if(farthest_index >= numsSize - 1) {
-            return true;
-        }
-    }
-    return false;
-}
-```
-
+    
+    
+    🤓
 
 _Note: Leet Code challenges update once a week😉_
 
