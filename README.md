@@ -14,49 +14,18 @@
 
 ##  LeetCode Challenge of the Day ⚛
 
-###  Subsets II
+###  Path Sum
 
-Given an integer array nums that may contain duplicates, return all possible
-subsets (the power set). The solution set must not contain duplicate subsets.
-Return the solution in any order.
+Given the root of a binary tree and an integer targetSum, return true if the
+tree has a root-to-leaf path such that adding up all the values along the path
+equals targetSum.
 
 ###  My Solution
-```c++ subsets.cpp
 
-class Solution {
-public:
-    void generateSubsets(vector<int>& nums, int index, vector<int>& current, vector<vector<int>>& result) {
-        if (index == nums.size()) {
-            result.push_back(current);
-            return;
-        }
-        
-        // skip duplicates
-        int i = index + 1;
-        while (i < nums.size() && nums[i] == nums[index]) i++;
-        
-        generateSubsets(nums, i, current, result);
-        
-        for (int j = index; j < i; j++) {
-            current.push_back(nums[j]);
-            generateSubsets(nums, i, current, result);
-        }
-        
-        for (int j = index; j < i; j++) {
-            current.pop_back();
-        }
-    }
+    
+    
+    🤓
 
-    vector<vector<int>> subsetsWithDup(vector<int>& nums) {
-        vector<vector<int>> result;
-        vector<int> current;
-        sort(nums.begin(), nums.end());
-        generateSubsets(nums, 0, current, result);
-        return result;
-    }
-};
-
-```
 _Note: Leet Code challenges update once a week😉_
 
 ##  My Statistics
