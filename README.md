@@ -21,10 +21,31 @@ tree has a root-to-leaf path such that adding up all the values along the path
 equals targetSum.
 
 ###  My Solution
+```java
+class Solution {
+    public boolean hasPathSum(TreeNode root, int targetSum) {
+        if (root == null) {
+            return false;
+        }
 
-    
-    
-    🤓
+        return hasPathSumHelper(root, targetSum, 0);
+    }
+
+    private boolean hasPathSumHelper(TreeNode node, int targetSum, int currentSum) {
+        currentSum += node.val;
+
+        if (node.left == null && node.right == null) {
+            return currentSum == targetSum;
+        }
+
+        boolean leftPathExists = node.left != null && hasPathSumHelper(node.left, targetSum, currentSum);
+        boolean rightPathExists = node.right != null && hasPathSumHelper(node.right, targetSum, currentSum);
+
+        return leftPathExists || rightPathExists;
+    }
+}
+```
+  
 
 _Note: Leet Code challenges update once a week😉_
 
