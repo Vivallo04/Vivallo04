@@ -4,48 +4,29 @@
 
 ###  Here are some of my interests and what I'm currently working on:
 
-  * 🎆 Working on [ Lambda Blog ](https://github.com/Vivallo04/lambda-blog)
-  * 🌱 I'm currently learning Rust and Game Development 
+  * 🎆 Working on [ Lambda Blog ](https://lambdablog.com)
+  * 🌱 I'm currently learning Go and Game Development 
   * 💭 Ask me about anything [ here ](https://github.com/Vivallo04/Vivallo04/issues/new) or we can connect on [ LinkedIn ](https://bit.ly/3zm1YjA)
   * 🎮 I have fun developing games and doing full-stack web development 
   * 🤓 Oh! I almost forget. Here's a link to my [ dotfiles ](https://github.com/Vivallo04/dotfiles) (I use Arch btw) 
-  * 👨🏻‍💻 Want to do any fun project for the weekend? Sure! I'm [ down ](https://discordapp.com/users/521712126058823701)
   * 💘 I love high-level and low-level programming as much as electronics (and classical music too) 
 
 ##  LeetCode Challenge of the Day ⚛
 
-###  Path Sum
+###  Jump Game II
 
-Given the root of a binary tree and an integer targetSum, return true if the
-tree has a root-to-leaf path such that adding up all the values along the path
-equals targetSum.
+You are given a 0-indexed array of integers nums of length n. You are
+initially positioned at nums[0]. Each element nums[i] represents the maximum
+length of a forward jump from index i. In other words, if you are at nums[i],
+you can jump to any nums[i + j] where: 0 <= j <= nums[i] and i + j < n Return
+the minimum number of jumps to reach nums[n - 1]. The test cases are generated
+such that you can reach nums[n - 1].
 
 ###  My Solution
-```java
-class Solution {
-    public boolean hasPathSum(TreeNode root, int targetSum) {
-        if (root == null) {
-            return false;
-        }
 
-        return hasPathSumHelper(root, targetSum, 0);
-    }
-
-    private boolean hasPathSumHelper(TreeNode node, int targetSum, int currentSum) {
-        currentSum += node.val;
-
-        if (node.left == null && node.right == null) {
-            return currentSum == targetSum;
-        }
-
-        boolean leftPathExists = node.left != null && hasPathSumHelper(node.left, targetSum, currentSum);
-        boolean rightPathExists = node.right != null && hasPathSumHelper(node.right, targetSum, currentSum);
-
-        return leftPathExists || rightPathExists;
-    }
-}
-```
-  
+    
+    
+    🤓
 
 _Note: Leet Code challenges update once a week😉_
 
