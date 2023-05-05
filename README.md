@@ -23,10 +23,42 @@ the minimum number of jumps to reach nums[n - 1]. The test cases are generated
 such that you can reach nums[n - 1].
 
 ###  My Solution
+```cpp
+#include <iostream>
+#include <vector>
+#include <queue>
+#include <unordered_map>
 
-    
-    
-    🤓
+using namespace std;
+
+int jump_game(vector<int>& nums)
+{
+    int n = nums.size();
+    unordered_map<int, int> dist;
+    for (int i = 0; i < n; i++) 
+    {
+        dist[i] = INT_MAX;
+    }
+    dist[0] = 0;
+    queue<int> q;
+    q.push(0);
+    while (!q.empty()) 
+    {
+        int i = q.front();
+        q.pop();
+        for (int j = 1; j <= nums[i] && i+j < n; j++) 
+        {
+            int k = i+j;
+            if (dist[i]+1 < dist[k]) 
+            {
+                dist[k] = dist[i]+1;
+                q.push(k);
+            }
+        }
+    }
+    return dist[n-1];
+}
+```
 
 _Note: Leet Code challenges update once a week😉_
 
