@@ -15,16 +15,33 @@
 
 ###  Sum Root to Leaf Numbers
 
-You are given the root of a binary tree containing digits from 0 to 9 only.
-Each root-to-leaf path in the tree represents a number. \- For example, the
-root-to-leaf path 1 -> 2 -> 3 represents the number 123. Return the total sum
-of all root-to-leaf numbers.
+You are given the root of a binary tree containing digits from `0 to 9` only.
+Each root-to-leaf path in the tree represents a number. - For example, the
+root-to-leaf path `1 -> 2 -> 3` represents the number `123`. Return the total sum
+of all `root-to-leaf` numbers.
 
 ###  My Solution
-
+```java
+class Solution {
+    public int sumNumbers(TreeNode root) {
+        return sumNumbersHelper(root, 0);
+    }
     
-    
-    🤓
+    private int sumNumbersHelper(TreeNode node, int currentSum) {
+        if (node == null) {
+            return 0;
+        }
+        
+        currentSum = currentSum * 10 + node.val;
+        
+        if (node.left == null && node.right == null) {
+            return currentSum;
+        }
+        
+        return sumNumbersHelper(node.left, currentSum) + sumNumbersHelper(node.right, currentSum);
+    }
+}
+```
 
 _Note: Leet Code challenges update once a week😉_
 
