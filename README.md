@@ -13,52 +13,18 @@
 
 ##  LeetCode Challenge of the Day ⚛
 
-###  Jump Game II
+###  Sum Root to Leaf Numbers
 
-You are given a 0-indexed array of integers nums of length n. You are
-initially positioned at nums[0]. Each element nums[i] represents the maximum
-length of a forward jump from index i. In other words, if you are at nums[i],
-you can jump to any nums[i + j] where: 0 <= j <= nums[i] and i + j < n Return
-the minimum number of jumps to reach nums[n - 1]. The test cases are generated
-such that you can reach nums[n - 1].
+You are given the root of a binary tree containing digits from 0 to 9 only.
+Each root-to-leaf path in the tree represents a number. \- For example, the
+root-to-leaf path 1 -> 2 -> 3 represents the number 123. Return the total sum
+of all root-to-leaf numbers.
 
 ###  My Solution
-```cpp
-#include <iostream>
-#include <vector>
-#include <queue>
-#include <unordered_map>
 
-using namespace std;
-
-int jump_game(vector<int>& nums)
-{
-    int n = nums.size();
-    unordered_map<int, int> dist;
-    for (int i = 0; i < n; i++) 
-    {
-        dist[i] = INT_MAX;
-    }
-    dist[0] = 0;
-    queue<int> q;
-    q.push(0);
-    while (!q.empty()) 
-    {
-        int i = q.front();
-        q.pop();
-        for (int j = 1; j <= nums[i] && i+j < n; j++) 
-        {
-            int k = i+j;
-            if (dist[i]+1 < dist[k]) 
-            {
-                dist[k] = dist[i]+1;
-                q.push(k);
-            }
-        }
-    }
-    return dist[n-1];
-}
-```
+    
+    
+    🤓
 
 _Note: Leet Code challenges update once a week😉_
 
