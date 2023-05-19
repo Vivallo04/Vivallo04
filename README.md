@@ -25,10 +25,72 @@ reorder or remove any digits in s. You may return the valid IP addresses in
 any order.
 
 ###  My Solution
+```c#
+class Program
+{
+    static List<string> RestoreIpAddresses(string s)
+    {
+        List<string> result = new List<string>();
+        Backtrack(s, 0, 0, "", result);
+        return result;
+    }
 
-    
-    
-    🤓
+    static void Backtrack(string s, int start, int segments, string current, List<string> result)
+    {
+        // Base case: if all segments are formed and no characters left in s
+        if (segments == 4 && start == s.Length)
+        {
+            result.Add(current);
+            return;
+        }
+
+        // Base case: if all segments are formed but there are characters left in s
+        if (segments == 4 || start == s.Length)
+        {
+            return;
+        }
+
+        // Try different segment lengths from 1 to 3
+        for (int i = 1; i <= 3; i++)
+        {
+            // Check if the remaining characters are enough for the current segment length
+            if (start + i > s.Length)
+            {
+                break;
+            }
+
+            string segment = s.Substring(start, i);
+
+            // Skip segments with leading zeros
+            if (segment[0] == '0' && segment.Length > 1)
+            {
+                continue;
+            }
+
+            // Check if the segment is a valid number (between 0 and 255)
+            if (!int.TryParse(segment, out int num) || num < 0 || num > 255)
+            {
+                continue;
+            }
+
+            // Append the current segment to the current IP address and move to the next segment
+            string next = current + segment + (segments < 3 ? "." : "");
+            Backtrack(s, start + i, segments + 1, next, result);
+        }
+    }
+
+    static void Main(string[] args)
+    {
+        string s = "25525511135";
+        List<string> result = RestoreIpAddresses(s);
+
+        foreach (string ip in result)
+        {
+            Console.WriteLine(ip);
+        }
+    }
+}
+```
 
 _Note: Leet Code challenges update once a week😉_
 
