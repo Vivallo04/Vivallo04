@@ -13,10 +13,11 @@
 
 ##  LeetCode Challenge of the Day ⚛
 
-###  Sudoku Solver
+###  Pascal's Triangle
 
-Write a program to solve a Sudoku puzzle by filling the empty cells. The '.'
-character indicates empty cells.
+Given an integer numRows, return the first numRows of Pascal's triangle. In
+Pascal's triangle, each number is the sum of the two numbers directly above
+it.
 
 ###  My Solution
 
