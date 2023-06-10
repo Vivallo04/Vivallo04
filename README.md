@@ -21,9 +21,33 @@ it.
 
 ###  My Solution
 
-    
-    
-    🤓
+```c#
+public List<List<int>> GeneratePascalsTriangle(int numRows)
+{
+    List<List<int>> triangle = new List<List<int>>();
+
+    for (int i = 0; i < numRows; i++)
+    {
+        List<int> row = new List<int>();
+        for (int j = 0; j <= i; j++)
+        {
+            if (j == 0 || j == i)
+            {
+                row.Add(1);
+            }
+            else
+            {
+                int prevRowSize = triangle[i - 1].Count;
+                int sum = triangle[i - 1][j - 1] + (j < prevRowSize ? triangle[i - 1][j] : 0);
+                row.Add(sum);
+            }
+        }
+        triangle.Add(row);
+    }
+
+    return triangle;
+}
+```
 
 _Note: Leet Code challenges update once a week😉_
 
