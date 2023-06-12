@@ -13,41 +13,18 @@
 
 ##  LeetCode Challenge of the Day ⚛
 
-###  Pascal's Triangle
+###  Search Insert Position
 
-Given an integer numRows, return the first numRows of Pascal's triangle. In
-Pascal's triangle, each number is the sum of the two numbers directly above
-it.
+Given a sorted array of distinct integers and a target value, return the index
+if the target is found. If not, return the index where it would be if it were
+inserted in order. You must write an algorithm with O(log n) runtime
+complexity.
 
 ###  My Solution
 
-```c#
-public List<List<int>> GeneratePascalsTriangle(int numRows)
-{
-    List<List<int>> triangle = new List<List<int>>();
-
-    for (int i = 0; i < numRows; i++)
-    {
-        List<int> row = new List<int>();
-        for (int j = 0; j <= i; j++)
-        {
-            if (j == 0 || j == i)
-            {
-                row.Add(1);
-            }
-            else
-            {
-                int prevRowSize = triangle[i - 1].Count;
-                int sum = triangle[i - 1][j - 1] + (j < prevRowSize ? triangle[i - 1][j] : 0);
-                row.Add(sum);
-            }
-        }
-        triangle.Add(row);
-    }
-
-    return triangle;
-}
-```
+    
+    
+    🤓
 
 _Note: Leet Code challenges update once a week😉_
 
