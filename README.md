@@ -13,40 +13,19 @@
 
 ##  LeetCode Challenge of the Day ⚛
 
-###  Search Insert Position
+###  Word Search
 
-Given a sorted array of distinct integers and a target value, return the index
-if the target is found. If not, return the index where it would be if it were
-inserted in order. You must write an algorithm with O(log n) runtime
-complexity.
+Given an m x n grid of characters board and a string word, return true if word
+exists in the grid. The word can be constructed from letters of sequentially
+adjacent cells, where adjacent cells are horizontally or vertically
+neighboring. The same letter cell may not be used more than once.
 
 ###  My Solution
 
-```c#
-public class Solution
-{
-    public static int SearchInsert(int[] nums, int target)
-    {
-        int left = 0;
-        int right = nums.Length - 1;
+    
+    
+    🤓
 
-        while (left <= right)
-        {
-            int mid = left + (right - left) / 2;
-
-            if (nums[mid] == target)
-                return mid;
-            else if (nums[mid] < target)
-                left = mid + 1;
-            else
-                right = mid - 1;
-        }
-
-        return left;
-    }
-}
-```
- 
 _Note: Leet Code challenges update once a week😉_
 
 ##  My Statistics
