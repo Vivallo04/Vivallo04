@@ -21,11 +21,48 @@ adjacent cells, where adjacent cells are horizontally or vertically
 neighboring. The same letter cell may not be used more than once.
 
 ###  My Solution
-
-    
-    
-    🤓
-
+```c#
+public class Solution 
+{
+    public bool Exist(char[][] board, string word) 
+    {
+        int m = board.Length;
+        int n = board[0].Length;
+        
+        bool Backtrack(int row, int col, string currWord)
+        {
+            if (row < 0 || row >= m || col < 0 || col >= n || board[row][col] != currWord[0])
+                return false;
+            
+            if (currWord.Length == 1)
+                return true;
+            
+            char temp = board[row][col];
+            board[row][col] = '#'; // Mark the current position as visited
+            
+            bool result = Backtrack(row + 1, col, currWord.Substring(1))
+                          || Backtrack(row - 1, col, currWord.Substring(1))
+                          || Backtrack(row, col + 1, currWord.Substring(1))
+                          || Backtrack(row, col - 1, currWord.Substring(1));
+            
+            board[row][col] = temp; // Mark the current position as unvisited
+            
+            return result;
+        }
+        
+        for (int i = 0; i < m; i++)
+        {
+            for (int j = 0; j < n; j++)
+            {
+                if (Backtrack(i, j, word))
+                    return true;
+            }
+        }
+        
+        return false;
+    }
+}
+```
 _Note: Leet Code challenges update once a week😉_
 
 ##  My Statistics
