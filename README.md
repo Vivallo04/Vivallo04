@@ -13,11 +13,12 @@
 
 ##  LeetCode Challenge of the Day ⚛
 
-###  Same Tree
+###  Group Anagrams
 
-Given the roots of two binary trees p and q, write a function to check if they
-are the same or not. Two binary trees are considered the same if they are
-structurally identical, and the nodes have the same value.
+Given an array of strings strs, group the anagrams together. You can return
+the answer in any order. An Anagram is a word or phrase formed by rearranging
+the letters of a different word or phrase, typically using all the original
+letters exactly once.
 
 ###  My Solution
 
