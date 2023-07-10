@@ -13,12 +13,11 @@
 
 ##  LeetCode Challenge of the Day ⚛
 
-###  Group Anagrams
+###  Largest Rectangle in Histogram
 
-Given an array of strings strs, group the anagrams together. You can return
-the answer in any order. An Anagram is a word or phrase formed by rearranging
-the letters of a different word or phrase, typically using all the original
-letters exactly once.
+Given an array of integers heights representing the histogram's bar height
+where the width of each bar is 1, return the area of the largest rectangle in
+the histogram.
 
 ###  My Solution
 
