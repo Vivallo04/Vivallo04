@@ -13,52 +13,18 @@
 
 ##  LeetCode Challenge of the Day ⚛
 
-###  Largest Rectangle in Histogram
+###  Partition List
 
-Given an array of integers heights representing the histogram's bar height
-where the width of each bar is 1, return the area of the largest rectangle in
-the histogram.
+Given the head of a linked list and a value x, partition it such that all
+nodes less than x come before nodes greater than or equal to x. You should
+preserve the original relative order of the nodes in each of the two
+partitions.
 
 ###  My Solution
-```c#
-public class Solution
-{
-    public int LargestRectangleArea(int[] heights)
-    {
-        return CalculateLargestArea(heights, 0, heights.Length - 1);
-    }
+
     
-    private int CalculateLargestArea(int[] heights, int start, int end)
-    {
-        if (start > end)
-        {
-            return 0;
-        }
-        
-        int minIndex = FindMinHeightIndex(heights, start, end);
-        int areaWithMin = heights[minIndex] * (end - start + 1);
-        int leftArea = CalculateLargestArea(heights, start, minIndex - 1);
-        int rightArea = CalculateLargestArea(heights, minIndex + 1, end);
-        
-        return Math.Max(areaWithMin, Math.Max(leftArea, rightArea));
-    }
     
-    private int FindMinHeightIndex(int[] heights, int start, int end)
-    {
-        int minIndex = start;
-        
-        for (int i = start; i <= end; i++)
-        {
-            if (heights[i] < heights[minIndex])
-            {
-                minIndex = i;
-            }
-        }
-        
-        return minIndex;
-    }
-}
-```
+    🤓
 
 _Note: Leet Code challenges update once a week😉_
 
