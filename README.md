@@ -21,10 +21,30 @@ preserve the original relative order of the nodes in each of the two
 partitions.
 
 ###  My Solution
+```c#
+public ListNode Partition(ListNode head, int x) {
+    if (head == null || head.next == null)
+        return head;
 
-    
-    
-    🤓
+    ListNode left = Partition(head.next, x);
+
+    if (head.val < x) {
+        head.next = left;
+        return head;
+    } else {
+        ListNode right = head.next;
+        while (right != null && right.val >= x) {
+            right = right.next;
+        }
+        if (right == null)
+            return head;
+
+        head.next = right.next;
+        right.next = left;
+        return right;
+    }
+}
+```
 
 _Note: Leet Code challenges update once a week😉_
 
