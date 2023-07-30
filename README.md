@@ -23,11 +23,52 @@ representation of the first and last integers differs by exactly one bit.
 Given an integer n, return any valid n-bit gray code sequence.
 
 ###  My Solution
+```c#
+public class GrayCodeGenerator
+{
+    public List<int> GenerateGrayCode(int n)
+    {
+        List<int> result = new List<int> { 0 };
+        HashSet<int> visited = new HashSet<int> { 0 };
+        Backtrack(0, n, visited, result);
+        return result;
+    }
 
-    
-    
-    🤓
+    private bool Backtrack(int curr, int n, HashSet<int> visited, List<int> result)
+    {
+        if (result.Count == (1 << n))
+            return true;
 
+        for (int i = 0; i < n; i++)
+        {
+            int nextNum = curr ^ (1 << i);
+            if (!visited.Contains(nextNum))
+            {
+                visited.Add(nextNum);
+                result.Add(nextNum);
+                if (Backtrack(nextNum, n, visited, result))
+                    return true;
+                result.RemoveAt(result.Count - 1);
+                visited.Remove(nextNum);
+            }
+        }
+
+        return false;
+    }
+}
+
+public class Program
+{
+    public static void Main()
+    {
+        int n = 3;
+        GrayCodeGenerator generator = new GrayCodeGenerator();
+        List<int> sequence = generator.GenerateGrayCode(n);
+        Console.WriteLine(string.Join(", ", sequence));
+    }
+}
+
+```
 _Note: Leet Code challenges update once a week😉_
 
 ##  My Statistics
