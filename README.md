@@ -13,62 +13,17 @@
 
 ##  LeetCode Challenge of the Day ⚛
 
-###  Gray Code
+###  Unique Binary Search Trees
 
-An n-bit gray code sequence is a sequence of 2n integers where: Every integer
-is in the inclusive range [0, 2n - 1], The first integer is 0, An integer
-appears no more than once in the sequence, The binary representation of every
-pair of adjacent integers differs by exactly one bit, and The binary
-representation of the first and last integers differs by exactly one bit.
-Given an integer n, return any valid n-bit gray code sequence.
+Given an integer n, return the number of structurally unique BST's (binary
+search trees) which has exactly n nodes of unique values from 1 to n.
 
 ###  My Solution
-```c#
-public class GrayCodeGenerator
-{
-    public List<int> GenerateGrayCode(int n)
-    {
-        List<int> result = new List<int> { 0 };
-        HashSet<int> visited = new HashSet<int> { 0 };
-        Backtrack(0, n, visited, result);
-        return result;
-    }
 
-    private bool Backtrack(int curr, int n, HashSet<int> visited, List<int> result)
-    {
-        if (result.Count == (1 << n))
-            return true;
+    
+    
+    🤓
 
-        for (int i = 0; i < n; i++)
-        {
-            int nextNum = curr ^ (1 << i);
-            if (!visited.Contains(nextNum))
-            {
-                visited.Add(nextNum);
-                result.Add(nextNum);
-                if (Backtrack(nextNum, n, visited, result))
-                    return true;
-                result.RemoveAt(result.Count - 1);
-                visited.Remove(nextNum);
-            }
-        }
-
-        return false;
-    }
-}
-
-public class Program
-{
-    public static void Main()
-    {
-        int n = 3;
-        GrayCodeGenerator generator = new GrayCodeGenerator();
-        List<int> sequence = generator.GenerateGrayCode(n);
-        Console.WriteLine(string.Join(", ", sequence));
-    }
-}
-
-```
 _Note: Leet Code challenges update once a week😉_
 
 ##  My Statistics
