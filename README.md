@@ -13,10 +13,11 @@
 
 ##  LeetCode Challenge of the Day ⚛
 
-###  Roman to Integer
+###  Length of Last Word
 
-Roman numerals are represented by seven different symbols: I, V, X, L, C, D
-and M. Given a roman numeral, convert it to an integer.
+Given a string s consisting of words and spaces, return the length of the last
+word in the string. A word is a maximal substring consisting of non-space
+characters only.
 
 ###  My Solution
 
