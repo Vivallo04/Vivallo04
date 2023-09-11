@@ -13,11 +13,12 @@
 
 ##  LeetCode Challenge of the Day ⚛
 
-###  Length of Last Word
+###  Sum of All Subset XOR Totals
 
-Given a string s consisting of words and spaces, return the length of the last
-word in the string. A word is a maximal substring consisting of non-space
-characters only.
+The XOR total of an array is defined as the bitwise XOR of all its elements,
+or 0 if the array is empty. Given an array nums, return the sum of all XOR
+totals for every subset of nums. An array a is a subset of an array b if a can
+be obtained from b by deleting some (possibly zero) elements of b.
 
 ###  My Solution
 
