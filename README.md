@@ -21,7 +21,7 @@ totals for every subset of nums. An array a is a subset of an array b if a can
 be obtained from b by deleting some (possibly zero) elements of b.
 
 ###  My Solution
-```
+```cpp
 #include <iostream>
 #include <vector>
 
