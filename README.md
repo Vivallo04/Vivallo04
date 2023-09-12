@@ -27,7 +27,6 @@ be obtained from b by deleting some (possibly zero) elements of b.
 
 using namespace std;
 
-// Function to calculate XOR of all elements in a vector
 int calculateXOR(const vector<int>& subset) {
     int result = 0;
     for (int num : subset) {
@@ -36,20 +35,15 @@ int calculateXOR(const vector<int>& subset) {
     return result;
 }
 
-// Function to recursively generate all subsets and calculate XOR totals
 void generateSubsets(const vector<int>& nums, int index, vector<int>& currentSubset, int& totalXOR) {
     if (index == nums.size()) {
-        // Base case: we have reached the end of the array
-        // Add the XOR of the current subset to the total
         totalXOR += calculateXOR(currentSubset);
         return;
     }
 
-    // Include the current element in the subset
     currentSubset.push_back(nums[index]);
     generateSubsets(nums, index + 1, currentSubset, totalXOR);
 
-    // Exclude the current element from the subset
     currentSubset.pop_back();
     generateSubsets(nums, index + 1, currentSubset, totalXOR);
 }
