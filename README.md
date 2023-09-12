@@ -21,10 +21,55 @@ totals for every subset of nums. An array a is a subset of an array b if a can
 be obtained from b by deleting some (possibly zero) elements of b.
 
 ###  My Solution
+```
+#include <iostream>
+#include <vector>
 
-    
-    
-    🤓
+using namespace std;
+
+// Function to calculate XOR of all elements in a vector
+int calculateXOR(const vector<int>& subset) {
+    int result = 0;
+    for (int num : subset) {
+        result ^= num;
+    }
+    return result;
+}
+
+// Function to recursively generate all subsets and calculate XOR totals
+void generateSubsets(const vector<int>& nums, int index, vector<int>& currentSubset, int& totalXOR) {
+    if (index == nums.size()) {
+        // Base case: we have reached the end of the array
+        // Add the XOR of the current subset to the total
+        totalXOR += calculateXOR(currentSubset);
+        return;
+    }
+
+    // Include the current element in the subset
+    currentSubset.push_back(nums[index]);
+    generateSubsets(nums, index + 1, currentSubset, totalXOR);
+
+    // Exclude the current element from the subset
+    currentSubset.pop_back();
+    generateSubsets(nums, index + 1, currentSubset, totalXOR);
+}
+
+int subsetXORSum(const vector<int>& nums) {
+    int totalXOR = 0;
+    vector<int> currentSubset;
+    generateSubsets(nums, 0, currentSubset, totalXOR);
+    return totalXOR;
+}
+
+int main() {
+    vector<int> nums = {1, 3};
+    int result = subsetXORSum(nums);
+
+    cout << "The sum of XOR totals for all subsets is: " << result << endl;
+
+    return 0;
+}
+```
 
 _Note: Leet Code challenges update once a week😉_
 
