@@ -13,57 +13,19 @@
 
 ##  LeetCode Challenge of the Day ⚛
 
-###  Search Insert Position
+###  Plus One
 
-Given a sorted array of distinct integers and a target value, return the index
-if the target is found. If not, return the index where it would be if it were
-inserted in order. You must write an algorithm with O(log n) runtime
-complexity.
+You are given a large integer represented as an integer array digits, where
+each digits[i] is the ith digit of the integer. The digits are ordered from
+most significant to least significant in left-to-right order. The large
+integer does not contain any leading 0's. Increment the large integer by one
+and return the resulting array of digits.
 
 ###  My Solution
-```c#
-using System;
 
-class Program
-{
-    static void Main()
-    {
-        int[] nums = { 1, 3, 5, 6 };
-        int target = 5;
-        int result = SearchInsert(nums, target);
-        Console.WriteLine(result);
-    }
-
-    static int SearchInsert(int[] nums, int target)
-    {
-        int low = 0;
-        int high = nums.Length - 1;
-
-        while (low <= high)
-        {
-            int mid = (low + high) / 2;
-            int midVal = nums[mid];
-
-            if (midVal == target)
-            {
-                return mid;
-            }
-            else if (midVal < target)
-            {
-                low = mid + 1;
-            }
-            else
-            {
-                high = mid - 1;
-            }
-        }
-
-        // If the loop completes without finding the target, 'low' will be the correct insertion position
-        return low;
-    }
-}
-```
-
+    
+    
+    🤓
 
 _Note: Leet Code challenges update once a week😉_
 
