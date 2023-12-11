@@ -13,10 +13,12 @@
 
 ##  LeetCode Challenge of the Day ⚛
 
-###  Roman to Integer
+###  Word Search
 
-Roman numerals are represented by seven different symbols: I, V, X, L, C, D
-and M. Given a roman numeral, convert it to an integer.
+Given an m x n grid of characters board and a string word, return true if word
+exists in the grid. The word can be constructed from letters of sequentially
+adjacent cells, where adjacent cells are horizontally or vertically
+neighboring. The same letter cell may not be used more than once.
 
 ###  My Solution
 
