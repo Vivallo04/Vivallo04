@@ -13,12 +13,11 @@
 
 ##  LeetCode Challenge of the Day ⚛
 
-###  Word Search
+###  Pascal's Triangle
 
-Given an m x n grid of characters board and a string word, return true if word
-exists in the grid. The word can be constructed from letters of sequentially
-adjacent cells, where adjacent cells are horizontally or vertically
-neighboring. The same letter cell may not be used more than once.
+Given an integer numRows, return the first numRows of Pascal's triangle. In
+Pascal's triangle, each number is the sum of the two numbers directly above
+it.
 
 ###  My Solution
 
