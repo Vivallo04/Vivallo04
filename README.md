@@ -20,11 +20,30 @@ Pascal's triangle, each number is the sum of the two numbers directly above
 it.
 
 ###  My Solution
+```java
+public class PascalTriangle {
 
-    
-    
-    🤓
+    public static List<List<Integer>> generate(int numRows) {
+        return IntStream.range(0, numRows)
+                .mapToObj(rowIndex -> IntStream.range(0, rowIndex + 1)
+                        .mapToObj(colIndex -> binomialCoefficient(rowIndex, colIndex))
+                        .collect(Collectors.toList()))
+                .collect(Collectors.toList());
+    }
 
+    private static int binomialCoefficient(int n, int k) {
+        return k == 0 ? 1 : binomialCoefficient(n, k - 1) * (n - k + 1) / k;
+    }
+
+    public static void main(String[] args) {
+        int numRows = 5;
+        List<List<Integer>> result = generate(numRows);
+
+        // Print the result
+        result.forEach(System.out::println);
+    }
+}
+```
 _Note: Leet Code challenges update once a week😉_
 
 ##  My Statistics
