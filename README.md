@@ -13,37 +13,19 @@
 
 ##  LeetCode Challenge of the Day ⚛
 
-###  Pascal's Triangle
+###  Jump Game
 
-Given an integer numRows, return the first numRows of Pascal's triangle. In
-Pascal's triangle, each number is the sum of the two numbers directly above
-it.
+You are given an integer array nums. You are initially positioned at the
+array's first index, and each element in the array represents your maximum
+jump length at that position. Return true if you can reach the last index, or
+false otherwise.
 
 ###  My Solution
-```java
-public class PascalTriangle {
 
-    public static List<List<Integer>> generate(int numRows) {
-        return IntStream.range(0, numRows)
-                .mapToObj(rowIndex -> IntStream.range(0, rowIndex + 1)
-                        .mapToObj(colIndex -> binomialCoefficient(rowIndex, colIndex))
-                        .collect(Collectors.toList()))
-                .collect(Collectors.toList());
-    }
+    
+    
+    🤓
 
-    private static int binomialCoefficient(int n, int k) {
-        return k == 0 ? 1 : binomialCoefficient(n, k - 1) * (n - k + 1) / k;
-    }
-
-    public static void main(String[] args) {
-        int numRows = 5;
-        List<List<Integer>> result = generate(numRows);
-
-        // Print the result
-        result.forEach(System.out::println);
-    }
-}
-```
 _Note: Leet Code challenges update once a week😉_
 
 ##  My Statistics
