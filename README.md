@@ -27,15 +27,12 @@ public class Solution {
         int maxReach = 0;
         
         for (int i = 0; i < nums.Length; i++) {
-            // If the current index is beyond the maximum reachable index, return false
             if (i > maxReach) {
                 return false;
             }
-            
-            // Update the maximum reachable index at each step
+
             maxReach = Math.Max(maxReach, i + nums[i]);
-            
-            // If the maximum reachable index is greater than or equal to the last index, return true
+
             if (maxReach >= nums.Length - 1) {
                 return true;
             }
