@@ -21,11 +21,30 @@ jump length at that position. Return true if you can reach the last index, or
 false otherwise.
 
 ###  My Solution
-
-    
-    
-    🤓
-
+```c#
+public class Solution {
+    public bool CanJump(int[] nums) {
+        int maxReach = 0;
+        
+        for (int i = 0; i < nums.Length; i++) {
+            // If the current index is beyond the maximum reachable index, return false
+            if (i > maxReach) {
+                return false;
+            }
+            
+            // Update the maximum reachable index at each step
+            maxReach = Math.Max(maxReach, i + nums[i]);
+            
+            // If the maximum reachable index is greater than or equal to the last index, return true
+            if (maxReach >= nums.Length - 1) {
+                return true;
+            }
+        }
+        
+        return false;
+    }
+}
+```
 _Note: Leet Code challenges update once a week😉_
 
 ##  My Statistics
