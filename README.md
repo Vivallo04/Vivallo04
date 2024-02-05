@@ -13,12 +13,16 @@
 
 ##  LeetCode Challenge of the Day ⚛
 
-###  Sum Root to Leaf Numbers
+###  LRU Cache
 
-You are given the root of a binary tree containing digits from 0 to 9 only.
-Each root-to-leaf path in the tree represents a number. \- For example, the
-root-to-leaf path 1 -> 2 -> 3 represents the number 123. Return the total sum
-of all root-to-leaf numbers.
+Design a data structure that follows the constraints of a Least Recently Used
+(LRU) cache. Implement the LRUCache class: LRUCache(int capacity) Initialize
+the LRU cache with positive size capacity. int get(int key) Return the value
+of the key if the key exists, otherwise return -1. void put(int key, int
+value) Update the value of the key if the key exists. Otherwise, add the key-
+value pair to the cache. If the number of keys exceeds the capacity from this
+operation, evict the least recently used key. The functions get and put must
+each run in O(1) average time complexity.
 
 ###  My Solution
 
