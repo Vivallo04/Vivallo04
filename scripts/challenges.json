@@ -211,7 +211,8 @@
     "Length of Last Word",
     "Linked List Cycle",
     "Sum Root to Leaf Numbers",
-    "LRU Cache"
+    "LRU Cache",
+    "Unique Binary Search Trees"
   ],
   "last_problem_title": "Pascals Triangle",
   "last_problem_content": "Given an integer numRows, return the first numRows of Pascal's triangle. In Pascal's triangle, each number is the sum of the two numbers directly above it."
