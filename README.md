@@ -13,10 +13,11 @@
 
 ##  LeetCode Challenge of the Day ⚛
 
-###  Unique Binary Search Trees
+###  Same Tree
 
-Given an integer n, return the number of structurally unique BST's (binary
-search trees) which has exactly n nodes of unique values from 1 to n.
+Given the roots of two binary trees p and q, write a function to check if they
+are the same or not. Two binary trees are considered the same if they are
+structurally identical, and the nodes have the same value.
 
 ###  My Solution
 
