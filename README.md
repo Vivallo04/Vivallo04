@@ -13,18 +13,16 @@
 
 ##  LeetCode Challenge of the Day ⚛
 
-###  Most Popular Video Creator
+###  Merge Sorted Array
 
-You are given two string arrays creators and ids, and an integer array views,
-all of length n. The ith video on a platform was created by creator[i], has an
-id of ids[i], and has views[i] views. The popularity of a creator is the sum
-of the number of views on all of the creator's videos. Find the creator with
-the highest popularity and the id of their most viewed video. If multiple
-creators have the highest popularity, find all of them. If multiple videos
-have the highest view count for a creator, find the lexicographically smallest
-id. Return a 2D array of strings answer where answer[i] = [creator, id] means
-that creator has the highest popularity and idi is the id of their most
-popular video. The answer can be returned in any order.
+You are given two integer arrays nums1 and nums2, sorted in non-decreasing
+order, and two integers m and n, representing the number of elements in nums1
+and nums2 respectively. Merge nums1 and nums2 into a single array sorted in
+non-decreasing order. The final sorted array should not be returned by the
+function, but instead be stored inside the array nums1. To accommodate this,
+nums1 has a length of m + n, where the first m elements denote the elements
+that should be merged, and the last n elements are set to 0 and should be
+ignored. nums2 has a length of n.
 
 ###  My Solution
 
