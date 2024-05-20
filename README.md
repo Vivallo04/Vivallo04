@@ -13,11 +13,9 @@
 
 ##  LeetCode Challenge of the Day ⚛
 
-###  Path Sum
+###  Tenth Line
 
-Given the root of a binary tree and an integer targetSum, return true if the
-tree has a root-to-leaf path such that adding up all the values along the path
-equals targetSum.
+Shell: Given a text file file.txt, print just the 10th line of the file.
 
 ###  My Solution
 
