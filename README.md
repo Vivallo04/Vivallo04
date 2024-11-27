@@ -1,6 +1,6 @@
 #  Hey! 🙋🏻‍♂️Vivallo here!
 
-##  I am a Computer Engineering Student
+##  I am a Software Engineer
 
 ###  Here are some of my interests and what I'm currently working on:
 
