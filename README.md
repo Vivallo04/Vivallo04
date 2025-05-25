@@ -1,12 +1,12 @@
 #  Hey! 🙋🏻‍♂️Vivallo here!
 
-##  I am a Software Engineer
+##  I am a Computer Engineer
 
 ###  Here are some of my interests and what I'm currently working on:
 
   * 🎆 Working @ [ Lambda ](https://lambdahq.com)
   * 💭 You can contact ping me on LinkedIn or contact me at andresvivallo@lambdahq.com
-  * 🎮 I have fun developing games (taking a break for now) and doing full-stack development
+  * 🎮 I have fun developing games (taking a break for now) and doing full-stack development + AI
   * 🤓 Oh! I almost forget. Here's a link to my [ dotfiles ](https://github.com/Vivallo04/dotfiles) (I use Arch btw) 
   * 💘 I am currently focusing on AI integration and full-stack applications (and classical music too) 
 
