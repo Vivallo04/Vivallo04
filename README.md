@@ -10,7 +10,7 @@
 
 
 ## My OpenSource Tools
-- A tool for visualizing memory usage in form of a TreeMap[TreeTop]() 
+- A tool for visualizing memory usage in form of a TreeMap [TreeTop]() 
 
 
 ##  My Statistics
