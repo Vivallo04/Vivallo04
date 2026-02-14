@@ -10,8 +10,8 @@
 
 
 ## My Open-Source Tools
-- A tool for visualizing memory usage in the form of a TreeMap written in Rust [TreeTop](https://github.com/Vivallo04/treetop-cli) 
-- Anti-procrastination extension for Chrome-based browsers [The Anti-procrastination Extension](https://github.com/Vivallo04/anti-procrastination-extension)
+- [TreeTop](https://github.com/Vivallo04/treetop-cli): A tool for visualizing memory usage in the form of a TreeMap written in Rust 
+- [The Anti-procrastination Extension](https://github.com/Vivallo04/anti-procrastination-extension): Anti-procrastination extension for Chrome-based browsers [The Anti-procrastination Extension](https://github.com/Vivallo04/anti-procrastination-extension)
 
 ##  My Statistics
 
