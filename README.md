@@ -6,11 +6,11 @@
 
   * 🎆 Working @ [Lambda](https://lambdahq.co)
   * My dotfiles (been a while): [dotfiles](https://github.com/Vivallo04/dotfiles)
-  * Currently focusing on AI integration and full-stack applications (and classical music in Paris)
+  * Currently focusing on AI (as everybody else) and full-stack applications, and (classical) music
 
-
-## My Open-Source Tools
-- [TreeTop](https://github.com/Vivallo04/treetop-cli): A tool for visualizing memory usage in the form of a TreeMap written in Rust 
+## My Open-Source Projects
+- [TreeTop](https://github.com/Vivallo04/treetop-cli): A tool for visualizing memory usage in the form of a TreeMap written in Rust
+- [Pulsos](https://github.com/Vivallo04/pulsos-cli): The ultimate DevOps command center for your terminal. Unify CI/CD pipelines, monitor API health
 - [The Anti-procrastination Extension](https://github.com/Vivallo04/anti-procrastination-extension): Anti-procrastination extension for Chrome-based browsers
 
 ##  My Statistics
