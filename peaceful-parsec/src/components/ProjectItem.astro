@@ -1,0 +1,103 @@
+---
+export interface Props {
+	title: string;
+	description: string;
+	link: string;
+	imageSrc?: string;
+	tech?: string[];
+}
+const { title, description, link, imageSrc = "/project-placeholder.jpg", tech = [] } = Astro.props;
+---
+<a href={link} class="project-item">
+	<div class="project-thumbnail">
+		<img src={imageSrc} alt={title} loading="lazy" />
+	</div>
+	<div class="project-details">
+		<h4>{title}</h4>
+		<p>{description}</p>
+		{tech.length > 0 && (
+			<ul class="project-tech">
+				{tech.map((t) => <li>{t}</li>)}
+			</ul>
+		)}
+	</div>
+</a>
+
+<style>
+	.project-item {
+		display: flex;
+		gap: 1.25rem;
+		padding: 1rem;
+		border-radius: 12px;
+		text-decoration: none;
+		transition: background 0.2s ease, transform 0.2s ease;
+		margin-left: -1rem; /* Pull back to align with text */
+		margin-right: -1rem;
+	}
+	.project-item:hover {
+		background: rgba(255, 255, 255, 0.03);
+	}
+	.project-thumbnail {
+		width: 120px;
+		height: 80px;
+		flex-shrink: 0;
+		border-radius: 8px;
+		overflow: hidden;
+		border: 1px solid rgba(255, 255, 255, 0.1);
+		background: #111;
+	}
+	.project-thumbnail img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		opacity: 0.7;
+		transition: opacity 0.2s ease;
+	}
+	.project-item:hover .project-thumbnail img {
+		opacity: 1;
+	}
+	.project-details {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+	}
+	.project-details h4 {
+		margin: 0;
+		font-size: 1.1rem;
+		font-weight: 600;
+		color: #ececf5;
+	}
+	.project-details p {
+		margin: 0.35rem 0 0;
+		font-size: 0.9rem;
+		color: #a8a8bc;
+		line-height: 1.45;
+	}
+	.project-tech {
+		list-style: none;
+		padding: 0;
+		margin: 0.5rem 0 0;
+		display: flex;
+		gap: 0.5rem;
+		flex-wrap: wrap;
+	}
+	.project-tech li {
+		font-size: 0.75rem;
+		color: #888;
+		background: rgba(255, 255, 255, 0.05);
+		padding: 0.15rem 0.5rem;
+		border-radius: 4px;
+		border: 1px solid rgba(255, 255, 255, 0.05);
+	}
+	
+	@media (max-width: 640px) {
+		.project-item {
+			flex-direction: column;
+			gap: 0.75rem;
+		}
+		.project-thumbnail {
+			width: 100%;
+			height: 140px;
+		}
+	}
+</style>
