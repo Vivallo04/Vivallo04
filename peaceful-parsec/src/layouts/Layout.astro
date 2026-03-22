@@ -1,5 +1,6 @@
 ---
 import '../styles/theme.css';
+import ogImage from '../assets/og.png';
 
 interface Props {
 	title?: string;
@@ -12,6 +13,8 @@ const {
 	description = 'Portfolio and services for modern web product development with Astro and Svelte.',
 	lang = 'en'
 } = Astro.props;
+
+const ogUrl = new URL(ogImage.src, Astro.site ?? 'https://vivallo.xyz').href;
 ---
 
 <!doctype html>
@@ -28,6 +31,16 @@ const {
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet" />
 		<title>{title}</title>
+		<!-- Open Graph -->
+		<meta property="og:type" content="website" />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:image" content={ogUrl} />
+		<!-- Twitter Card -->
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content={title} />
+		<meta name="twitter:description" content={description} />
+		<meta name="twitter:image" content={ogUrl} />
 		<script is:inline defer src="https://stats.lambdahq.co/script.js" data-website-id="dc449e4f-1470-4ca2-90da-a64c90693f47"></script>
 		<slot name="head" />
 	</head>
