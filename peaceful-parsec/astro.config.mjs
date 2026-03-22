@@ -14,6 +14,12 @@ export default defineConfig({
       noExternal: ['phosphor-svelte']
     }
   },
+  image: {
+    remotePatterns: [
+      { protocol: 'https', hostname: 'opengraph.githubassets.com' },
+      { protocol: 'https', hostname: 'images.unsplash.com' },
+    ]
+  },
   integrations: [svelte()],
   adapter: vercel({
     imageService: true,

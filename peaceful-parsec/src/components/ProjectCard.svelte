@@ -1,5 +1,14 @@
-<script>
-  let { title, description, tags = [] } = $props();
+<script lang="ts">
+  interface Props {
+    title: string;
+    description: string;
+    tags?: string[];
+    href?: string;
+    imageSrc?: string;
+    imageScale?: number;
+  }
+
+  let { title, description, tags = [], href, imageSrc, imageScale = 1 }: Props = $props();
 
   const tagColors = {
     'TypeScript': '#3178c6',
@@ -16,20 +25,23 @@
   };
 </script>
 
-<div class="flex flex-col sm:flex-row gap-4 sm:gap-5 mb-10 sm:mb-8 group cursor-pointer">
+<svelte:element this={href ? 'a' : 'div'} href={href || undefined} target={href ? '_blank' : undefined} rel={href ? 'noopener noreferrer' : undefined} class="flex flex-col sm:flex-row gap-4 sm:gap-5 mb-10 sm:mb-8 group cursor-pointer">
   <!-- Image Thumbnail -->
-  <div class="w-full sm:w-32 h-44 sm:h-24 flex-shrink-0 bg-[#111] border border-gray-800 rounded-lg overflow-hidden group-hover:border-gray-600 transition-colors">
-    <!-- Replace with actual images -->
-    <div class="w-full h-full bg-gradient-to-br from-gray-800 to-black p-2 flex items-center justify-center text-xs text-gray-500 text-center">
-      {title} Image
-    </div>
+  <div class="w-full sm:w-72 flex-shrink-0 bg-secondary border border-border rounded-lg overflow-hidden group-hover:border-muted-foreground/30 transition-colors" style="aspect-ratio: 40/21;">
+    {#if imageSrc}
+      <img src={imageSrc} alt={title} loading="lazy" decoding="async" class="w-full h-full object-cover" style="transform: scale({imageScale}); transform-origin: center;" />
+    {:else}
+      <div class="w-full h-full bg-gradient-to-br from-secondary to-background p-2 flex items-center justify-center text-xs text-muted-foreground text-center">
+        {title} Image
+      </div>
+    {/if}
   </div>
 
   <!-- Content -->
   <div class="flex flex-col justify-center w-full">
-    <h4 class="text-white text-lg font-medium mb-1 group-hover:text-purple-300 transition-colors">{title}</h4>
-    <p class="text-gray-400 text-sm mb-3 leading-relaxed max-w-xl">{description}</p>
-    
+    <h4 class="text-foreground text-lg font-medium mb-1 group-hover:text-primary transition-colors">{title}</h4>
+    <p class="text-muted-foreground text-sm mb-3 leading-relaxed max-w-xl">{description}</p>
+
     <!-- Tags -->
     <div class="flex flex-wrap gap-2">
       {#each tags as tag}
@@ -40,4 +52,4 @@
       {/each}
     </div>
   </div>
-</div>
+</svelte:element>

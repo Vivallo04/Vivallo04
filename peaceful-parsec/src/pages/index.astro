@@ -2,131 +2,109 @@
 import Layout from '../layouts/Layout.astro';
 import { Image } from 'astro:assets';
 import ProjectCard from '../components/ProjectCard.svelte';
-import ServiceCard from '../components/ServiceCard.svelte';
 import InstagramLogo from 'phosphor-svelte/lib/InstagramLogo';
 import GithubLogo from 'phosphor-svelte/lib/GithubLogo';
 import XLogo from 'phosphor-svelte/lib/XLogo';
 import EnvelopeSimple from 'phosphor-svelte/lib/EnvelopeSimple';
+import LinkedinLogo from 'phosphor-svelte/lib/LinkedinLogo';
+import avatar from '../assets/avatar.jpeg';
+import aghataImg from '../assets/aghata.io.png';
+import tasuklyImg from '../assets/tasukly.io.png';
 ---
 
 <Layout
   title="Vivallo | Full Stack Engineer"
   description="Portfolio and services for modern web product development with Astro and Svelte."
 >
-  <Fragment slot="head">
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital@0;1&display=swap"
-      rel="stylesheet"
-    />
-  </Fragment>
-
-  <div class="bg-dots text-gray-100 min-h-screen relative selection:bg-purple-500/30">
+  <div class="min-h-screen relative selection:bg-primary/30">
     <main class="max-w-3xl mx-auto px-5 sm:px-6 py-12 sm:py-20 overflow-hidden">
 
       <!-- HEADER -->
       <header class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 mb-16 sm:mb-20">
         <!-- Avatar & Name -->
-        <div class="flex items-center gap-4">
+        <div class="flex items-center gap-2">
           <Image
-            src="/avatar.jpg"
+            src={avatar}
             alt="Profile"
             width={56}
             height={56}
             loading="eager"
-            class="w-14 h-14 rounded-full border border-gray-800 object-cover"
+            class="w-14 h-14 rounded-full border border-border object-cover"
+            style="object-position: center 10%;"
           />
           <div>
-            <h1 class="text-xl font-semibold text-white">Your Name</h1>
-            <p class="text-gray-400 text-sm">Full Stack Engineer</p>
+            <h1 class="text-xl font-semibold text-foreground">Andrés Vivallo</h1>
+            <p class="text-muted-foreground text-sm">Full Stack Engineer</p>
           </div>
         </div>
 
         <!-- Circular Social Icons -->
         <div class="flex gap-3">
-          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="w-10 h-10 rounded-full border border-gray-800 flex items-center justify-center text-gray-400 hover:text-white hover:bg-gray-800 transition-colors">
-            <InstagramLogo class="w-4 h-4" />
+          <a href="https://www.instagram.com/vivallo_04/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="text-muted-foreground hover:text-foreground transition-colors">
+            <InstagramLogo class="w-5 h-5" />
           </a>
-          <a href="https://github.com" target="_blank" rel="noopener noreferrer" aria-label="GitHub" class="w-10 h-10 rounded-full border border-gray-800 flex items-center justify-center text-gray-400 hover:text-white hover:bg-gray-800 transition-colors">
-            <GithubLogo class="w-4 h-4" />
+          <a href="https://github.com/Vivallo04" target="_blank" rel="noopener noreferrer" aria-label="GitHub" class="text-muted-foreground hover:text-foreground transition-colors">
+            <GithubLogo class="w-5 h-5" />
           </a>
-          <a href="https://x.com" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)" class="w-10 h-10 rounded-full border border-gray-800 flex items-center justify-center text-gray-400 hover:text-white hover:bg-gray-800 transition-colors">
-            <XLogo class="w-4 h-4" />
+          <a href="https://x.com/VivalloAndres" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)" class="text-muted-foreground hover:text-foreground transition-colors">
+            <XLogo class="w-5 h-5" />
           </a>
-          <a href="mailto:hello@example.com" aria-label="Email" class="w-10 h-10 rounded-full border border-gray-800 flex items-center justify-center text-gray-400 hover:text-white hover:bg-gray-800 transition-colors">
-            <EnvelopeSimple class="w-4 h-4" />
+          <a href="https://www.linkedin.com/in/andr%C3%A9s-vivallo/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="text-muted-foreground hover:text-foreground transition-colors">
+            <LinkedinLogo size="20" />
+          </a>
+          <a href="mailto:andresvivallo@lambdahq.co" aria-label="Email" class="text-muted-foreground hover:text-foreground transition-colors">
+            <EnvelopeSimple class="w-5 h-5" />
           </a>
         </div>
       </header>
 
       <!-- HERO / HEADLINE -->
       <section class="mb-20">
-        <h2 class="text-4xl sm:text-5xl font-bold leading-[1.15] mb-6 text-white tracking-tight">
-          I build high-performance products with <br class="hidden sm:block" />
-          <span class="font-serif italic font-normal text-purple-200 tracking-normal">modern cloud workflows.</span>
-        </h2>
-
-        <p class="text-gray-400 text-lg leading-relaxed max-w-2xl">
-          I am a full stack engineer passionate about modern web applications, thoughtful UI/UX, and practical AI solutions while sharing knowledge through open source and tutorials.
+        <p class="text-muted-foreground text-lg leading-relaxed max-w-2xl">
+          Hey! Vivallo here. I am a Computer Engineer and flutists in Paris 🇫🇷. I do many things (as many others) and build lots of software; some of it open-source, most of it in my company <a href="https://www.lambdahq.co" target="_blank" rel="noopener noreferrer" class="text-foreground underline underline-offset-2 hover:text-primary transition-colors">Lambda</a>. You can check out some of the projects in the links below.
         </p>
       </section>
 
-      <!-- OPEN SOURCE PROJECTS -->
-      <section class="mb-16">
-        <h3 class="text-white font-semibold text-xl mb-8">Open Source Projects</h3>
-
-        <ProjectCard
-          title="Framework Boilerplate"
-          description="A modern, production-ready full stack boilerplate for Next.js & SvelteKit with auth and payments."
-          tags={['TypeScript', 'Astro']}
-        />
-        <ProjectCard
-          title="Developer CLI toolkit"
-          description="Open source terminal utilities for streamlining cloud deployments and Git workflows."
-          tags={['Rust', 'Go']}
-        />
-      </section>
 
       <!-- NOT SO OPEN SOURCE -->
-      <section class="mb-24">
-        <h3 class="text-white font-semibold text-xl mb-8">Not So Open Source</h3>
+      <section class="mb-12">
+        <h3 class="text-foreground font-semibold text-xl mb-8">My Startup(s)</h3>
 
         <ProjectCard
-          title="SaaS Platform App"
-          description="B2B platform serving over 10k MRR with complex data pipelines and AI summarization."
+          title="Aghata.io"
+          description="A better AI chat experience with Agents."
+          imageSrc={aghataImg.src}
+          imageScale={1.2}
+          href="https://aghata.io"
         />
         <ProjectCard
-          title="Fintech Dashboard"
-          description="Client project with real-time financial tracking, advanced charting, and strict security compliance."
+          title="Tasuky.io"
+          description="An app for personal trainers and gyms focused on reducing churn and a better experience for all."
+          imageSrc={tasuklyImg.src}
+          href="https://tasuky.io"
         />
       </section>
 
-      <!-- WORK WITH ME (VERCEL STYLE CARDS) -->
-      <section>
-        <h3 class="text-white font-semibold text-xl mb-8">Work with me and my team</h3>
 
-        <ServiceCard
-          title="hire.my.team"
-          description="With experience building production-ready apps, my team and I can build your next project."
-          price="Custom Quote"
-          imageSrc="https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=800&auto=format&fit=crop"
+      <!-- OPEN SOURCE PROJECTS -->
+      <section class="mb-16">
+        <h3 class="text-foreground font-semibold text-xl mb-8">Open Source Projects</h3>
+
+        <ProjectCard
+          title="TreeTop"
+          description="A tool for visualizing memory usage in the form of a TreeMap written in Rust."
+          tags={['Rust']}
+          href="https://github.com/Vivallo04/treetop-cli"
+          imageSrc="https://opengraph.githubassets.com/1/Vivallo04/treetop-cli"
+        />
+        <ProjectCard
+          title="Pulsos"
+          description="The ultimate DevOps command center for your terminal. Unify CI/CD pipelines, monitor API health."
+          tags={['Rust']}
+          href="https://github.com/Vivallo04/pulsos-cli"
+          imageSrc="https://opengraph.githubassets.com/1/Vivallo04/pulsos-cli"
         />
       </section>
-
     </main>
   </div>
 </Layout>
-
-<style>
-  .bg-dots {
-    background-color: #09090b;
-    background-image: radial-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px);
-    background-size: 32px 32px;
-    font-family: 'Inter', sans-serif;
-  }
-
-  .font-serif {
-    font-family: 'Playfair Display', serif;
-  }
-</style>
