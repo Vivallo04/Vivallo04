@@ -1,6 +1,5 @@
 ---
 export const prerender = false;
-
 import Layout from '../layouts/Layout.astro';
 
 const PRODUCT_ID  = "12db69db-b48a-422d-b4a5-d55207f43e26";
@@ -10,308 +9,529 @@ const purchased   = Astro.url.searchParams.get('purchased') === '1';
 
 <Layout
   title="698 Skills para Claude Code — $12 pago único"
-  description="El pack más completo de skills para Claude Code. 698 skills handpicked para marketing, ventas, contenido, finanzas, legal y estrategia. $12, una sola vez."
+  description="698 skills handpicked para Claude Code. Marketing, ventas, contenido, finanzas y estrategia. $12 pago único, descarga instantánea."
   theme="light"
 >
 
-{purchased && (
-  <div class="fixed top-0 inset-x-0 z-50 bg-emerald-500 text-white text-sm font-medium text-center py-3 px-4">
-    ✓ ¡Pago completado! Revisa tu email para el enlace de descarga.
-  </div>
-)}
+<style>
+  /* All colors use the site's existing CSS variables from theme.css */
+  .page { min-height: 100vh; background: var(--background); color: var(--foreground); font-family: var(--font-sans, Montserrat, sans-serif); }
 
-<div class="min-h-screen text-foreground" style="font-family: var(--font-sans);">
+  /* ── Success ── */
+  .success { background: oklch(0.95 0.08 142); border-bottom: 1px solid oklch(0.75 0.12 142); color: oklch(0.3 0.12 142); font-size: 14px; font-weight: 500; padding: 12px 32px; text-align: center; }
 
-  <!-- ── NAV ── -->
-  <nav class="border-b border-border px-5 py-4 flex items-center justify-between max-w-5xl mx-auto">
-    <a href="/" class="text-sm text-muted-foreground hover:text-foreground transition-colors">← vivallo.xyz</a>
-    <a href={checkoutUrl} class="text-sm font-semibold bg-primary text-primary-foreground px-4 py-2 rounded-lg hover:opacity-90 transition-opacity">
-      Conseguir el pack — $12
-    </a>
+  /* ── Nav ── */
+  .nav {
+    position: sticky; top: 0; z-index: 100;
+    background: color-mix(in oklch, var(--background) 90%, transparent);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 13px 32px;
+    display: flex; align-items: center; justify-content: flex-end;
+  }
+  .nav-back { font-size: 13px; color: var(--muted-foreground); text-decoration: none; display: flex; align-items: center; gap: 6px; transition: color 0.2s; }
+  .nav-back:hover { color: var(--foreground); }
+  .nav-right { display: flex; align-items: center; gap: 16px; }
+  .nav-label { font-size: 12px; color: var(--muted-foreground); font-family: var(--font-mono, 'Fira Code', monospace); }
+  .nav-label strong { color: var(--primary); }
+  .btn-nav {
+    font-size: 13px; font-weight: 600;
+    background: var(--primary); color: var(--primary-foreground);
+    padding: 8px 20px; border-radius: var(--radius, 0.35rem); text-decoration: none;
+    transition: opacity 0.2s, transform 0.15s;
+  }
+  .btn-nav:hover { opacity: 0.88; transform: translateY(-1px); }
+
+  /* ── Hero ── */
+  .hero { max-width: 820px; margin: 0 auto; padding: 80px 32px 64px; }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 7px;
+    background: color-mix(in oklch, var(--primary) 10%, transparent);
+    border: 1px solid color-mix(in oklch, var(--primary) 25%, transparent);
+    border-radius: 100px; padding: 5px 14px; margin-bottom: 32px;
+    font-size: 11px; font-weight: 600; color: var(--primary);
+    font-family: var(--font-mono, monospace); letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .hero-badge-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--primary); animation: blink 2s ease-in-out infinite; }
+  @keyframes blink { 0%,100%{opacity:1;} 50%{opacity:0.3;} }
+
+  .hero-h {
+    font-size: clamp(40px, 6vw, 72px); font-weight: 700; line-height: 1.05;
+    letter-spacing: -0.025em; color: var(--foreground); margin-bottom: 24px;
+  }
+  .hero-h em { font-style: normal; color: var(--primary); }
+
+  .hero-sub {
+    font-size: 17px; line-height: 1.7; color: var(--muted-foreground);
+    max-width: 520px; margin-bottom: 40px; font-weight: 400;
+  }
+
+  .hero-actions { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; margin-bottom: 32px; }
+  .btn-primary {
+    font-size: 15px; font-weight: 700;
+    background: var(--primary); color: var(--primary-foreground);
+    padding: 14px 32px; border-radius: var(--radius); text-decoration: none;
+    transition: opacity 0.2s, transform 0.15s, box-shadow 0.2s;
+    box-shadow: var(--shadow-lg);
+    display: inline-flex; align-items: center; gap: 10px;
+  }
+  .btn-primary:hover { opacity: 0.88; transform: translateY(-2px); box-shadow: var(--shadow-xl); }
+  .price-tag { background: rgba(255,255,255,0.2); padding: 3px 10px; border-radius: 4px; font-size: 13px; font-family: var(--font-mono, monospace); }
+
+  .hero-trust { display: flex; gap: 20px; flex-wrap: wrap; }
+  .trust-item { font-size: 12px; color: var(--muted-foreground); display: flex; align-items: center; gap: 5px; font-family: var(--font-mono, monospace); }
+  .trust-item .check { color: oklch(0.6 0.15 142); }
+
+  /* ── Divider ── */
+  hr.div { border: none; border-top: 1px solid var(--border); margin: 0 32px; }
+
+  /* ── Proof bar ── */
+  .proof-bar {
+    border-bottom: 1px solid var(--border); background: var(--card);
+    padding: 14px 32px;
+    display: flex; align-items: center; justify-content: center;
+    gap: 32px; flex-wrap: wrap;
+  }
+  .proof-item { font-size: 12px; color: var(--muted-foreground); font-family: var(--font-mono, monospace); display: flex; align-items: center; gap: 6px; }
+  .proof-item strong { color: var(--foreground); font-weight: 600; }
+  .proof-sep { color: var(--border); }
+
+  /* ── Sections ── */
+  .section { max-width: 820px; margin: 0 auto; padding: 72px 32px; }
+  .section-alt { background: var(--card); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+  .section-alt .inner { max-width: 820px; margin: 0 auto; padding: 72px 32px; }
+
+  .eyebrow { font-size: 11px; font-weight: 600; color: var(--primary); letter-spacing: 0.12em; text-transform: uppercase; font-family: var(--font-mono, monospace); margin-bottom: 12px; }
+  .section-h { font-size: clamp(26px, 3.5vw, 38px); font-weight: 700; line-height: 1.1; letter-spacing: -0.02em; color: var(--foreground); margin-bottom: 48px; }
+  .section-h span { color: var(--primary); }
+
+  /* ── Skill cards ── */
+  .skills-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 10px; }
+  .skill-card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: calc(var(--radius) + 4px); padding: 18px 20px;
+    transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+  }
+  .skill-card:hover { border-color: color-mix(in oklch, var(--primary) 50%, transparent); box-shadow: var(--shadow-md); transform: translateY(-2px); }
+  .skill-cmd { font-family: var(--font-mono, monospace); font-size: 12px; color: var(--primary); margin-bottom: 7px; font-weight: 500; }
+  .skill-desc { font-size: 12.5px; color: var(--muted-foreground); line-height: 1.55; margin-bottom: 10px; }
+  .skill-cat { display: inline-block; font-size: 10px; font-weight: 600; font-family: var(--font-mono, monospace); color: var(--muted-foreground); background: var(--muted); border-radius: 3px; padding: 2px 7px; letter-spacing: 0.04em; }
+
+  /* ── Steps ── */
+  .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+  .step { background: var(--background); border: 1px solid var(--border); border-radius: calc(var(--radius) + 4px); padding: 28px; }
+  .step-num { font-size: 40px; font-weight: 700; color: var(--border); line-height: 1; margin-bottom: 16px; letter-spacing: -0.03em; }
+  .step-title { font-size: 14px; font-weight: 600; color: var(--foreground); margin-bottom: 6px; }
+  .step-desc { font-size: 12.5px; color: var(--muted-foreground); line-height: 1.6; margin-bottom: 14px; }
+  .code-block {
+    background: oklch(0.18 0.02 280); border-radius: calc(var(--radius) + 2px);
+    padding: 14px 16px; font-family: var(--font-mono, monospace); font-size: 11px; line-height: 1.8;
+    border: 1px solid oklch(0.28 0.03 280);
+  }
+  .c-comment { color: #6B7280; }
+  .c-cmd { color: #86EFAC; }
+  .c-path { color: #FCD34D; }
+  .c-str { color: #C4B5FD; }
+  .c-out { color: oklch(0.82 0.12 304); }
+  .c-prompt { color: #34D399; }
+
+  /* ── Categories ── */
+  .cats-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 10px; }
+  .cat-card { background: var(--card); border: 1px solid var(--border); border-radius: calc(var(--radius) + 4px); padding: 20px; transition: border-color 0.2s, transform 0.2s; }
+  .cat-card:hover { border-color: color-mix(in oklch, var(--primary) 40%, transparent); transform: translateY(-2px); }
+  .cat-icon { font-size: 20px; margin-bottom: 10px; }
+  .cat-name { font-size: 13px; font-weight: 600; color: var(--foreground); margin-bottom: 3px; }
+  .cat-count { font-size: 11px; color: var(--primary); font-family: var(--font-mono, monospace); margin-bottom: 7px; font-weight: 500; }
+  .cat-ex { font-size: 11.5px; color: var(--muted-foreground); line-height: 1.5; }
+
+  /* ── Price ── */
+  .price-card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: calc(var(--radius) + 8px);
+    box-shadow: var(--shadow-lg);
+    display: grid; grid-template-columns: 1fr 1fr;
+    overflow: hidden;
+  }
+  .price-left {
+    padding: 48px 44px;
+    border-right: 1px solid var(--border);
+    display: flex; flex-direction: column; justify-content: space-between;
+  }
+  .price-left-top {}
+  .price-launch {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: color-mix(in oklch, var(--primary) 10%, transparent);
+    border: 1px solid color-mix(in oklch, var(--primary) 20%, transparent);
+    border-radius: 100px; padding: 4px 12px; margin-bottom: 24px;
+    font-size: 10px; font-weight: 600; color: var(--primary);
+    font-family: var(--font-mono, monospace); letter-spacing: 0.08em; text-transform: uppercase;
+  }
+  .price-number {
+    font-size: 80px; font-weight: 700; line-height: 1;
+    color: var(--foreground); letter-spacing: -0.04em; margin-bottom: 6px;
+  }
+  .price-once {
+    font-size: 13px; color: var(--muted-foreground); margin-bottom: 4px;
+  }
+  .price-per-skill {
+    font-family: var(--font-mono, monospace); font-size: 11px;
+    color: var(--primary); font-weight: 500;
+  }
+  .price-left-bottom { margin-top: 36px; }
+  .btn-buy {
+    display: block; width: 100%; text-align: center;
+    background: var(--primary); color: var(--primary-foreground);
+    font-size: 14px; font-weight: 700; padding: 14px 20px;
+    border-radius: var(--radius); text-decoration: none;
+    transition: opacity 0.2s, transform 0.15s, box-shadow 0.2s;
+    box-shadow: var(--shadow-md);
+  }
+  .btn-buy:hover { opacity: 0.88; transform: translateY(-1px); box-shadow: var(--shadow-lg); }
+  .buy-sub {
+    margin-top: 10px; font-size: 11px; color: var(--muted-foreground);
+    font-family: var(--font-mono, monospace); text-align: center;
+  }
+  .price-right { padding: 48px 44px; }
+  .price-right-label {
+    font-size: 11px; font-weight: 600; color: var(--muted-foreground);
+    font-family: var(--font-mono, monospace); letter-spacing: 0.1em; text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+  .price-perks { list-style: none; }
+  .price-perk {
+    font-size: 13px; color: var(--foreground);
+    padding: 11px 0; border-bottom: 1px solid var(--border);
+    display: flex; align-items: flex-start; gap: 10px; line-height: 1.4;
+  }
+  .price-perk:last-child { border-bottom: none; }
+  .perk-check { color: oklch(0.58 0.15 142); font-size: 13px; flex-shrink: 0; margin-top: 1px; }
+
+  /* ── FAQ ── */
+  .faqs { max-width: 640px; margin: 0 auto; }
+  details { border-bottom: 1px solid var(--border); }
+  details:first-of-type { border-top: 1px solid var(--border); }
+  summary { list-style: none; cursor: pointer; padding: 20px 0; font-size: 14px; font-weight: 600; color: var(--foreground); display: flex; align-items: center; justify-content: space-between; transition: color 0.2s; user-select: none; }
+  summary::-webkit-details-marker { display: none; }
+  summary:hover { color: var(--primary); }
+  .faq-icon { font-size: 18px; color: var(--muted-foreground); transition: transform 0.25s, color 0.2s; flex-shrink: 0; margin-left: 16px; font-family: var(--font-mono, monospace); }
+  details[open] .faq-icon { transform: rotate(45deg); color: var(--primary); }
+  .faq-body { padding: 0 0 20px; font-size: 13.5px; color: var(--muted-foreground); line-height: 1.72; max-width: 580px; }
+
+  /* ── Final CTA ── */
+  .final-cta { text-align: center; padding: 100px 32px; max-width: 680px; margin: 0 auto; }
+  .final-h { font-size: clamp(32px, 5vw, 52px); font-weight: 700; line-height: 1.06; letter-spacing: -0.025em; color: var(--foreground); margin-bottom: 16px; }
+  .final-h em { font-style: normal; color: var(--primary); }
+  .final-sub { font-size: 16px; color: var(--muted-foreground); margin-bottom: 36px; line-height: 1.65; }
+
+  /* ── Footer ── */
+  footer { border-top: 1px solid var(--border); padding: 18px 32px; text-align: center; font-size: 12px; color: var(--muted-foreground); font-family: var(--font-mono, monospace); display: flex; align-items: center; justify-content: center; gap: 14px; }
+  footer a { color: inherit; text-decoration: none; transition: color 0.2s; }
+  footer a:hover { color: var(--foreground); }
+
+  /* ── Reveal ── */
+  .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .reveal.visible { opacity: 1; transform: none; }
+  .d1 { transition-delay: 0.1s; } .d2 { transition-delay: 0.2s; } .d3 { transition-delay: 0.3s; }
+
+  @media (max-width: 680px) {
+    .nav { padding: 12px 20px; }
+    .nav-label { display: none; }
+    .hero { padding: 52px 20px 44px; }
+    .section { padding: 56px 20px; }
+    .section-alt .inner { padding: 56px 20px; }
+    .steps { grid-template-columns: 1fr; }
+    .proof-bar { padding: 12px 20px; gap: 16px; }
+    .proof-sep { display: none; }
+    .final-cta { padding: 72px 20px; }
+    footer { padding: 14px 20px; flex-direction: column; gap: 4px; }
+    .price-card { grid-template-columns: 1fr; }
+    .price-left { border-right: none; border-bottom: 1px solid var(--border); padding: 36px 24px; }
+    .price-right { padding: 32px 24px; }
+  }
+</style>
+
+<div class="page">
+
+  {purchased && (
+    <div class="success">
+      ✓ ¡Listo! Revisá tu email, el link de descarga ya está en camino.
+    </div>
+  )}
+
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="nav-right">
+<a href={checkoutUrl} class="btn-nav">Conseguir el pack →</a>
+    </div>
   </nav>
 
-  <!-- ── HERO ── -->
-  <section class="max-w-4xl mx-auto px-5 pt-16 pb-12 text-center">
-    <div class="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-4 py-1.5 text-xs font-semibold text-primary uppercase tracking-wide mb-6">
-      <span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
-      698 skills · Más que cualquier otro pack del mercado
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-badge reveal">
+      <span class="hero-badge-dot"></span>
+      Precio de lanzamiento · $12
     </div>
 
-    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground leading-[1.1] mb-6">
-      Convierte Claude Code en<br>
-      <span class="text-primary">tu equipo completo</span>
+    <h1 class="hero-h reveal d1">
+      Convierte Claude en<br>
+      tu <em>equipo completo.</em>
     </h1>
 
-    <p class="text-lg text-muted-foreground max-w-2xl mx-auto mb-8 leading-relaxed">
-      698 skills handpicked para founders, operadores y solopreneurs.
-      Marketing, ventas, contenido, finanzas, legal, estrategia e IA —
-      todo listo para usar desde el primer día.
+    <p class="hero-sub reveal d2">
+      698 skills curados para founders, solopreneurs y equipos chicos.
+      Marketing, ventas, contenido, finanzas y estrategia.
+      Se instalan en 2 minutos con un solo pago.
     </p>
 
-    <div class="flex flex-col sm:flex-row items-center justify-center gap-3 mb-6">
-      <a href={checkoutUrl}
-         class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-primary text-primary-foreground font-bold text-base px-8 py-4 rounded-xl hover:opacity-90 transition-opacity shadow-lg">
-        Conseguir el pack completo
-        <span class="bg-primary-foreground/20 text-primary-foreground text-sm font-bold px-2.5 py-0.5 rounded-md">$12</span>
+    <div class="hero-actions reveal d3">
+      <a href={checkoutUrl} class="btn-primary">
+        Conseguir los 698 skills
+        <span class="price-tag">$12</span>
+      </a>
+      <a href="#skills" style="font-size:14px;color:var(--muted-foreground);text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='var(--foreground)'" onmouseout="this.style.color='var(--muted-foreground)'">
+        Ver qué incluye ↓
       </a>
     </div>
 
-    <div class="flex items-center justify-center gap-6 text-xs text-muted-foreground">
-      <span class="flex items-center gap-1.5">
-        <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor" class="text-emerald-400"><path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0zm3.54 4.96L6.75 9.75 4.46 7.46l-1.42 1.42 3.71 3.7 6.21-6.2-1.42-1.42z"/></svg>
-        Pago único · sin suscripción
-      </span>
-      <span class="flex items-center gap-1.5">
-        <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor" class="text-emerald-400"><path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0zm3.54 4.96L6.75 9.75 4.46 7.46l-1.42 1.42 3.71 3.7 6.21-6.2-1.42-1.42z"/></svg>
-        Descarga instantánea
-      </span>
-      <span class="flex items-center gap-1.5">
-        <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor" class="text-emerald-400"><path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0zm3.54 4.96L6.75 9.75 4.46 7.46l-1.42 1.42 3.71 3.7 6.21-6.2-1.42-1.42z"/></svg>
-        Garantía 7 días
-      </span>
+    <div class="hero-trust reveal d3">
+      <span class="trust-item"><span class="check">✓</span> Pago único</span>
+      <span class="trust-item"><span class="check">✓</span> Descarga instantánea</span>
+      <span class="trust-item"><span class="check">✓</span> Garantía 7 días</span>
     </div>
   </section>
 
-  <!-- ── HOW TO INSTALL ── -->
-  <section class="max-w-4xl mx-auto px-5 py-16">
-    <div class="text-center mb-10">
-      <p class="text-xs font-semibold uppercase tracking-widest text-primary mb-3">Instalación en 3 pasos</p>
-      <h2 class="text-2xl sm:text-3xl font-bold text-foreground">Listo en menos de 2 minutos</h2>
-    </div>
+  <hr class="div" />
 
-    <div class="grid sm:grid-cols-3 gap-6">
-      <!-- Step 1 -->
-      <div class="rounded-xl border border-border bg-card p-6">
-        <div class="w-8 h-8 rounded-full bg-primary/15 text-primary text-sm font-bold flex items-center justify-center mb-4">1</div>
-        <h3 class="font-semibold text-foreground mb-2">Descarga y descomprime</h3>
-        <p class="text-sm text-muted-foreground mb-4">Recibirás un ZIP con los 698 skills organizados por categoría.</p>
-        <div class="bg-background rounded-lg p-3 font-mono text-xs text-muted-foreground border border-border">
-          claude-agents-pack.zip<br>
-          └── skills/<br>
-          &nbsp;&nbsp;&nbsp;├── marketing/<br>
-          &nbsp;&nbsp;&nbsp;├── content-writing/<br>
-          &nbsp;&nbsp;&nbsp;└── ...
-        </div>
-      </div>
+  <!-- PROOF BAR -->
+  <div class="proof-bar">
+    <div class="proof-item"><strong>698</strong> skills curados</div>
+    <span class="proof-sep">·</span>
+    <div class="proof-item"><strong>8</strong> categorías de negocio</div>
+    <span class="proof-sep">·</span>
+    <div class="proof-item"><strong>$0.017</strong> por skill</div>
+    <span class="proof-sep">·</span>
+    <div class="proof-item"><strong>2 min</strong> de instalación</div>
+    <span class="proof-sep">·</span>
+    <div class="proof-item"><strong>7 días</strong> de garantía</div>
+  </div>
 
-      <!-- Step 2 -->
-      <div class="rounded-xl border border-border bg-card p-6">
-        <div class="w-8 h-8 rounded-full bg-primary/15 text-primary text-sm font-bold flex items-center justify-center mb-4">2</div>
-        <h3 class="font-semibold text-foreground mb-2">Copia a tu directorio de skills</h3>
-        <p class="text-sm text-muted-foreground mb-4">Mueve las carpetas al directorio de skills de Claude Code.</p>
-        <div class="bg-background rounded-lg p-3 font-mono text-xs border border-border space-y-1">
-          <p class="text-muted-foreground"># Global (todos los proyectos)</p>
-          <p class="text-primary">cp -r skills/* ~/.claude/skills/</p>
-          <p class="text-muted-foreground mt-2"># O por proyecto</p>
-          <p class="text-primary">cp -r skills/* .claude/skills/</p>
-        </div>
-      </div>
+  <!-- SKILL PREVIEWS -->
+  <section class="section" id="skills">
+    <p class="eyebrow">Lo que obtienes</p>
+    <h2 class="section-h">Skills que hacen el <span>trabajo duro.</span></h2>
 
-      <!-- Step 3 -->
-      <div class="rounded-xl border border-border bg-card p-6">
-        <div class="w-8 h-8 rounded-full bg-primary/15 text-primary text-sm font-bold flex items-center justify-center mb-4">3</div>
-        <h3 class="font-semibold text-foreground mb-2">Usa el skill que necesites</h3>
-        <p class="text-sm text-muted-foreground mb-4">Claude detecta el skill automáticamente o úsalo directamente.</p>
-        <div class="bg-background rounded-lg p-3 font-mono text-xs border border-border space-y-1">
-          <p class="text-muted-foreground"># Invocación directa</p>
-          <p class="text-primary">/email-sequence</p>
-          <p class="text-muted-foreground mt-2"># O simplemente describe</p>
-          <p class="text-primary">"crea una secuencia de<br>emails para mi producto"</p>
-        </div>
-      </div>
-    </div>
-
-    <p class="text-center text-sm text-muted-foreground mt-6">
-      También incluimos <strong class="text-foreground">guide.html</strong> — un browser interactivo para explorar los 698 skills sin abrir ningún archivo.
-    </p>
-  </section>
-
-  <!-- ── WHAT'S INCLUDED ── -->
-  <section class="border-t border-border bg-card">
-    <div class="max-w-4xl mx-auto px-5 py-16">
-      <div class="text-center mb-10">
-        <p class="text-xs font-semibold uppercase tracking-widest text-primary mb-3">698 skills en 8 categorías</p>
-        <h2 class="text-2xl sm:text-3xl font-bold text-foreground">Todo lo que necesitas para tu negocio</h2>
-      </div>
-
-      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-3">
-        {[
-          { icon: "📈", cat: "Marketing y Crecimiento",   n: 30, examples: "Email sequences, SEO, Google Ads, leads, brand" },
-          { icon: "✍️",  cat: "Creación de Contenido",    n: 31, examples: "Copywriting, blog, LinkedIn, YouTube, viral hooks" },
-          { icon: "💼", cat: "Ventas y CRM",              n: 17, examples: "Outreach, propuestas, upsells, customer success" },
-          { icon: "💰", cat: "Finanzas y Precios",        n: 14, examples: "Modelos financieros, facturas, análisis, pagos" },
-          { icon: "⚖️",  cat: "Legal y Contratos",        n:  9, examples: "Contratos, GDPR, compliance, análisis de riesgos" },
-          { icon: "⚙️",  cat: "Operaciones y SOPs",       n: 10, examples: "SOPs, retención, churn, actas de reuniones" },
-          { icon: "🧭", cat: "Estrategia y Planificación",n: 30, examples: "OKRs, market research, producto, competidores" },
-          { icon: "🤖", cat: "IA para Negocios",          n:  7, examples: "Prompt engineering, agentes, automatización" },
-        ].map(c => (
-          <div class="rounded-xl border border-border bg-background p-4 hover:border-primary/40 transition-colors">
-            <div class="text-2xl mb-2">{c.icon}</div>
-            <div class="font-semibold text-sm text-foreground mb-1">{c.cat}</div>
-            <div class="text-xs font-bold text-primary mb-2">{c.n} skills</div>
-            <div class="text-xs text-muted-foreground leading-relaxed">{c.examples}</div>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- ── WHO IT'S FOR ── -->
-  <section class="max-w-4xl mx-auto px-5 py-16">
-    <div class="text-center mb-10">
-      <p class="text-xs font-semibold uppercase tracking-widest text-primary mb-3">¿Para quién es?</p>
-      <h2 class="text-2xl sm:text-3xl font-bold text-foreground">Si usas Claude Code para trabajar, esto es para ti</h2>
-    </div>
-
-    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+    <div class="skills-grid reveal">
       {[
-        { icon: "🚀", who: "Founders y Startups",      desc: "Lanza más rápido sin contratar un equipo completo. Cubre marketing, ops y finanzas desde el día uno." },
-        { icon: "🧑‍💻", who: "Solopreneurs",            desc: "Sé tu propio CMO, CFO y COO. Delega las tareas repetitivas a Claude con un solo comando." },
-        { icon: "📊", who: "Consultores",               desc: "Entrega trabajo de cliente en minutos. Propuestas, análisis y estrategias listas para presentar." },
-        { icon: "✏️",  who: "Creadores de Contenido",  desc: "Automatiza el calendario editorial completo. Ideas, drafts, adaptaciones y distribución." },
-        { icon: "💸", who: "Freelancers",               desc: "Acepta más proyectos sin sacrificar calidad. Los skills hacen el trabajo pesado por ti." },
-        { icon: "🏢", who: "Equipos pequeños",          desc: "Compite con empresas 10 veces más grandes. Un equipo de 3 con el output de 30." },
-      ].map(p => (
-        <div class="rounded-xl border border-border bg-card p-5">
-          <div class="text-2xl mb-3">{p.icon}</div>
-          <div class="font-semibold text-foreground mb-1.5">{p.who}</div>
-          <div class="text-sm text-muted-foreground leading-relaxed">{p.desc}</div>
+        { cmd: "/email-sequence",       cat: "Marketing",    desc: "Genera una secuencia de emails completa: asuntos, CTAs y frecuencia calibrada para tu producto." },
+        { cmd: "/competitive-analysis", cat: "Estrategia",   desc: "Análisis de competidores con FODA, posicionamiento y oportunidades concretas para diferenciarte." },
+        { cmd: "/financial-model",      cat: "Finanzas",     desc: "Modelo financiero con proyecciones a 12 meses, unit economics y análisis de escenarios." },
+        { cmd: "/content-calendar",     cat: "Contenido",    desc: "Calendario editorial con ideas, formatos y canales para 30 días. Sin bloqueo creativo." },
+        { cmd: "/sales-proposal",       cat: "Ventas",       desc: "Propuestas adaptadas a la situación del cliente. Más cierres, menos idas y vueltas." },
+        { cmd: "/sop-builder",          cat: "Operaciones",  desc: "SOPs con pasos, responsables y criterios de éxito. Listo para pasarle al equipo." },
+        { cmd: "/linkedin-post",        cat: "Contenido",    desc: "Posts con apertura que engancha, estructura clara y CTA. Sin relleno." },
+        { cmd: "/pricing-strategy",     cat: "Finanzas",     desc: "Estrategia de precios basada en valor: niveles, anclaje, psicología y optimización de margen." },
+        { cmd: "/legal-review",         cat: "Legal",        desc: "Revisión de contratos en lenguaje simple: qué riesgos hay, qué cambiar y por qué." },
+      ].map(s => (
+        <div class="skill-card">
+          <div class="skill-cmd">{s.cmd}</div>
+          <p class="skill-desc">{s.desc}</p>
+          <span class="skill-cat">{s.cat}</span>
         </div>
       ))}
     </div>
   </section>
 
-  <!-- ── WHAT SKILLS ARE ── -->
-  <section class="border-t border-border bg-card">
-    <div class="max-w-3xl mx-auto px-5 py-16">
-      <div class="text-center mb-10">
-        <p class="text-xs font-semibold uppercase tracking-widest text-primary mb-3">¿Qué son los Claude Skills?</p>
-        <h2 class="text-2xl sm:text-3xl font-bold text-foreground">No son prompts. Son sistemas expertos.</h2>
-      </div>
+  <!-- INSTALL -->
+  <div class="section-alt">
+    <div class="inner">
+      <p class="eyebrow">Instalación</p>
+      <h2 class="section-h">Listo en <span>menos de 2 minutos.</span></h2>
 
-      <div class="grid sm:grid-cols-2 gap-6 mb-10">
-        <div class="rounded-xl border border-red-500/20 bg-red-500/5 p-5">
-          <p class="text-sm font-semibold text-red-400 mb-3">❌ Un prompt normal</p>
-          <p class="text-sm text-muted-foreground italic">"Escríbeme un email de ventas para mi producto."</p>
-          <p class="text-xs text-muted-foreground mt-3">→ Respuesta genérica. Tienes que reescribirla tú.</p>
-        </div>
-        <div class="rounded-xl border border-emerald-500/20 bg-emerald-500/5 p-5">
-          <p class="text-sm font-semibold text-emerald-400 mb-3">✅ Con el skill <code class="text-xs bg-emerald-500/10 px-1 py-0.5 rounded">/email-sequence</code></p>
-          <p class="text-sm text-muted-foreground italic">Claude te pregunta el producto, audiencia y objetivo → genera una secuencia de 5 emails con asuntos, CTAs y timing optimizados.</p>
-          <p class="text-xs text-muted-foreground mt-3">→ Listo para enviar.</p>
-        </div>
-      </div>
-
-      <div class="grid sm:grid-cols-3 gap-4 text-center">
-        {[
-          { icon: "🧠", title: "Frameworks expertos",  desc: "Cada skill contiene metodologías probadas, no respuestas genéricas." },
-          { icon: "❓", title: "Recopilación inteligente", desc: "Claude pregunta lo que necesita antes de generar. Outputs personalizados." },
-          { icon: "📋", title: "Output estructurado",  desc: "Sabes exactamente qué vas a recibir: formato, secciones y nivel de detalle." },
-        ].map(f => (
-          <div class="p-4">
-            <div class="text-2xl mb-2">{f.icon}</div>
-            <div class="text-sm font-semibold text-foreground mb-1">{f.title}</div>
-            <div class="text-xs text-muted-foreground">{f.desc}</div>
+      <div class="steps reveal">
+        <div class="step">
+          <div class="step-num">01</div>
+          <div class="step-title">Paga y descarga el ZIP</div>
+          <p class="step-desc">Polar envía el enlace de descarga a tu email al instante.</p>
+          <div class="code-block">
+            <div class="c-comment"># Contenido del ZIP</div>
+            <div class="c-path">claude-agents-pack/</div>
+            <div class="c-str">&nbsp;├── skills/</div>
+            <div class="c-str">&nbsp;├── guide.html</div>
+            <div class="c-str">&nbsp;└── business.html</div>
           </div>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- ── PRICE ── -->
-  <section class="max-w-3xl mx-auto px-5 py-16">
-    <div class="rounded-2xl border border-primary/30 bg-card overflow-hidden">
-      <div class="bg-primary/10 border-b border-primary/20 p-8 text-center">
-        <p class="text-xs font-semibold uppercase tracking-widest text-primary mb-4">Precio</p>
-        <div class="flex items-baseline justify-center gap-3 mb-1">
-          <span class="text-5xl font-bold text-foreground">$12</span>
-          <span class="text-muted-foreground">pago único</span>
         </div>
-        <p class="text-xs text-muted-foreground mb-6">acceso de por vida · sin cuotas mensuales · sin límites de uso</p>
-        <a href={checkoutUrl}
-           class="inline-flex items-center justify-center gap-2 w-full max-w-sm bg-primary text-primary-foreground font-bold text-base px-8 py-4 rounded-xl hover:opacity-90 transition-opacity">
-          Conseguir los 698 skills — $12
-        </a>
-        <p class="text-xs text-muted-foreground mt-3">
-          🔒 Pago seguro vía Polar · 7 días de garantía sin preguntas
-        </p>
+
+        <div class="step">
+          <div class="step-num">02</div>
+          <div class="step-title">Copia al directorio de Claude</div>
+          <p class="step-desc">Un solo comando. Mac, Linux y Windows (WSL).</p>
+          <div class="code-block">
+            <div class="c-comment"># Global (todos los proyectos)</div>
+            <div><span class="c-prompt">$</span> <span class="c-cmd">cp -r skills/ ~/.claude/skills/</span></div>
+            <br/>
+            <div class="c-comment"># Solo en este proyecto</div>
+            <div><span class="c-prompt">$</span> <span class="c-cmd">cp -r skills/ .claude/skills/</span></div>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-num">03</div>
+          <div class="step-title">Invoca el skill</div>
+          <p class="step-desc">Claude lo detecta automáticamente o lo invocas directo.</p>
+          <div class="code-block">
+            <div><span class="c-prompt">&gt;</span> <span class="c-cmd">/email-sequence</span></div>
+            <br/>
+            <div class="c-out">Claude: ¿Cuál es tu producto</div>
+            <div class="c-out">y quién es tu audiencia?</div>
+          </div>
+        </div>
       </div>
+    </div>
+  </div>
+
+  <!-- CATEGORIES -->
+  <section class="section">
+    <p class="eyebrow">Categorías</p>
+    <h2 class="section-h">8 áreas de negocio. <span>Un solo pack.</span></h2>
+
+    <div class="cats-grid reveal">
+      {[
+        { icon: "📈", name: "Marketing y Crecimiento",    n: 30, ex: "Email sequences, SEO, ads, lead gen, brand voice" },
+        { icon: "✍️",  name: "Creación de Contenido",     n: 31, ex: "Blog, LinkedIn, YouTube, copywriting, hooks virales" },
+        { icon: "💼", name: "Ventas y CRM",               n: 17, ex: "Outreach, propuestas, upsells, customer success" },
+        { icon: "💰", name: "Finanzas y Precios",         n: 14, ex: "Modelos financieros, facturas, unit economics" },
+        { icon: "⚖️",  name: "Legal y Contratos",         n:  9, ex: "Revisión de contratos, GDPR, NDA, términos" },
+        { icon: "⚙️",  name: "Operaciones y SOPs",        n: 10, ex: "SOPs, onboarding, retención, actas de reunión" },
+        { icon: "🧭", name: "Estrategia y Planificación", n: 30, ex: "OKRs, market research, roadmaps, análisis FODA" },
+        { icon: "🤖", name: "IA para Negocios",           n:  7, ex: "Prompt engineering, agentes, automatización" },
+      ].map(c => (
+        <div class="cat-card">
+          <div class="cat-icon">{c.icon}</div>
+          <div class="cat-name">{c.name}</div>
+          <div class="cat-ex">{c.ex}</div>
+        </div>
+      ))}
+    </div>
+
+    <div style="margin-top:28px;padding:18px 22px;border:1px solid var(--border);border-radius:calc(var(--radius) + 4px);background:var(--card);display:flex;align-items:center;gap:14px;flex-wrap:wrap;">
+      <span style="font-size:11px;font-weight:600;color:var(--muted-foreground);font-family:var(--font-mono,monospace);letter-spacing:0.08em;text-transform:uppercase;flex-shrink:0;">También incluye</span>
+      <p style="font-size:13px;color:var(--muted-foreground);line-height:1.5;margin:0;">
+        550+ skills de desarrollo: Python, JavaScript, TypeScript, React, DevOps, bases de datos, seguridad, testing y más.
+        El foco del pack es el negocio, pero el código también está.
+      </p>
     </div>
   </section>
 
-  <!-- ── FAQ ── -->
-  <section class="border-t border-border bg-card">
-    <div class="max-w-3xl mx-auto px-5 py-16">
-      <div class="text-center mb-10">
-        <h2 class="text-2xl font-bold text-foreground">Preguntas frecuentes</h2>
-      </div>
+  <!-- PRICE -->
+  <div class="section-alt">
+    <div class="inner">
+      <p class="eyebrow">Precio</p>
+      <div class="price-card reveal">
 
-      <div class="space-y-4" id="faq">
-        {[
-          {
-            q: "¿Funciona con Claude.ai o solo con Claude Code?",
-            a: "Los skills están optimizados para Claude Code (el CLI oficial de Anthropic), donde puedes invocarlos directamente con /nombre-skill. Muchos también funcionan copiando el contenido del SKILL.md en el system prompt de Claude.ai."
-          },
-          {
-            q: "¿Necesito saber programar para instalarlos?",
-            a: "No. La instalación es copiar una carpeta a ~/.claude/skills/. Si sabes usar una terminal básica, tardas menos de 2 minutos. Incluimos guía paso a paso con los comandos exactos."
-          },
-          {
-            q: "¿Cuántos skills puedo usar a la vez?",
-            a: "Todos los que quieras. Los skills se cargan bajo demanda — Claude solo activa el que invocas, sin sobrecargar el contexto."
-          },
-          {
-            q: "¿Qué pasa si no me sirven?",
-            a: "Tienes 7 días para pedir el reembolso completo, sin preguntas. Escríbenos y lo procesamos el mismo día."
-          },
-          {
-            q: "¿Cómo recibo el archivo?",
-            a: "Tras el pago, Polar te envía un email con el enlace de descarga al instante. Es un ZIP de ~3MB con todo organizado por categoría."
-          },
-        ].map((item, i) => (
-          <details class="rounded-xl border border-border bg-background group" name="faq">
-            <summary class="flex items-center justify-between cursor-pointer px-5 py-4 font-medium text-sm text-foreground list-none">
-              {item.q}
-              <svg class="w-4 h-4 text-muted-foreground shrink-0 transition-transform group-open:rotate-180" viewBox="0 0 16 16" fill="currentColor"><path d="M8 10.6L2.4 5l1.2-1.2L8 8.2l4.4-4.4L13.6 5z"/></svg>
-            </summary>
-            <div class="px-5 pb-4 text-sm text-muted-foreground leading-relaxed border-t border-border pt-4">
-              {item.a}
-            </div>
-          </details>
-        ))}
+        <!-- Left: price + CTA -->
+        <div class="price-left">
+          <div class="price-left-top">
+            <div class="price-launch">⚡ Precio de lanzamiento</div>
+            <div class="price-number">$12</div>
+            <div class="price-once">pago único · acceso de por vida</div>
+            <div class="price-per-skill">= $0.017 por skill</div>
+          </div>
+          <div class="price-left-bottom">
+            <a href={checkoutUrl} class="btn-buy">Conseguir los 698 skills →</a>
+            <p class="buy-sub">🔒 Polar · Descarga instantánea al email</p>
+          </div>
+        </div>
+
+        <!-- Right: perks -->
+        <div class="price-right">
+          <div class="price-right-label">Qué incluye</div>
+          <ul class="price-perks">
+            {[
+              "698 skills en 8 categorías de negocio",
+              "Browser interactivo guide.html incluido",
+              "Compatible con Claude Code y Claude.ai",
+              "Sin cuotas mensuales, sin límites de uso",
+              "Garantía de devolución de 7 días, sin preguntas",
+            ].map(p => (
+              <li class="price-perk">
+                <span class="perk-check">✓</span>
+                {p}
+              </li>
+            ))}
+          </ul>
+        </div>
+
       </div>
+    </div>
+  </div>
+
+  <!-- FAQ -->
+  <section class="section">
+    <p class="eyebrow">FAQ</p>
+    <h2 class="section-h">Preguntas frecuentes.</h2>
+
+    <div class="faqs reveal">
+      {[
+        { q: "¿Funciona con Claude.ai o solo con Claude Code?",
+          a: "Están optimizados para Claude Code, el CLI oficial de Anthropic, donde se invocan con /nombre-skill. Muchos también funcionan pegando el contenido de SKILL.md como system prompt en Claude.ai o en el API." },
+        { q: "¿Necesito saber programar para instalarlos?",
+          a: "No. La instalación es copiar una carpeta. Si sabés abrir una terminal y escribir un comando, tardás menos de 2 minutos. Incluimos la guía con los comandos exactos." },
+        { q: "¿Cuántos skills puedo usar a la vez?",
+          a: "Todos los que quieras. Se cargan bajo demanda; Claude activa solo el que invocás sin sobrecargar el contexto." },
+        { q: "¿Cómo recibo el archivo?",
+          a: "Al pagar recibís un link en tu email para descargar los archivos." },
+        { q: "¿Qué pasa si no me sirven?",
+          a: "Tenés 7 días para pedir el reembolso completo, sin dar explicaciones. Escribime a hi@vivallo.xyz y lo proceso ese mismo día." },
+        { q: "¿Subirá el precio?",
+          a: "Sí. El precio de lanzamiento es $12 y va a subir a $29 en las próximas semanas. El que compra ahora se queda con ese precio para siempre." },
+      ].map(item => (
+        <details>
+          <summary>
+            {item.q}
+            <span class="faq-icon">+</span>
+          </summary>
+          <p class="faq-body">{item.a}</p>
+        </details>
+      ))}
     </div>
   </section>
 
-  <!-- ── FINAL CTA ── -->
-  <section class="max-w-3xl mx-auto px-5 py-16 text-center">
-    <h2 class="text-3xl sm:text-4xl font-bold text-foreground mb-4">
-      Tu negocio a velocidad de IA
-    </h2>
-    <p class="text-muted-foreground mb-8 max-w-xl mx-auto">
-      698 skills. 8 categorías. Un pago. Empieza a usarlos hoy —
-      si no ahorras tiempo en la primera semana, te devolvemos el dinero.
-    </p>
-    <a href={checkoutUrl}
-       class="inline-flex items-center justify-center gap-2 bg-primary text-primary-foreground font-bold text-base px-10 py-4 rounded-xl hover:opacity-90 transition-opacity shadow-lg">
-      Conseguir el pack completo — $12
-    </a>
-    <p class="text-xs text-muted-foreground mt-4">
-      Pago único · Garantía 7 días · Descarga instantánea
-    </p>
-  </section>
+  <!-- FINAL CTA -->
+  <div class="section-alt">
+    <div class="final-cta reveal">
+      <h2 class="final-h">
+        Tu negocio a<br><em>velocidad de IA.</em>
+      </h2>
+      <p class="final-sub">
+        698 skills. $12. Una sola vez.
+      </p>
+      <a href={checkoutUrl} class="btn-primary" style="display:inline-flex;">
+        Conseguir el pack completo
+        <span class="price-tag">$12</span>
+      </a>
+      <p style="margin-top:14px;font-size:12px;color:var(--muted-foreground);font-family:var(--font-mono,monospace);">
+        Pago único · Garantía 7 días · Descarga instantánea
+      </p>
+    </div>
+  </div>
 
-  <!-- ── FOOTER ── -->
-  <footer class="border-t border-border text-center py-6 text-xs text-muted-foreground">
-    <a href="/" class="hover:text-foreground transition-colors">vivallo.xyz</a>
-    <span class="mx-2">·</span>
+  <footer>
+    <a href="/">vivallo.xyz</a>
+    <span>·</span>
     <span>© 2026</span>
+    <span>·</span>
+    <a href="mailto:hi@vivallo.xyz">hi@vivallo.xyz</a>
   </footer>
 
 </div>
 
-<style>
-  details summary::-webkit-details-marker { display: none; }
-</style>
+<script>
+  const io = new IntersectionObserver(
+    es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } }),
+    { threshold: 0.08 }
+  );
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
 
 </Layout>
