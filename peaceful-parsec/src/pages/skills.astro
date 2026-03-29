@@ -1,0 +1,231 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { SKILLS } from '../data/skills.ts';
+
+const categories: Record<string, string> = {
+  'analytics':           'Analytics',
+  'backend':             'Backend',
+  'business':            'Business',
+  'cloud':               'Cloud',
+  'content-writing':     'Content Writing',
+  'cpp':                 'C++',
+  'csharp':              'C#',
+  'data-science':        'Data Science',
+  'databases':           'Databases',
+  'design':              'Design',
+  'devops':              'DevOps',
+  'education':           'Education',
+  'finance':             'Finance',
+  'frontend':            'Frontend',
+  'general-engineering': 'General Engineering',
+  'go':                  'Go',
+  'hr':                  'HR',
+  'java':                'Java',
+  'javascript':          'JavaScript',
+  'legal-compliance':    'Legal & Compliance',
+  'llm-agents':          'LLM & Agents',
+  'machine-learning':    'Machine Learning',
+  'marketing':           'Marketing',
+  'mobile':              'Mobile',
+  'other-languages':     'Other Languages',
+  'php':                 'PHP',
+  'productivity':        'Productivity',
+  'python':              'Python',
+  'react':               'React',
+  'ruby':                'Ruby',
+  'rust':                'Rust',
+  'scientific':          'Scientific',
+  'security':            'Security',
+  'sports':              'Sports',
+  'testing':             'Testing',
+  'typescript':          'TypeScript',
+  'utilities':           'Utilities',
+  'video':               'Video',
+  'web-data':            'Web & Data',
+};
+
+const allCats = [...new Set(SKILLS.map(s => s.c))].sort();
+const skillsJson = JSON.stringify(SKILLS);
+const categoriesJson = JSON.stringify(categories);
+---
+
+<Layout
+  title="698 Claude Code Skills — Browse"
+  description="Explora 698 skills para Claude Code organizados por categoría."
+>
+
+<div class="min-h-screen flex flex-col">
+
+  <!-- ── HEADER ── -->
+  <header class="border-b border-border px-5 py-4">
+    <div class="max-w-7xl mx-auto flex items-center justify-between gap-4">
+      <div class="flex items-center gap-4">
+        <a href="/" class="text-sm text-muted-foreground hover:text-foreground transition-colors shrink-0">← vivallo.xyz</a>
+        <div class="hidden sm:block w-px h-4 bg-border"></div>
+        <h1 class="hidden sm:block text-sm font-semibold text-foreground">698 Claude Code Skills</h1>
+      </div>
+      <div class="flex items-center gap-3 flex-1 max-w-sm">
+        <div class="relative flex-1">
+          <svg class="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground w-3.5 h-3.5" viewBox="0 0 16 16" fill="currentColor">
+            <path d="M11.74 10.33l2.97 2.97a1 1 0 0 1-1.41 1.41l-2.97-2.97A6 6 0 1 1 11.74 10.33zm-5.74.67A4 4 0 1 0 6 2a4 4 0 0 0 0 9z"/>
+          </svg>
+          <input type="text" id="search" placeholder="Buscar skills..."
+            class="w-full bg-card border border-border rounded-lg pl-9 pr-3 py-2 text-sm text-foreground placeholder:text-muted-foreground outline-none focus:border-primary transition-colors"
+          />
+        </div>
+        <a href="/claude-agents" class="shrink-0 bg-primary text-primary-foreground text-xs font-semibold px-3 py-2 rounded-lg hover:opacity-90 transition-opacity">
+          Comprar $12
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ── BODY ── -->
+  <div class="flex flex-1 max-w-7xl mx-auto w-full">
+
+    <!-- Sidebar -->
+    <aside class="hidden md:flex flex-col w-52 shrink-0 border-r border-border py-3 overflow-y-auto sticky top-0 h-[calc(100vh-57px)]">
+      <button id="cat-all" data-cat="all"
+        class="cat-btn flex items-center justify-between px-4 py-2 text-sm text-left w-full transition-colors font-semibold text-foreground bg-card">
+        <span>Todos</span>
+        <span class="text-xs text-muted-foreground">{SKILLS.length}</span>
+      </button>
+      <div class="mt-1 space-y-px" id="cat-list">
+        {allCats.map(cat => {
+          const count = SKILLS.filter(s => s.c === cat).length;
+          return (
+            <button data-cat={cat} id={`cat-${cat}`}
+              class="cat-btn flex items-center justify-between px-4 py-1.5 text-sm text-left w-full transition-colors text-muted-foreground hover:text-foreground hover:bg-card">
+              <span class="truncate">{categories[cat] ?? cat}</span>
+              <span class="text-xs shrink-0 ml-2">{count}</span>
+            </button>
+          );
+        })}
+      </div>
+    </aside>
+
+    <!-- Main -->
+    <main class="flex-1 p-5 overflow-auto">
+      <div class="flex items-center justify-between mb-4">
+        <p class="text-sm text-muted-foreground">
+          Mostrando <span id="showing" class="font-semibold text-foreground">{SKILLS.length}</span> skills
+        </p>
+        <select id="mobile-cat"
+          class="md:hidden bg-card border border-border rounded-lg px-3 py-1.5 text-sm text-foreground outline-none focus:border-primary">
+          <option value="all">Todas las categorías</option>
+          {allCats.map(cat => <option value={cat}>{categories[cat] ?? cat}</option>)}
+        </select>
+      </div>
+
+      <div id="grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3"></div>
+
+      <p id="empty" class="hidden py-20 text-center text-muted-foreground text-sm">Sin resultados — prueba otro término</p>
+    </main>
+  </div>
+</div>
+
+<script define:vars={{ skillsJson, categoriesJson }}>
+  const ALL = JSON.parse(skillsJson);
+  const CATS = JSON.parse(categoriesJson);
+  let activeCat = 'all';
+  let query = '';
+
+  function toTitle(s) {
+    return s.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+  }
+
+  function makeCard(skill) {
+    const card = document.createElement('div');
+    card.className = 'rounded-xl border border-border bg-card p-4 hover:border-primary/40 transition-colors flex flex-col gap-2';
+
+    const name = document.createElement('h3');
+    name.className = 'text-sm font-semibold text-foreground leading-snug';
+    name.textContent = toTitle(skill.n);
+    card.appendChild(name);
+
+    const badge = document.createElement('span');
+    badge.className = 'self-start text-[10px] font-medium px-2 py-0.5 rounded-full bg-primary/10 text-primary';
+    badge.textContent = CATS[skill.c] || toTitle(skill.c);
+    card.appendChild(badge);
+
+    if (skill.d) {
+      const desc = document.createElement('p');
+      desc.className = 'text-xs text-muted-foreground leading-relaxed flex-1';
+      desc.textContent = skill.d.length > 130 ? skill.d.substring(0, 130) + '…' : skill.d;
+      card.appendChild(desc);
+    }
+
+    const cmd = document.createElement('code');
+    cmd.className = 'text-[10px] text-muted-foreground font-mono mt-auto';
+    cmd.textContent = '/' + skill.n;
+    card.appendChild(cmd);
+
+    return card;
+  }
+
+  function render(skills) {
+    const grid = document.getElementById('grid');
+    const empty = document.getElementById('empty');
+    document.getElementById('showing').textContent = skills.length;
+
+    // Clear safely
+    while (grid.firstChild) grid.removeChild(grid.firstChild);
+
+    if (skills.length === 0) {
+      empty.classList.remove('hidden');
+      return;
+    }
+    empty.classList.add('hidden');
+
+    const frag = document.createDocumentFragment();
+    skills.forEach(s => frag.appendChild(makeCard(s)));
+    grid.appendChild(frag);
+  }
+
+  function applyFilter() {
+    let skills = ALL;
+    if (activeCat !== 'all') skills = skills.filter(s => s.c === activeCat);
+    if (query) {
+      const q = query.toLowerCase();
+      skills = skills.filter(s =>
+        s.n.includes(q) ||
+        (s.d && s.d.toLowerCase().includes(q)) ||
+        s.c.includes(q)
+      );
+    }
+    render(skills);
+  }
+
+  function setCategory(cat) {
+    activeCat = cat;
+    document.querySelectorAll('.cat-btn').forEach(b => {
+      b.classList.remove('font-semibold', 'text-foreground', 'bg-card');
+      b.classList.add('text-muted-foreground');
+    });
+    const active = document.getElementById('cat-' + cat) || document.getElementById('cat-all');
+    if (active) {
+      active.classList.add('font-semibold', 'text-foreground', 'bg-card');
+      active.classList.remove('text-muted-foreground');
+    }
+    const sel = document.getElementById('mobile-cat');
+    if (sel) sel.value = cat;
+    applyFilter();
+  }
+
+  // Events
+  document.getElementById('search').addEventListener('input', e => {
+    query = e.target.value.trim();
+    applyFilter();
+  });
+
+  document.querySelectorAll('.cat-btn').forEach(btn => {
+    btn.addEventListener('click', () => setCategory(btn.dataset.cat));
+  });
+
+  document.getElementById('mobile-cat').addEventListener('change', e => setCategory(e.target.value));
+
+  // Init
+  render(ALL);
+</script>
+
+</Layout>
