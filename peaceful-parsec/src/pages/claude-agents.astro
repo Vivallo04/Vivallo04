@@ -75,23 +75,6 @@ const purchased   = Astro.url.searchParams.get('purchased') === '1';
     </div>
   </section>
 
-  <!-- ── STATS BAR ── -->
-  <section class="border-y border-border bg-card">
-    <div class="max-w-4xl mx-auto px-5 py-8 grid grid-cols-2 sm:grid-cols-4 gap-6 text-center">
-      {[
-        { num: "698",  label: "Skills incluidos" },
-        { num: "8",    label: "Categorías de negocio" },
-        { num: "$12",  label: "Pago único, para siempre" },
-        { num: "2min", label: "Tiempo de instalación" },
-      ].map(s => (
-        <div>
-          <div class="text-2xl sm:text-3xl font-bold text-primary">{s.num}</div>
-          <div class="text-xs text-muted-foreground mt-1">{s.label}</div>
-        </div>
-      ))}
-    </div>
-  </section>
-
   <!-- ── HOW TO INSTALL ── -->
   <section class="max-w-4xl mx-auto px-5 py-16">
     <div class="text-center mb-10">
@@ -238,45 +221,16 @@ const purchased   = Astro.url.searchParams.get('purchased') === '1';
     </div>
   </section>
 
-  <!-- ── PRICE ANCHOR ── -->
+  <!-- ── PRICE ── -->
   <section class="max-w-3xl mx-auto px-5 py-16">
-    <div class="text-center mb-8">
-      <p class="text-xs font-semibold uppercase tracking-widest text-primary mb-3">Precio</p>
-      <h2 class="text-2xl sm:text-3xl font-bold text-foreground">Menos que una consultoría de una hora</h2>
-    </div>
-
     <div class="rounded-2xl border border-primary/30 bg-card overflow-hidden">
-      <!-- Value table -->
-      <div class="p-6 space-y-3">
-        {[
-          { cat: "Marketing y Crecimiento (30 skills)",    val: "$97" },
-          { cat: "Contenido y Copywriting (31 skills)",    val: "$89" },
-          { cat: "Ventas y CRM (17 skills)",               val: "$79" },
-          { cat: "Finanzas y Precios (14 skills)",         val: "$69" },
-          { cat: "Legal y Contratos (9 skills)",           val: "$59" },
-          { cat: "Operaciones y SOPs (10 skills)",         val: "$69" },
-          { cat: "Estrategia y Planificación (30 skills)", val: "$97" },
-          { cat: "IA para Negocios (7 skills)",            val: "$49" },
-        ].map(r => (
-          <div class="flex items-center justify-between text-sm">
-            <span class="text-muted-foreground">{r.cat}</span>
-            <span class="font-medium text-foreground line-through opacity-50">{r.val}</span>
-          </div>
-        ))}
-
-        <div class="border-t border-border pt-3 flex items-center justify-between">
-          <span class="text-sm text-muted-foreground">Valor total</span>
-          <span class="text-sm font-bold text-foreground line-through opacity-50">$608</span>
-        </div>
-      </div>
-
-      <!-- CTA block -->
-      <div class="bg-primary/10 border-t border-primary/20 p-6 text-center">
+      <div class="bg-primary/10 border-b border-primary/20 p-8 text-center">
+        <p class="text-xs font-semibold uppercase tracking-widest text-primary mb-4">Precio</p>
         <div class="flex items-baseline justify-center gap-3 mb-1">
           <span class="text-5xl font-bold text-foreground">$12</span>
           <span class="text-muted-foreground">pago único</span>
         </div>
-        <p class="text-xs text-muted-foreground mb-5">acceso de por vida · sin cuotas mensuales · sin límites de uso</p>
+        <p class="text-xs text-muted-foreground mb-6">acceso de por vida · sin cuotas mensuales · sin límites de uso</p>
         <a href={checkoutUrl}
            class="inline-flex items-center justify-center gap-2 w-full max-w-sm bg-primary text-primary-foreground font-bold text-base px-8 py-4 rounded-xl hover:opacity-90 transition-opacity">
           Conseguir los 698 skills — $12

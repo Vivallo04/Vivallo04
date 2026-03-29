@@ -3,45 +3,45 @@ import Layout from '../layouts/Layout.astro';
 import { SKILLS } from '../data/skills.ts';
 
 const categories: Record<string, string> = {
-  'analytics':           'Analytics',
+  'analytics':           'Analítica',
   'backend':             'Backend',
-  'business':            'Business',
+  'business':            'Negocios',
   'cloud':               'Cloud',
-  'content-writing':     'Content Writing',
+  'content-writing':     'Creación de Contenido',
   'cpp':                 'C++',
   'csharp':              'C#',
-  'data-science':        'Data Science',
-  'databases':           'Databases',
-  'design':              'Design',
+  'data-science':        'Ciencia de Datos',
+  'databases':           'Bases de Datos',
+  'design':              'Diseño',
   'devops':              'DevOps',
-  'education':           'Education',
-  'finance':             'Finance',
+  'education':           'Educación',
+  'finance':             'Finanzas',
   'frontend':            'Frontend',
-  'general-engineering': 'General Engineering',
+  'general-engineering': 'Ingeniería General',
   'go':                  'Go',
-  'hr':                  'HR',
+  'hr':                  'Recursos Humanos',
   'java':                'Java',
   'javascript':          'JavaScript',
-  'legal-compliance':    'Legal & Compliance',
-  'llm-agents':          'LLM & Agents',
+  'legal-compliance':    'Legal y Cumplimiento',
+  'llm-agents':          'IA y Agentes',
   'machine-learning':    'Machine Learning',
   'marketing':           'Marketing',
-  'mobile':              'Mobile',
-  'other-languages':     'Other Languages',
+  'mobile':              'Móvil',
+  'other-languages':     'Otros Lenguajes',
   'php':                 'PHP',
-  'productivity':        'Productivity',
+  'productivity':        'Productividad',
   'python':              'Python',
   'react':               'React',
   'ruby':                'Ruby',
   'rust':                'Rust',
-  'scientific':          'Scientific',
-  'security':            'Security',
-  'sports':              'Sports',
+  'scientific':          'Científico',
+  'security':            'Seguridad',
+  'sports':              'Deportes',
   'testing':             'Testing',
   'typescript':          'TypeScript',
-  'utilities':           'Utilities',
-  'video':               'Video',
-  'web-data':            'Web & Data',
+  'utilities':           'Utilidades',
+  'video':               'Vídeo',
+  'web-data':            'Web y Datos',
 };
 
 const allCats = [...new Set(SKILLS.map(s => s.c))].sort();
@@ -50,8 +50,8 @@ const categoriesJson = JSON.stringify(categories);
 ---
 
 <Layout
-  title="698 Claude Code Skills — Browse"
-  description="Explora 698 skills para Claude Code organizados por categoría."
+  title="698 Skills para Claude Code — Explora el catálogo"
+  description="Explora 698 skills para Claude Code organizados por categoría. Marketing, ventas, código, IA y más."
 >
 
 <div class="min-h-screen flex flex-col">
@@ -62,7 +62,7 @@ const categoriesJson = JSON.stringify(categories);
       <div class="flex items-center gap-4">
         <a href="/" class="text-sm text-muted-foreground hover:text-foreground transition-colors shrink-0">← vivallo.xyz</a>
         <div class="hidden sm:block w-px h-4 bg-border"></div>
-        <h1 class="hidden sm:block text-sm font-semibold text-foreground">698 Claude Code Skills</h1>
+        <h1 class="hidden sm:block text-sm font-semibold text-foreground">698 Skills para Claude Code</h1>
       </div>
       <div class="flex items-center gap-3 flex-1 max-w-sm">
         <div class="relative flex-1">
@@ -87,7 +87,7 @@ const categoriesJson = JSON.stringify(categories);
     <aside class="hidden md:flex flex-col w-52 shrink-0 border-r border-border py-3 overflow-y-auto sticky top-0 h-[calc(100vh-57px)]">
       <button id="cat-all" data-cat="all"
         class="cat-btn flex items-center justify-between px-4 py-2 text-sm text-left w-full transition-colors font-semibold text-foreground bg-card">
-        <span>Todos</span>
+        <span>Todos los skills</span>
         <span class="text-xs text-muted-foreground">{SKILLS.length}</span>
       </button>
       <div class="mt-1 space-y-px" id="cat-list">
@@ -113,13 +113,14 @@ const categoriesJson = JSON.stringify(categories);
         <select id="mobile-cat"
           class="md:hidden bg-card border border-border rounded-lg px-3 py-1.5 text-sm text-foreground outline-none focus:border-primary">
           <option value="all">Todas las categorías</option>
+
           {allCats.map(cat => <option value={cat}>{categories[cat] ?? cat}</option>)}
         </select>
       </div>
 
       <div id="grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3"></div>
 
-      <p id="empty" class="hidden py-20 text-center text-muted-foreground text-sm">Sin resultados — prueba otro término</p>
+      <p id="empty" class="hidden py-20 text-center text-muted-foreground text-sm">Sin resultados — prueba con otro término o categoría</p>
     </main>
   </div>
 </div>
