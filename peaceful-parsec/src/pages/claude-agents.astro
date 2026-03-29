@@ -1,0 +1,102 @@
+---
+export const prerender = false;
+
+import Layout from '../layouts/Layout.astro';
+
+const PRODUCT_ID  = "12db69db-b48a-422d-b4a5-d55207f43e26";
+const checkoutUrl = `/api/checkout?products=${PRODUCT_ID}`;
+const purchased   = Astro.url.searchParams.get('purchased') === '1';
+
+const CATEGORIES = [
+  { icon: '📈', label: 'Marketing y Crecimiento',   count: 30 },
+  { icon: '✍️',  label: 'Creación de Contenido',     count: 31 },
+  { icon: '💼', label: 'Ventas y CRM',               count: 17 },
+  { icon: '💰', label: 'Finanzas y Precios',         count: 14 },
+  { icon: '⚖️',  label: 'Legal y Contratos',         count:  9 },
+  { icon: '⚙️',  label: 'Operaciones y SOPs',        count: 10 },
+  { icon: '🧭', label: 'Estrategia y Planificación', count: 30 },
+  { icon: '🤖', label: 'IA para Negocios',           count:  7 },
+];
+---
+
+<Layout
+  title="Claude Agents Skills Pack — 698 Skills · $12"
+  description="698 skills para Claude Code. Marketing, contenido, ventas, finanzas, legal, estrategia e IA. Pago único de $12."
+>
+  <div class="min-h-screen relative">
+    <main class="max-w-2xl mx-auto px-5 sm:px-6 py-12 sm:py-20">
+
+      <!-- Back -->
+      <a
+        href="/"
+        class="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors mb-10"
+      >
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M10.6 3.4L6 8l4.6 4.6-1.2 1.2L3.6 8l5.8-5.8z"/></svg>
+        Volver
+      </a>
+
+      <!-- Banner de compra exitosa -->
+      {purchased && (
+        <div class="mb-8 flex items-start gap-3 rounded-lg border border-emerald-500/30 bg-emerald-500/10 px-4 py-3 text-sm text-emerald-400">
+          <svg class="mt-0.5 shrink-0" width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0zm3.54 4.96L6.75 9.75 4.46 7.46l-1.42 1.42 3.71 3.7 6.21-6.2-1.42-1.42z"/></svg>
+          <span><strong>¡Pago completado!</strong> Revisa tu email para el enlace de descarga.</span>
+        </div>
+      )}
+
+      <!-- Badge + título -->
+      <div class="mb-3">
+        <span class="inline-block rounded-full bg-primary/15 px-3 py-1 text-xs font-semibold tracking-wide text-primary uppercase">
+          698 Skills · Pago único
+        </span>
+      </div>
+
+      <h1 class="text-3xl sm:text-4xl font-bold text-foreground leading-tight mb-4">
+        El Pack Definitivo de<br class="hidden sm:block"> Skills para Claude Code
+      </h1>
+
+      <p class="text-muted-foreground text-base leading-relaxed mb-10 max-w-lg">
+        698 skills seleccionados para founders, operadores y solopreneurs.
+        Añade cualquier skill a tu proyecto y obtén ayuda experta al instante en
+        marketing, contenido, ventas, finanzas, legal, estrategia e IA.
+      </p>
+
+      <!-- Categorías -->
+      <div class="mb-10">
+        <p class="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-4">Qué incluye</p>
+        <div class="grid grid-cols-2 gap-2">
+          {CATEGORIES.map(cat => (
+            <div class="flex items-center gap-2.5 rounded-lg border border-border bg-card px-3.5 py-2.5">
+              <span class="text-base leading-none">{cat.icon}</span>
+              <div>
+                <p class="text-xs font-medium text-foreground">{cat.label}</p>
+                <p class="text-xs text-muted-foreground">{cat.count} skills</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <hr class="border-border mb-10" />
+
+      <!-- Precio + CTA -->
+      <div class="flex flex-col sm:flex-row sm:items-center gap-5">
+        <div class="shrink-0">
+          <span class="text-4xl font-bold text-foreground">$12</span>
+          <span class="ml-1.5 text-sm text-muted-foreground">pago único</span>
+        </div>
+
+        <a
+          href={checkoutUrl}
+          class="flex-1 text-center rounded-lg bg-primary px-6 py-3.5 text-sm font-semibold text-primary-foreground transition-opacity hover:opacity-90 active:opacity-80"
+        >
+          Obtener acceso · $12
+        </a>
+      </div>
+
+      <p class="mt-3 text-xs text-muted-foreground">
+        Pago seguro vía Polar &mdash; archivo enviado a tu email tras la compra.
+      </p>
+
+    </main>
+  </div>
+</Layout>
