@@ -2,7 +2,7 @@
 export const prerender = false;
 import Layout from '../layouts/Layout.astro';
 
-const PRODUCT_ID  = "12db69db-b48a-422d-b4a5-d55207f43e26";
+const PRODUCT_ID  = "75f282c8-a321-4c68-8af4-56c801fb4afa";
 const checkoutUrl = `/api/checkout?products=${PRODUCT_ID}`;
 const purchased   = Astro.url.searchParams.get('purchased') === '1';
 ---
