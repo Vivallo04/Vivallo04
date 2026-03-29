@@ -1,0 +1,197 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+  title="¡Listo! Cómo usar tu pack de skills"
+  description="Guía de instalación y primeros pasos para el pack de 698 skills para Claude Code."
+  theme="light"
+>
+
+<style>
+  .page { min-height: 100vh; background: var(--background); color: var(--foreground); font-family: var(--font-sans, Montserrat, sans-serif); }
+
+  /* ── Header ── */
+  .header { max-width: 680px; margin: 0 auto; padding: 72px 32px 48px; text-align: center; }
+  .success-icon {
+    width: 56px; height: 56px; border-radius: 50%;
+    background: oklch(0.93 0.08 142); border: 1px solid oklch(0.78 0.12 142);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 24px; margin: 0 auto 24px;
+  }
+  .header-h { font-size: clamp(28px, 4vw, 42px); font-weight: 700; line-height: 1.1; letter-spacing: -0.02em; color: var(--foreground); margin-bottom: 12px; }
+  .header-sub { font-size: 16px; color: var(--muted-foreground); line-height: 1.6; }
+
+  /* ── Divider ── */
+  hr.div { border: none; border-top: 1px solid var(--border); margin: 0 32px; }
+
+  /* ── Sections ── */
+  .section { max-width: 680px; margin: 0 auto; padding: 56px 32px; }
+  .section-alt { background: var(--card); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+  .section-alt .inner { max-width: 680px; margin: 0 auto; padding: 56px 32px; }
+
+  .eyebrow { font-size: 11px; font-weight: 600; color: var(--primary); letter-spacing: 0.12em; text-transform: uppercase; font-family: var(--font-mono, monospace); margin-bottom: 12px; }
+  .section-h { font-size: clamp(20px, 3vw, 28px); font-weight: 700; line-height: 1.1; letter-spacing: -0.02em; color: var(--foreground); margin-bottom: 32px; }
+
+  /* ── Steps ── */
+  .steps { display: flex; flex-direction: column; gap: 12px; }
+  .step { background: var(--background); border: 1px solid var(--border); border-radius: calc(var(--radius, 0.35rem) + 4px); padding: 24px 28px; display: flex; gap: 20px; align-items: flex-start; }
+  .step-num { font-size: 28px; font-weight: 700; color: var(--border); line-height: 1; flex-shrink: 0; width: 36px; letter-spacing: -0.03em; }
+  .step-body { flex: 1; }
+  .step-title { font-size: 14px; font-weight: 600; color: var(--foreground); margin-bottom: 5px; }
+  .step-desc { font-size: 13px; color: var(--muted-foreground); line-height: 1.6; margin-bottom: 14px; }
+  .step-desc:last-child { margin-bottom: 0; }
+  .code-block {
+    background: oklch(0.18 0.02 280); border-radius: calc(var(--radius, 0.35rem) + 2px);
+    padding: 14px 16px; font-family: var(--font-mono, monospace); font-size: 11px; line-height: 1.8;
+    border: 1px solid oklch(0.28 0.03 280);
+  }
+  .c-comment { color: #6B7280; }
+  .c-cmd { color: #86EFAC; }
+  .c-path { color: #FCD34D; }
+  .c-str { color: #C4B5FD; }
+  .c-out { color: oklch(0.82 0.12 304); }
+  .c-prompt { color: #34D399; }
+
+  /* ── Files included ── */
+  .files { display: flex; flex-direction: column; gap: 10px; }
+  .file-card { background: var(--card); border: 1px solid var(--border); border-radius: calc(var(--radius, 0.35rem) + 4px); padding: 18px 22px; display: flex; align-items: flex-start; gap: 14px; }
+  .file-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+  .file-name { font-family: var(--font-mono, monospace); font-size: 12px; font-weight: 600; color: var(--primary); margin-bottom: 4px; }
+  .file-desc { font-size: 13px; color: var(--muted-foreground); line-height: 1.5; }
+
+  /* ── First skill callout ── */
+  .callout {
+    background: color-mix(in oklch, var(--primary) 8%, transparent);
+    border: 1px solid color-mix(in oklch, var(--primary) 22%, transparent);
+    border-radius: calc(var(--radius, 0.35rem) + 4px);
+    padding: 24px 28px;
+  }
+  .callout-label { font-size: 11px; font-weight: 600; color: var(--primary); font-family: var(--font-mono, monospace); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 10px; }
+  .callout-text { font-size: 14px; color: var(--foreground); line-height: 1.65; }
+  .callout-text code { font-family: var(--font-mono, monospace); font-size: 12px; background: color-mix(in oklch, var(--primary) 12%, transparent); padding: 2px 7px; border-radius: 4px; color: var(--primary); }
+
+  /* ── Footer ── */
+  footer { border-top: 1px solid var(--border); padding: 18px 32px; text-align: center; font-size: 12px; color: var(--muted-foreground); font-family: var(--font-mono, monospace); display: flex; align-items: center; justify-content: center; gap: 14px; }
+  footer a { color: inherit; text-decoration: none; transition: color 0.2s; }
+  footer a:hover { color: var(--foreground); }
+
+  @media (max-width: 600px) {
+    .header { padding: 52px 20px 36px; }
+    .section { padding: 44px 20px; }
+    .section-alt .inner { padding: 44px 20px; }
+    .step { flex-direction: column; gap: 10px; padding: 20px; }
+    footer { padding: 14px 20px; flex-direction: column; gap: 4px; }
+  }
+</style>
+
+<div class="page">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="success-icon">✓</div>
+    <h1 class="header-h">¡Listo! Ya tenés el pack.</h1>
+    <p class="header-sub">Revisá tu email. Hay un link para descargar todos los archivos.<br>Después seguí estos pasos para empezar.</p>
+  </div>
+
+  <hr class="div" />
+
+  <!-- INSTALL STEPS -->
+  <section class="section">
+    <p class="eyebrow">Instalación</p>
+    <h2 class="section-h">Tres pasos y ya estás.</h2>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">01</div>
+        <div class="step-body">
+          <div class="step-title">Descargá y descomprimí el ZIP</div>
+          <p class="step-desc">El link que llegó a tu email descarga un ZIP con todos los archivos ordenados por categoría.</p>
+          <div class="code-block">
+            <div class="c-comment"># Contenido del ZIP</div>
+            <div class="c-path">claude-agents-pack/</div>
+            <div class="c-str">&nbsp;├── skills/</div>
+            <div class="c-str">&nbsp;├── guide.html</div>
+            <div class="c-str">&nbsp;└── business.html</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">02</div>
+        <div class="step-body">
+          <div class="step-title">Copiá los skills al directorio de Claude</div>
+          <p class="step-desc">Un solo comando desde la carpeta donde descomprimiste el ZIP.</p>
+          <div class="code-block">
+            <div class="c-comment"># Global (todos los proyectos)</div>
+            <div><span class="c-prompt">$</span> <span class="c-cmd">cp -r skills/ ~/.claude/skills/</span></div>
+            <br/>
+            <div class="c-comment"># Solo en este proyecto</div>
+            <div><span class="c-prompt">$</span> <span class="c-cmd">cp -r skills/ .claude/skills/</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">03</div>
+        <div class="step-body">
+          <div class="step-title">Invocá el skill desde Claude Code</div>
+          <p class="step-desc">Escribí el nombre del skill con / y Claude arranca solo.</p>
+          <div class="code-block">
+            <div><span class="c-prompt">&gt;</span> <span class="c-cmd">/email-sequence</span></div>
+            <br/>
+            <div class="c-out">Claude: ¿Cuál es tu producto</div>
+            <div class="c-out">y quién es tu audiencia?</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FILES -->
+  <div class="section-alt">
+    <div class="inner">
+      <p class="eyebrow">Archivos incluidos</p>
+      <h2 class="section-h">Dos guías interactivas en el ZIP.</h2>
+
+      <div class="files">
+        <div class="file-card">
+          <div class="file-icon">📖</div>
+          <div>
+            <div class="file-name">guide.html</div>
+            <div class="file-desc">Explorador de los 698 skills. Buscá por nombre, filtrá por categoría y leé qué hace cada uno antes de invocarlo.</div>
+          </div>
+        </div>
+        <div class="file-card">
+          <div class="file-icon">💼</div>
+          <div>
+            <div class="file-name">business.html</div>
+            <div class="file-desc">Explorador específico para los 148 skills de negocio: marketing, ventas, finanzas, legal, estrategia y más.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FIRST SKILL -->
+  <section class="section">
+    <p class="eyebrow">Por dónde empezar</p>
+    <h2 class="section-h">Un skill para arrancar hoy.</h2>
+
+    <div class="callout">
+      <div class="callout-label">Skill recomendado</div>
+      <p class="callout-text">
+        Probá <code>/content-calendar</code>. Le contás de qué trata tu negocio o proyecto y Claude te arma un calendario editorial de 30 días con ideas, formatos y canales. En menos de 2 minutos tenés el mes planificado.
+      </p>
+    </div>
+  </section>
+
+  <footer>
+    <a href="/">vivallo.xyz</a>
+    <span>·</span>
+    <a href="mailto:hi@vivallo.xyz">hi@vivallo.xyz</a>
+  </footer>
+
+</div>
+
+</Layout>
