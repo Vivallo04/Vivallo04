@@ -194,4 +194,8 @@ import Layout from '../layouts/Layout.astro';
 
 </div>
 
+<script is:inline>
+  fbq('track', 'Purchase', { value: 12.00, currency: 'USD' });
+</script>
+
 </Layout>
