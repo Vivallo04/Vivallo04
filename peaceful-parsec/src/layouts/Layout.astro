@@ -2,6 +2,7 @@
 import '../styles/theme.css';
 import ogImage from '../assets/og.png';
 import PostHog from '../components/posthog.astro';
+import Analytics from '@vercel/analytics/astro';
 
 interface Props {
 	title?: string;
@@ -67,6 +68,7 @@ const ogUrl = new URL(ogImage.src, Astro.site ?? 'https://vivallo.xyz').href;
 		<div class="site-root">
 			<slot />
 		</div>
+		<Analytics />
 	</body>
 </html>
 
