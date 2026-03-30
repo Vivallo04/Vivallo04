@@ -9,20 +9,22 @@ interface Props {
 	description?: string;
 	lang?: string;
 	theme?: 'dark' | 'light';
+	htmlClass?: string;
 }
 
 const {
 	title = 'Vivallo | Full Stack Engineer',
 	description = 'Portfolio and services for modern web product development with Astro and Svelte.',
 	lang = 'en',
-	theme = 'dark'
+	theme = 'dark',
+	htmlClass = ''
 } = Astro.props;
 
 const ogUrl = new URL(ogImage.src, Astro.site ?? 'https://vivallo.xyz').href;
 ---
 
 <!doctype html>
-<html lang={lang} class={theme}>
+<html lang={lang} class={[theme, htmlClass].filter(Boolean).join(' ')}>
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />

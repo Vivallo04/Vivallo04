@@ -1,6 +1,7 @@
 ---
 export const prerender = false;
 import Layout from '../layouts/Layout.astro';
+import '../styles/claude-theme.css';
 
 const PRODUCT_ID  = "75f282c8-a321-4c68-8af4-56c801fb4afa";
 const checkoutUrl = `/api/checkout?products=${PRODUCT_ID}`;
@@ -11,6 +12,7 @@ const purchased   = Astro.url.searchParams.get('purchased') === '1';
   title="698 Skills para Claude Code — $12 pago único"
   description="698 skills handpicked para Claude Code. Marketing, ventas, contenido, finanzas y estrategia. $12 pago único, descarga instantánea."
   theme="light"
+  htmlClass="claude-theme"
 >
 
 <style>

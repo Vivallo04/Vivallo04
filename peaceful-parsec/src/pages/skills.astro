@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import { SKILLS } from '../data/skills.ts';
+import '../styles/claude-theme.css';
 
 const categories: Record<string, string> = {
   'analytics':           'Analítica',
@@ -52,6 +53,7 @@ const categoriesJson = JSON.stringify(categories);
 <Layout
   title="698 Skills para Claude Code — Explora el catálogo"
   description="Explora 698 skills para Claude Code organizados por categoría. Marketing, ventas, código, IA y más."
+  htmlClass="claude-theme"
 >
 
 <div class="min-h-screen flex flex-col">
