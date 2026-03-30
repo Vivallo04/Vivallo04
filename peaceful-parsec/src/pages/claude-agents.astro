@@ -533,5 +533,32 @@ const purchased   = Astro.url.searchParams.get('purchased') === '1';
   );
   document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 </script>
+<script is:inline>
+  // PostHog: track checkout_initiated on CTA clicks
+  document.querySelectorAll('a[href*="/api/checkout"]').forEach(function(link) {
+    link.addEventListener('click', function() {
+      if (window.posthog) {
+        posthog.capture('checkout_initiated', {
+          product: '698 skills para Claude Code',
+          price: 12,
+          currency: 'USD',
+          cta_text: link.textContent.trim()
+        });
+      }
+    });
+  });
+
+  // PostHog: track faq_expanded when a <details> is opened
+  document.querySelectorAll('.faqs details').forEach(function(details) {
+    details.addEventListener('toggle', function() {
+      if (details.open && window.posthog) {
+        var summary = details.querySelector('summary');
+        posthog.capture('faq_expanded', {
+          question: summary ? summary.textContent.replace('+', '').trim() : ''
+        });
+      }
+    });
+  });
+</script>
 
 </Layout>

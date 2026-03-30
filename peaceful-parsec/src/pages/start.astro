@@ -197,5 +197,18 @@ import Layout from '../layouts/Layout.astro';
 <script is:inline>
   fbq('track', 'Purchase', { value: 12.00, currency: 'USD' });
 </script>
+<script is:inline>
+  // PostHog: track purchase_completed on the success page
+  if (window.posthog) {
+    var params = new URLSearchParams(window.location.search);
+    if (params.get('purchased') === '1') {
+      posthog.capture('purchase_completed', {
+        product: '698 skills para Claude Code',
+        value: 12.00,
+        currency: 'USD'
+      });
+    }
+  }
+</script>
 
 </Layout>

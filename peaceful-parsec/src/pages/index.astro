@@ -107,4 +107,20 @@ import tasuklyImg from '../assets/tasukly.io.png';
       </section>
     </main>
   </div>
+<script is:inline>
+  // PostHog: track project_link_clicked
+  document.addEventListener('click', function(e) {
+    var link = e.target.closest('a[href]');
+    if (!link) return;
+    var section = link.closest('section');
+    if (!section) return;
+    if (window.posthog) {
+      posthog.capture('project_link_clicked', {
+        href: link.href,
+        text: link.innerText.trim() || link.getAttribute('aria-label') || '',
+        section: section.querySelector('h3') ? section.querySelector('h3').innerText.trim() : ''
+      });
+    }
+  });
+</script>
 </Layout>

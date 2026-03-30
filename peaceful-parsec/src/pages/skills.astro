@@ -214,16 +214,36 @@ const categoriesJson = JSON.stringify(categories);
   }
 
   // Events
+  var searchTimer;
   document.getElementById('search').addEventListener('input', e => {
     query = e.target.value.trim();
     applyFilter();
+    // PostHog: track skill_searched (debounced)
+    clearTimeout(searchTimer);
+    searchTimer = setTimeout(function() {
+      if (query && window.posthog) {
+        posthog.capture('skill_searched', { query: query });
+      }
+    }, 600);
   });
 
   document.querySelectorAll('.cat-btn').forEach(btn => {
-    btn.addEventListener('click', () => setCategory(btn.dataset.cat));
+    btn.addEventListener('click', () => {
+      setCategory(btn.dataset.cat);
+      // PostHog: track skill_category_filtered
+      if (btn.dataset.cat !== 'all' && window.posthog) {
+        posthog.capture('skill_category_filtered', { category: btn.dataset.cat });
+      }
+    });
   });
 
-  document.getElementById('mobile-cat').addEventListener('change', e => setCategory(e.target.value));
+  document.getElementById('mobile-cat').addEventListener('change', e => {
+    setCategory(e.target.value);
+    // PostHog: track skill_category_filtered (mobile)
+    if (e.target.value !== 'all' && window.posthog) {
+      posthog.capture('skill_category_filtered', { category: e.target.value });
+    }
+  });
 
   // Init
   render(ALL);

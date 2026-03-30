@@ -1,6 +1,7 @@
 ---
 import '../styles/theme.css';
 import ogImage from '../assets/og.png';
+import PostHog from '../components/posthog.astro';
 
 interface Props {
 	title?: string;
@@ -58,6 +59,8 @@ const ogUrl = new URL(ogImage.src, Astro.site ?? 'https://vivallo.xyz').href;
 		</script>
 		<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1495894482151609&ev=PageView&noscript=1" /></noscript>
 		<!-- End Meta Pixel -->
+		<!-- PostHog -->
+		<PostHog />
 		<slot name="head" />
 	</head>
 	<body>
